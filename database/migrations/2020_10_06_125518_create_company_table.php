@@ -17,6 +17,7 @@ class CreateCompanyTable extends Migration
             $table->id();
             $table->string('name',300);
             $table->longText('description');
+            $table->string('picture',300)->nullable();;
             $table->string('email',300);
             $table->string('phone_number',300);
             $table->string('province',300);
