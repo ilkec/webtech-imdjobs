@@ -13,13 +13,14 @@ class CreateReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tl_reviews', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->string('internship_title', 300);
             $table->longText('review');
             $table->integer('score');
             $table->boolean('mentoring');
-            $table->foreignId('users_id')->constrained('tl_users');
+            $table->foreignId('users_id')->constrained('users'); /* which user added the review*/
+            $table->foreignId('company_id')->constrained('company'); /* which company is the review about*/
             $table->timestamps();
         });
     }
