@@ -18,12 +18,12 @@ class CreateCompanyTable extends Migration
             $table->string('name',300);
             $table->longText('description');
             $table->string('email',300);
+            $table->string('phone_number',300);
             $table->string('province',300);
             $table->string('street_name',300);
             $table->integer('number');
             $table->string('city',300);
             $table->string('postal_code',300);
-            $table->string('phone_number',300);
             $table->timestamps();
         });
     }
