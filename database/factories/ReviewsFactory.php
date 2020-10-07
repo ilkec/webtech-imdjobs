@@ -22,7 +22,12 @@ class ReviewsFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'internship_title' => $this->faker->jobTitle,
+            'review' => $this->faker->realText(148),
+            'score' => $this->faker->numberBetween($min = 1, $max = 10),
+            'mentoring' => 1,
+            'Users_id' => 5,
+            'company_id' => 3
         ];
     }
 }

@@ -13,18 +13,18 @@ class CreateCompanyTable extends Migration
      */
     public function up()
     {
-        Schema::create('company', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('name',300);
+            $table->string('name', 300);
             $table->longText('description');
-            $table->string('picture',300)->nullable();
-            $table->string('email',300)->unique();
-            $table->string('phone_number',300);
-            $table->string('province',300);
-            $table->string('street_name',300);
+            $table->string('picture', 300)->nullable();
+            $table->string('email', 300)->unique();
+            $table->string('phone_number', 300);
+            $table->string('province', 300);
+            $table->string('street_name', 300);
             $table->integer('number');
-            $table->string('city',300);
-            $table->string('postal_code',300);
+            $table->string('city', 300);
+            $table->string('postal_code', 300);
             $table->foreignId('users_id')->constrained('users'); /*which user made this company profile*/
             $table->timestamps();
         });

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Companies;
+use App\Models\Reviews;
 use Illuminate\Database\Seeder;
 
 class CompaniesSeeder extends Seeder
@@ -13,6 +15,6 @@ class CompaniesSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Companies::factory()->count(5)->create();
     }
 }
