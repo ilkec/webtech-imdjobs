@@ -35,6 +35,6 @@ class CreateInternshipsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tl_internships');
+        Schema::dropIfExists('internships');
     }
 }

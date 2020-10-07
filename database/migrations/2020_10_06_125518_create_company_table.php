@@ -37,6 +37,6 @@ class CreateCompanyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tl_company');
+        Schema::dropIfExists('companies');
     }
 }
