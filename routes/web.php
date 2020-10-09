@@ -14,5 +14,64 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::post('/logout', function () {
+    return view('home');
+});
+
+Route::any('/register', function () {
+    return view('signup');
+});
+
+//====== STUDENT
+Route::get('/students', function () {
+    return view('student/profile');
+});
+
+Route::any('/students/{id}', function () {
+    return view('student/details');
+});
+
+//=== Students applications
+/*Route::get('/students/{id}/applications', function () {
+    return view('home');
+});
+
+Route::get('/students/{id}/applications/{application_id}', function () {
+    return view('home');
+});*/
+
+//======= COMPANY
+Route::get('/companies', function () {
+    return view('company/profil');
+});
+
+Route::any('/companies/{id}', function () {
+    return view('company/details');
+});
+//=======company Vacatures
+/*Route::any('/companies/{id}/vacatures', function () {
+    return view('home');
+});
+Route::any('/companies/{id}/vacatures/{vacature_id}', function () {
+    return view('home');
+});*/
+
+
+// Vacatures?
+Route::get('/vacatures', function () {
+    return view('home');
+});
+
+
+
+
+
+
+
