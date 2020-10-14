@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,17 +18,17 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
 
 Route::post('/logout', function () {
     return view('home');
 });
 
-Route::any('/register', function () {
-    return view('signup');
-});
+
+
+Route::get('/register', [UserController::class, 'register']);
+Route::post('/register', [UserController::class, 'handleRegister']);
+Route::get('/login', [UserController::class, 'login']);
+Route::post('/login', [UserController::class, 'handleLogin']);
 
 //====== STUDENT
 Route::get('/students', function () {
