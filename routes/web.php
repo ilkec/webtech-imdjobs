@@ -49,7 +49,7 @@ Route::get('/students/{id}/applications/{application_id}', function () {
 
 //======= COMPANY
 Route::get('/companies', function () {
-    return view('company/profil');
+    return view('company/profile');
 });
 
 Route::any('/companies/{id}', function () {
@@ -68,10 +68,3 @@ Route::any('/companies/{id}/vacatures/{vacature_id}', function () {
 Route::get('/vacatures', function () {
     return view('home');
 });
-
-
-
-
-
-
-
