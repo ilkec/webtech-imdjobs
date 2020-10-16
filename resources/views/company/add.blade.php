@@ -8,6 +8,18 @@
    <form method="post" action="">
         {{csrf_field()}}
         <h2>Add a company</h2>
+
+        @if( $errors->any())
+        @component('components/alert')
+            @slot('type') danger @endslot
+            <ul>
+                @foreach ($errors->all() as $e)
+                    <li>{{ $e }}</li>
+                @endforeach
+            </ul>
+        @endcomponent
+        @endif
+
         <div class="form-group">
             <label for="name">Company name</label>
             <input name="name" type="text" class="form-control" id="name" placeholder="Company name">

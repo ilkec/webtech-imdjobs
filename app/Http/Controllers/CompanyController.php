@@ -14,12 +14,18 @@ class CompanyController extends Controller
 
     public function handleAddCompany(Request $request)
     {
+        $validation = $request->validate([
+            'name' => 'required',
+            'city' => 'required'
+        ]);
+
         $company = new \App\Models\Companies();
         $company->name = $request->input('name');
         $company->city = $request->input('city');
         $company->users_id = 1; //=====Hard coded: change to session/cookie id once completed
         $company->save();
         $id = $company->id;
+
         return redirect('/company/update/' . $id);
     }
 
@@ -59,8 +65,10 @@ class CompanyController extends Controller
                 'postal_code' => $request->postal_code,
                 'description' => $request->description,
                 //insert picture
-                'email' => $request->name,
+                'email' => $request->email,
                 'phone_number' => $request->phone_number
                 ]);
+
+        return redirect('/company/details/' . $id);
     }
 }
