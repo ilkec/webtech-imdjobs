@@ -63,7 +63,7 @@
                         <input type="password" name="password" class="form-control" id="password-employer" placeholder="Password">
                     </div>
                     <div class="form-check hidden">
-                        <input type="hidden" name="account_type" value="0"> 
+                        <input type="hidden" name="accountType" value="0"> 
                     </div>
                     
                     <button type="submit" class="btn btn-primary" name="register-employer">Sign me up</button>
