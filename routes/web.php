@@ -55,7 +55,7 @@ Route::get('/companies', function () {
 });
 
 Route::get('/company/add', [CompanyController::class, 'addCompany']);
-Route::post('/company/add', [CompanyController::class, 'addCompanyRegister']);
+Route::post('/company/add', [CompanyController::class, 'handleAddCompany']);
 
 Route::any('/companies/{id}', function () {
     return view('company/details');
