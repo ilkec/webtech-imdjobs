@@ -18,6 +18,13 @@ class CompanyController extends Controller
         $company->city = $request->input('city');
         $company->users_id = 1; //=====Hard coded: change to session/cookie id once completed
         $company->save();
-        return redirect('/company/details');
+        $id = $company->id;
+        return redirect('/company/update/' . $id);
+    }
+
+    public function updateCompany($id)
+    {
+        $data['company'] =  \App\Models\Companies::where('id', $id)->first();
+        return view('/company/update', $data);
     }
 }
