@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,13 +50,10 @@ Route::get('/students/{id}/applications/{application_id}', function () {
 });*/
 
 //======= COMPANY
-Route::get('/companies', function () {
-    return view('company/profile');
-});
-
-Route::any('/companies/{id}', function () {
-    return view('company/details');
-});
+Route::get('/companies', [CompanyController::class, 'index']);
+Route::get('/companies/{company}', [CompanyController::class, 'show']);
+Route::get('/companies/{company}/internships', [CompanyController::class, 'indexInternships']);
+Route::get('/companies/{company}/internships/{internship}', [CompanyController::class, 'showInternship']);
 //=======company Vacatures
 /*Route::any('/companies/{id}/vacatures', function () {
     return view('home');
