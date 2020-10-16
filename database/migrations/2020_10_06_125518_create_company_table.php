@@ -21,8 +21,7 @@ class CreateCompanyTable extends Migration
             $table->string('email', 300)->nullable();
             $table->string('phone_number', 300)->nullable();
             $table->string('province', 300)->nullable();
-            $table->string('street_name', 300)->nullable();
-            $table->integer('number')->nullable();
+            $table->string('street_address', 300)->nullable();
             $table->string('city', 300);
             $table->string('postal_code', 300)->nullable();
             $table->foreignId('users_id')->constrained('users'); /*which user made this company profile*/
