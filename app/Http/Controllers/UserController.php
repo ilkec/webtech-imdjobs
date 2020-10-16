@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -27,7 +28,11 @@ class UserController extends Controller
         return view('/login');
     }
 
-    public function handleLogin(){
+    public function handleLogin(Request $request){
+        $credentials = $request->only(['email', 'password']);
+
+        $result = Auth::attempt($credentials);
+        dd($credentials);
         return view('/login');
     }
 }
