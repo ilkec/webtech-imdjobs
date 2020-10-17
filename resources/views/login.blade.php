@@ -6,15 +6,15 @@
 
 @section('content')
     <form method="post" action="">
-        {{csrf_field()}}
+        @csrf
         <h2>Log in</h2>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="email" name ="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
         </div>
         <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="remember">

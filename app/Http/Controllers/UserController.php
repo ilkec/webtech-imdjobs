@@ -29,10 +29,10 @@ class UserController extends Controller
     }
 
     public function handleLogin(Request $request){
-        $credentials = $request->only(['email', 'password']);
-
-        $result = Auth::attempt($credentials);
-        dd($credentials);
+        $info = $request->only('email', 'password');
+        $result = Auth::attempt($info);
+        dd($result, $info);
         return view('/login');
+        
     }
 }

@@ -11,7 +11,7 @@
         <div class="container-signup-student">
             <h2>I am a student</h2>
             <form action="" method="post">
-                {{csrf_field()}}
+                @csrf
 
                 <div class="form_group">
                     <label for="firstname-student">Firstname</label>
@@ -42,7 +42,7 @@
         <div class="container-signup-employer">
             <h2>I am an employer</h2>
                 <form action="" method="post">
-                    {{csrf_field()}}
+                    @csrf
 
                     <div class="form_group">
                         <label for="firstname-employer">Firstname</label>
