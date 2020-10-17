@@ -18,6 +18,7 @@ class CreateApplicationsTable extends Migration
             $table->timestamps();
             $table->integer('user_id');
             $table->integer('internship_id');
+            $table->integer('status');
         });
     }
 
