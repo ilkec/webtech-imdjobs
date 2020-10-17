@@ -5,6 +5,10 @@
 @stop
 
 @section('content')
+    @if( $flash = session('message') )
+        <div class="alert alert-success">{{ $flash }}</div>
+    @endif
+    
     <form method="post" action="">
         @csrf
         <h2>Log in</h2>

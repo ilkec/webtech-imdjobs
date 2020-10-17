@@ -31,9 +31,12 @@ Route::get('/login', [UserController::class, 'login']);
 Route::post('/login', [UserController::class, 'handleLogin']);
 
 //====== STUDENT
-Route::get('/students', function () {
+/*Route::get('/students', function () {
     return view('student/profile');
-});
+});*/
+
+Route::get('/profile', [ProfileController::class, 'profile']);
+Route::put('/profile', [ProfileController::class, 'updateProfile']);
 
 Route::any('/students/{id}', function () {
     return view('student/details');
