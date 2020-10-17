@@ -54,6 +54,19 @@ Route::get('/companies', [CompanyController::class, 'index']);
 Route::get('/companies/{company}', [CompanyController::class, 'show']);
 Route::get('/companies/{company}/internships', [CompanyController::class, 'indexInternships']);
 Route::get('/companies/{company}/internships/{internship}', [CompanyController::class, 'showInternship']);
+// Route::get('/companies', function () {
+//     return view('company/profile');
+// });
+
+Route::get('/company/add', [CompanyController::class, 'addCompany']);
+Route::post('/company/add', [CompanyController::class, 'handleAddCompany']);
+
+Route::get('/company/update/{id}', [CompanyController::class, 'updateCompany']);
+Route::post('/company/update/{id}', [CompanyController::class, 'handleUpdateCompany']);
+
+Route::any('/companies/{id}', function () {
+    return view('company/details');
+});
 //=======company Vacatures
 /*Route::any('/companies/{id}/vacatures', function () {
     return view('home');
