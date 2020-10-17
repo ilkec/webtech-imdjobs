@@ -27,8 +27,7 @@ class CompaniesFactory extends Factory
             'email' => $this->faker->safeEmail,
             'phone_number' => $this->faker->phoneNumber,
             'province' => $this->faker->state,
-            'street_name' => $this->faker->streetName,
-            'number' => $this->faker->buildingNumber,
+            'street_address' => $this->faker->streetAddress,
             'city' => $this->faker->city,
             'postal_code' => $this->faker->postcode,
             'users_id' => 1
