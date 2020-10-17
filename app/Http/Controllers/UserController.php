@@ -48,8 +48,7 @@ class UserController extends Controller
         if (Auth::attempt($info)) {
             $request->flash();
             $request->session()->put('User', $request->email);
-            // Authentication passed...
-        //return redirect()->intended('dashboard');
+        //return redirect()->intended('dashboard'); als je naar een bepaalde pagina wil surfen en die is geblokeerd omdat je nog niet ingelogt bent.
         return view('/login');
         }
 
