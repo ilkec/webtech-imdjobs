@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,12 @@ Route::get('/students/{id}/applications/{application_id}', function () {
 Route::get('/companies', function () {
     return view('company/profile');
 });
+
+Route::get('/company/add', [CompanyController::class, 'addCompany']);
+Route::post('/company/add', [CompanyController::class, 'handleAddCompany']);
+
+Route::get('/company/update/{id}', [CompanyController::class, 'updateCompany']);
+Route::post('/company/update/{id}', [CompanyController::class, 'handleUpdateCompany']);
 
 Route::any('/companies/{id}', function () {
     return view('company/details');
