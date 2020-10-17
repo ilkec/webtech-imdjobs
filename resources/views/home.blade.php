@@ -5,9 +5,7 @@
 @stop
 
 @section('content')
-    @if( $session = session('User') )
-        $usermail = $session;
-    @endif
     
+    <h3><a href="/user/profileUpdate/{{ $id }}"> ga naar edit profile</a></h3>
     
 @endsection
