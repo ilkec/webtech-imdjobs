@@ -34,8 +34,6 @@ class UserFactory extends Factory
             'account_type' => 0,
             'password' => $this->faker->password,
             'remember_token' => $this->faker->uuid
-
-
         ];
     }
 }

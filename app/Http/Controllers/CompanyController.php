@@ -21,8 +21,14 @@ class CompanyController extends Controller
         return view('companies/internships', $data);
     }
 
-    public function showInternship($internship){
+    public function showInternship($company, $internship){
         $data['details'] = \DB::table('internships')->where('id', $internship)->get();
-        dd($data);
+        $data['applications'] = \DB::table('applications')->where('internship_id', $internship)->get();
+        $data['users'] = [];
+        foreach ($data['applications'] as $application) {
+            $user = \DB::table('users')->where('id', $application->user_id)->get();
+            array_push($data['users'], $user);
+        }
+        return view('companies/internshipDetails', $data);
     }
 }
