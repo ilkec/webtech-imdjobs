@@ -17,7 +17,7 @@ class ApplicationController extends Controller
         $application = new \App\Models\Applications();
         $application->message = $request->input('message');
         $application->student_id = 1; //=====Hard coded: change to session/cookie id once completed
-        $application->interschip_id = 1; //=====Hard coded: change to session/cookie id once completed
+        $application->vacature_id = 1; //=====Hard coded: change to session/cookie id once completed
         $application->save();
 
         return redirect('/application/add/');
