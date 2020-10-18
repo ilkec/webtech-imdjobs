@@ -36,7 +36,7 @@ Route::post('/login', [UserController::class, 'handleLogin']);
     return view('student/profile');
 });*/
 
-Route::get('/user/profile', [ProfileController::class, 'showProfile']);
+Route::get('/user/profile/{id}', [ProfileController::class, 'showProfile']);
 Route::get('/user/update', [ProfileController::class, 'updateProfile']);
 Route::post('/user/update', [ProfileController::class, 'handleUpdateProfile']);
 

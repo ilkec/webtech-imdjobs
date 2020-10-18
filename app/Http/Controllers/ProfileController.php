@@ -47,10 +47,11 @@ class ProfileController extends Controller
         
     }
     
-    public function showProfile(){
-        $id = session('User');
+    public function showProfile($id){
+        
         $data['users'] =  \App\Models\User::where('id', $id)->first();
         
+
         return view('/user/profile', $data);
         
     

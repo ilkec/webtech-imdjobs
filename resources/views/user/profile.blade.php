@@ -34,8 +34,8 @@
             <a href="{{ $users->behance }}"><p>Behance</p></a>
         @endif
         
-        @if( $flash = session('User') )
-        <a href="/user/update"><button type="button" class="btn btn-primary">update profile</button></a>
+        @if( $flash = session('User') === $users->id )
+            <a href="/user/update"><button type="button" class="btn btn-primary">update profile</button></a>
         @endif
         
         
