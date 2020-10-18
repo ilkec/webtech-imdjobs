@@ -5,8 +5,8 @@
 @stop
 
 @section('content')
-    @if( $session = session('User') )
-        $usermail = $session;
+    @if( $flash = session('User') )
+        <a href="/user/profile/{{ $flash }}"><button type="button" class="btn btn-primary">checkout profile</button></a>
     @endif
     
     

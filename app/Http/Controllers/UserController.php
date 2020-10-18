@@ -43,15 +43,17 @@ class UserController extends Controller
 
     public function handleLogin(Request $request){
         $info = $request->only('email', 'password');
-        /*$result = Auth::attempt($info);
-        dd($result, $info);*/
+
+        $request->flash();
         if (Auth::attempt($info)) {
             $request->flash();
-            $request->session()->put('User', $request->email);
-        //return redirect()->intended('dashboard'); als je naar een bepaalde pagina wil surfen en die is geblokeerd omdat je nog niet ingelogt bent.
-        return view('/login');
-        }
-
+            $id = Auth::id();
+            $request->session()->put('User', $id);
         
+        return redirect('/');
+        } else{
+            $request->session()->flash('Login', 'Oeps something went wrong, try again!');
+            return view('/login');
+        }
     }
 }

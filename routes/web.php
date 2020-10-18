@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
-
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,8 +36,9 @@ Route::post('/login', [UserController::class, 'handleLogin']);
     return view('student/profile');
 });*/
 
-Route::get('/profile', [ProfileController::class, 'profile']);
-Route::put('/profile', [ProfileController::class, 'updateProfile']);
+Route::get('/user/profile/{id}', [ProfileController::class, 'showProfile']);
+Route::get('/user/update', [ProfileController::class, 'updateProfile']);
+Route::post('/user/update', [ProfileController::class, 'handleUpdateProfile']);
 
 Route::any('/students/{id}', function () {
     return view('student/details');
