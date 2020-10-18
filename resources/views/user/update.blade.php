@@ -23,9 +23,6 @@
                     @endcomponent
                 @endif
 
-                @if( $flash = session('updateMessage') )
-                    <div class="alert alert-success">{{ $flash }}</div>
-                @endif
 
                 <div class="form_group">
                     <label for="firstname">Firstname *</label>

@@ -43,15 +43,17 @@ class ProfileController extends Controller
                 'website'=> $request->website,
                 ]);
         $request->session()->flash('updateMessage', 'Your profile was successfully updated');        
-        //return view('/user/profileUpdate');
-        return redirect('/user/update');
+        return redirect('/user/profile');
         
     }
     
     public function showProfile(){
-       
+        $id = session('User');
+        $data['users'] =  \App\Models\User::where('id', $id)->first();
         
-        return view('/user/update');
+        return view('/user/profile', $data);
+        
+    
     }
 
     
