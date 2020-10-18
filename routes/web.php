@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +56,10 @@ Route::get('/students/{id}/applications/{application_id}', function () {
 
 //======= COMPANY
 Route::get('/company/profile/{id}', [CompanyController::class, 'showCompany']);
+Route::post('/company/profile/{id}', [CompanyController::class, 'addInternshipOffer']);
+
+Route::get('/company/addInternship/{id}', [CompanyController::class, 'addInternship']);
+Route::post('/company/addInternship/{id}', [CompanyController::class, 'handleAddInternship']);
 
 Route::get('/company/add', [CompanyController::class, 'addCompany']);
 Route::post('/company/add', [CompanyController::class, 'handleAddCompany']);

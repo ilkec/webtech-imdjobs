@@ -76,7 +76,53 @@ class CompanyController extends Controller
     public function showCompany($id)
     {
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
-        //dd($data['company']);
+        //get current internships and put in array
         return view('/company/profile', $data);
+    }
+
+    public function addInternshipOffer(Request $request, $id)
+    {
+        $user = \Auth::user();
+        $companies = \App\Models\Companies::find($request->id);
+        
+        if ($user->can('update', $companies)) {
+            $data['user'] = $user;
+            $data['company'] = $companies;
+            return redirect('/company/addInternship/' . $id);
+        } else {
+            $request->session()->flash('addInternshipError', 'Something went wrong, you have no access to this company');
+            return back();
+        }
+    }
+
+    public function addInternship($id)
+    {
+        $data['company'] =  \App\Models\Companies::where('id', $id)->first();
+        return view('/company/addInternship', $data);
+    }
+
+    public function handleAddInternship(Request $request, $id)
+    {
+        $validation = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'tasks' => 'required',
+            'profile' => 'required',
+            'city' => 'required',
+            'postal_code' => 'required'
+        ]);
+
+        $internship = new \App\Models\Internships();
+        $internship->title = $request->title;
+        $internship->postal_code = $request->postal_code;
+        $internship->city = $request->city;
+        $internship->description = $request->description;
+        $internship->tasks = $request->tasks;
+        $internship->profile = $request->profile;
+        $internship->active = 1;
+        $internship->company_id = $id;
+        $internship->save();
+        
+        return redirect('/company/profile/' . $id);
     }
 }

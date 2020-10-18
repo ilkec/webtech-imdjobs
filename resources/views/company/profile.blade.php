@@ -12,7 +12,13 @@
         </section>
 
         <section>
-            
+            @if($flash = session('addInternshipError'))
+                <div class="alert alert-danger"> {{ $flash }} </div>
+            @endif
+            <form method="post" action="">
+            {{csrf_field()}}
+                <button type="submit" class="btn btn-primary">Add Internship offer</button>
+            </form>
         </section>
 
         <section>
