@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
@@ -15,8 +18,13 @@ class ProfileController extends Controller
     }
 
     public function handleUpdateProfile(Request $request){
+
+        //$request->image->store('images', 'public');
+        //dd($request->file('image'));
+        
         $id = session('User');
         $validation = $request->validate([
+            'image' => 'required',
             'firstname' => 'required',
             'lastname' => 'required',
             'description' => 'required',
@@ -28,10 +36,13 @@ class ProfileController extends Controller
             'website'=> 'nullable',
             
         ]);
+
+        $request->image->store('images', 'public');
         $request->flash();
         DB::table('users')
             ->where('id', $id )
             ->update([
+                'picture' => $request->image,
                 'first_name' => $request->firstname,
                 'last_name' => $request->lastname,
                 'description' => $request->description,
@@ -42,16 +53,17 @@ class ProfileController extends Controller
                 'behance'=> $request->behance,
                 'website'=> $request->website,
                 ]);
+
+
         $request->session()->flash('updateMessage', 'Your profile was successfully updated');        
         return redirect('/user/profile/' . $id);
+        //return redirect('/user/profile/52');
         
     }
     
     public function showProfile($id){
         
         $data['users'] =  \App\Models\User::where('id', $id)->first();
-        
-
         return view('/user/profile', $data);
         
     

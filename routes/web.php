@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
 
+/*$resp = Http::get(');
+dd($resp->body());*/
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,9 +44,7 @@ Route::get('/user/profile/{id}', [ProfileController::class, 'showProfile']);
 Route::get('/user/update', [ProfileController::class, 'updateProfile']);
 Route::post('/user/update', [ProfileController::class, 'handleUpdateProfile']);
 
-Route::any('/students/{id}', function () {
-    return view('student/details');
-});
+
 
 //=== Students applications
 /*Route::get('/students/{id}/applications', function () {
