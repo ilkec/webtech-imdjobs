@@ -7,14 +7,15 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
-    public function profile($id){
+    public function updateProfile(){
+        $id = session('User');
         $data['users'] =  \App\Models\User::where('id', $id)->first();
         
-        return view('/user/profileUpdate', $data);
+        return view('/user/update', $data);
     }
 
-    public function updateProfile(Request $request, $id){
-
+    public function handleUpdateProfile(Request $request){
+        $id = session('User');
         $validation = $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
@@ -43,8 +44,14 @@ class ProfileController extends Controller
                 ]);
         $request->session()->flash('updateMessage', 'Your profile was successfully updated');        
         //return view('/user/profileUpdate');
-        return redirect('/user/profileUpdate/' . $id);
+        return redirect('/user/update');
         
+    }
+    
+    public function showProfile(){
+       
+        
+        return view('/user/update');
     }
 
     

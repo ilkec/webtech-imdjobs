@@ -36,10 +36,9 @@ Route::post('/login', [UserController::class, 'handleLogin']);
     return view('student/profile');
 });*/
 
-
-
-Route::get('/user/profileUpdate/{id}', [ProfileController::class, 'profile']);
-Route::post('/user/profileUpdate/{id}', [ProfileController::class, 'updateProfile']);
+Route::get('/user/profile', [ProfileController::class, 'showProfile']);
+Route::get('/user/update', [ProfileController::class, 'updateProfile']);
+Route::post('/user/update', [ProfileController::class, 'handleUpdateProfile']);
 
 Route::any('/students/{id}', function () {
     return view('student/details');

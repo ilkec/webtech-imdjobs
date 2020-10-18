@@ -6,7 +6,7 @@
 
 @section('content')
     @if( $flash = session('User') )
-        <a href="/user/profileUpdate/{{ $flash }}"><button type="button" class="btn btn-primary">update profile</button></a>
+        <a href="/user/update"><button type="button" class="btn btn-primary">update profile</button></a>
     @endif
     
     
