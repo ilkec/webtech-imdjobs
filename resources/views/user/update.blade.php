@@ -9,7 +9,7 @@
     <div class="container-profile">
         <div class="container-profile">
         <h4>All fields are required</h4>
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 @csrf
 
                 @if( $errors->any() )
@@ -23,13 +23,17 @@
                     @endcomponent
                 @endif
 
-
+                
                 <div class="form_group">
-                    <label for="firstname">Firstname *</label>
+                    <input type="file" name="image" class="btn mb-3" id="image">
+                    <label for="image" class="btn">Choose a file</label>
+                </div>
+                <div class="form_group">
+                    <label for="firstname">First name *</label>
                     <input value="{{ $users->first_name }}" class="form-control" type="text" name="firstname" id="firstname"  placeholder="Enter your first name">
                 </div>
                 <div class="form_group">
-                    <label for="lastname">Lastname *</label>
+                    <label for="lastname">Last name *</label>
                     <input value="{{ $users->last_name }}" class="form-control" type="text" name="lastname" id="lastname" placeholder="Enter your last name">
                 </div>
 

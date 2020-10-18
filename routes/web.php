@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
@@ -41,9 +42,7 @@ Route::get('/user/profile/{id}', [ProfileController::class, 'showProfile']);
 Route::get('/user/update', [ProfileController::class, 'updateProfile']);
 Route::post('/user/update', [ProfileController::class, 'handleUpdateProfile']);
 
-Route::any('/students/{id}', function () {
-    return view('student/details');
-});
+
 
 //=== Students applications
 /*Route::get('/students/{id}/applications', function () {
