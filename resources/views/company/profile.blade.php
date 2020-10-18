@@ -11,7 +11,7 @@
         <p>{{$company->description}}</p>
         </section>
 
-        <section>
+        <section style="background-color: #f7f7f7">
             @if($flash = session('addInternshipError'))
                 <div class="alert alert-danger"> {{ $flash }} </div>
             @endif
@@ -19,8 +19,14 @@
             {{csrf_field()}}
                 <button type="submit" class="btn btn-primary">Add Internship offer</button>
             </form>
+            @foreach ($internships as $internship)
+                <div>  
+                    <h4>{{$internship->title}}</h4>
+                    <p>{{$internship->description}}</p>
+                </div>
+            @endforeach
         </section>
-
+            
         <section>
             <h3>Contact details</h3>
             <p>{{$company->street_address}}, {{ $company->postal_code}} {{$company->city}}</p>
