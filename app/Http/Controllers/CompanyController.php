@@ -42,7 +42,8 @@ class CompanyController extends Controller
         return view('/company/update', $data);
     }
 
-    public function handleUpdateCompany(Request $request, $id) {
+    public function handleUpdateCompany(Request $request, $id)
+    {
         $this->validate($request, [
             'name' => 'required',
             'city' => 'required',
@@ -70,5 +71,12 @@ class CompanyController extends Controller
                 ]);
 
         return redirect('/company/details/' . $id);
+    }
+
+    public function showCompany($id)
+    {
+        $data['company'] =  \App\Models\Companies::where('id', $id)->first();
+        //dd($data['company']);
+        return view('/company/profile', $data);
     }
 }

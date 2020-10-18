@@ -53,9 +53,7 @@ Route::get('/students/{id}/applications/{application_id}', function () {
 });*/
 
 //======= COMPANY
-Route::get('/companies', function () {
-    return view('company/profile');
-});
+Route::get('/company/profile/{id}', [CompanyController::class, 'showCompany']);
 
 Route::get('/company/add', [CompanyController::class, 'addCompany']);
 Route::post('/company/add', [CompanyController::class, 'handleAddCompany']);
