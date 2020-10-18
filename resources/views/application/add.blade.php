@@ -7,7 +7,7 @@
 @section('content')
    <form method="post" action="">
         {{csrf_field()}}
-        <h2>Add a company</h2>
+        <h2>Job application</h2>
 
         @if( $errors->any())
         @component('components/alert')
