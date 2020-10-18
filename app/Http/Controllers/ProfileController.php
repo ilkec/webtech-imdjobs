@@ -20,10 +20,14 @@ class ProfileController extends Controller
             'lastname' => 'required',
             'description' => 'required',
             'phonenumber' => 'required',
-            'city' => 'required'
+            'city' => 'required',
+            'linkedin'=> 'nullable',
+            'dribbble'=> 'nullable',
+            'behance'=> 'nullable',
+            'website'=> 'nullable',
             
         ]);
-        
+        $request->flash();
         DB::table('users')
             ->where('id', $id )
             ->update([
@@ -32,8 +36,12 @@ class ProfileController extends Controller
                 'description' => $request->description,
                 'phone_number' => $request->phonenumber,
                 'city' => $request->city,
+                'linkedin'=> $request->linkedin,
+                'dribbble'=> $request->dribbble,
+                'behance'=> $request->behance,
+                'website'=> $request->website,
                 ]);
-                
+        $request->session()->flash('updateMessage', 'Your profile was successfully updated');        
         //return view('/user/profileUpdate');
         return redirect('/user/profileUpdate/' . $id);
         

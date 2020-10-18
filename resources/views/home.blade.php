@@ -5,7 +5,9 @@
 @stop
 
 @section('content')
+    @if( $flash = session('User') )
+        <a href="/user/profileUpdate/{{ $flash }}"><button type="button" class="btn btn-primary">update profile</button></a>
+    @endif
     
-    <h3><a href="/user/profileUpdate/{{ $id }}"> ga naar edit profile</a></h3>
     
 @endsection
