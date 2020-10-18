@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
-
+use App\Http\Controllers\ApplicationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,3 +79,8 @@ Route::any('/companies/{id}/vacatures/{vacature_id}', function () {
 Route::get('/vacatures', function () {
     return view('home');
 });
+
+
+
+Route::get('/application/add', [ApplicationController::class, 'addApplication']);
+Route::post('/application/add', [ApplicationController::class, 'handleAddAplication']);
