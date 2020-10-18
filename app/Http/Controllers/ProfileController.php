@@ -43,7 +43,7 @@ class ProfileController extends Controller
                 'website'=> $request->website,
                 ]);
         $request->session()->flash('updateMessage', 'Your profile was successfully updated');        
-        return redirect('/user/profile');
+        return redirect('/user/profile/' . $id);
         
     }
     
