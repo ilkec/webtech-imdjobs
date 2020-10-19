@@ -46,9 +46,9 @@
             <label for="description">description</label>
             <textarea name="description" class="form-control" id="description">@if(!empty($foursquare->categories[0]->name)) {{$foursquare->categories[0]->name}} @endif</textarea>
         </div>
-        <div class="form-group">
-            <label for="picture">logo</label>
-            <input name="picture" type="file" class="form-control" id="picture" accept="image/*" placeholder="Company Logo">
+        <div class="form_group">
+            <input type="file" name="image" class="btn mb-3" id="image" accept="image/*">
+            <label for="image" class="btn">Choose a file</label>
         </div>
         <div class="form-group">
             <label for="email">email</label>

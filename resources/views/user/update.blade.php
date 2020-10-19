@@ -25,7 +25,7 @@
 
                 
                 <div class="form_group">
-                    <input type="file" name="image" class="btn mb-3" id="image">
+                    <input type="file" name="image" class="btn mb-3" id="image" accept="image/*">
                     <label for="image" class="btn">Choose a file</label>
                 </div>
                 <div class="form_group">

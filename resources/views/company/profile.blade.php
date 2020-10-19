@@ -7,6 +7,9 @@
 @section('content')
  
         <section>
+        <div class="img-thumbnail">
+            <img src="{{ asset('storage/' . $company->picture) }}" alt="Company logo" id="companyLogo">
+        </div>
         <h2>{{$company->name}}</h2>
         <p>{{$company->description}}</p>
         </section>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Classes\Foursquare;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -22,7 +23,7 @@ class CompanyController extends Controller
         $company = new \App\Models\Companies();
         $company->name = $request->input('name');
         $company->city = $request->input('city');
-        $company->users_id = 1; //=====Hard coded: change to session/cookie id once completed
+        $company->users_id = \Auth::user()->id; //=====Hard coded: change to session/cookie id once completed
         $company->save();
         $id = $company->id;
 
@@ -63,11 +64,13 @@ class CompanyController extends Controller
             'street_address' => 'required',
             'postal_code' => 'required',
             'description' => 'required',
-            //insert picture
+            'image' => 'required',
             'email' => 'required',
             'phone_number' => "required"
         ]);
-        
+
+        $imagePath = $request->image->store('images', 'public');
+
         \DB::table('companies')
             ->where('id', $id)
             ->update([
@@ -77,12 +80,12 @@ class CompanyController extends Controller
                 'street_address' => $request->street_address,
                 'postal_code' => $request->postal_code,
                 'description' => $request->description,
-                //insert picture
+                'picture' => $imagePath,
                 'email' => $request->email,
                 'phone_number' => $request->phone_number
                 ]);
 
-        return redirect('/company/details/' . $id);
+        return redirect('/company/profile/' . $id);
     }
 
     public function showCompany($id)
