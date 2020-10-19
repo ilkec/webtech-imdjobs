@@ -31,19 +31,23 @@ class ProfileController extends Controller
             'description' => 'required',
             'phonenumber' => 'required',
             'city' => 'required',
+            'cv' => 'required',
             'linkedin'=> 'nullable',
             'dribbble'=> 'nullable',
             'behance'=> 'nullable',
+            'github' => 'nullable',
             'website'=> 'nullable',
             
         ]);
 
        $imagePath = $request->image->store('images', 'public');
+       $cvPath = $request->cv->store('files', 'public');
         $request->flash();
         DB::table('users')
             ->where('id', $id )
             ->update([
                 'picture' => $imagePath,
+                'cv' => $cvPath,
                 'first_name' => $request->firstname,
                 'last_name' => $request->lastname,
                 'description' => $request->description,
@@ -52,6 +56,7 @@ class ProfileController extends Controller
                 'linkedin'=> $request->linkedin,
                 'dribbble'=> $request->dribbble,
                 'behance'=> $request->behance,
+                'github'=> $request->github,
                 'website'=> $request->website,
                 ]);
 
