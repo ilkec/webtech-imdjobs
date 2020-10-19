@@ -24,6 +24,8 @@ Route::post('/logout', function () {
     return view('home');
 });
 
+Route::put('/company/updateApplicationStatus', [CompanyController::class, 'updateApplicationStatus']);
+
 
 
 Route::get('/register', [UserController::class, 'register']);

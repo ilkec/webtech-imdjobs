@@ -8,32 +8,42 @@ use App\Classes\Foursquare;
 class CompanyController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
         $data['companies'] = \DB::table('companies')->get();
         return view('companies/index', $data);
     }
 
-    public function show($company){
+    public function show($company)
+    {
         $data['details'] = \DB::table('companies')->where('id', $company)->get();
         return view('companies/profile', $data);
     }
 
-    public function indexInternships($company){
+    public function indexInternships($company)
+    {
         $data['internships'] = \DB::table('internships')->where('company_id', $company)->get();
         return view('companies/internships', $data);
     }
 
-    public function showInternship($company, $internship){
+    public function showInternship($company, $internship)
+    {
         $data['details'] = \DB::table('internships')->where('id', $internship)->get();
-        $data['applications'] = \DB::table('applications')->where('internship_id', $internship)->get();
-        $data['users'] = [];
-        foreach ($data['applications'] as $application) {
-            $user = \DB::table('users')->where('id', $application->user_id)->get();
-            array_push($data['users'], $user);
-        }
+        //$data['applications'] = \DB::table('applications')->where('internship_id', $internship)->get();
+        $data['applications'] = \DB::table('applications')->join('users', 'users.id', '=', 'applications.user_id')->get();
+        // $data['users'] = [];
+        // foreach ($data['applications'] as $application) {
+        //     $user = \DB::table('users')->where('id', $application->user_id)->get();
+        //     array_push($data['users'], $user);
+        // }
         return view('companies/internshipDetails', $data);
     }
-    
+
+    public function updateApplicationStatus($id, Request $request)
+    {
+        return 'success';
+    }
+
     public function addCompany()
     {
         return view('/company/add');
@@ -69,7 +79,8 @@ class CompanyController extends Controller
         return view('/company/update', $data);
     }
 
-    public function handleUpdateCompany(Request $request, $id) {
+    public function handleUpdateCompany(Request $request, $id)
+    {
         $this->validate($request, [
             'name' => 'required',
             'city' => 'required',
@@ -81,7 +92,7 @@ class CompanyController extends Controller
             'email' => 'required',
             'phone_number' => "required"
         ]);
-        
+
         \DB::table('companies')
             ->where('id', $id)
             ->update([
@@ -94,7 +105,7 @@ class CompanyController extends Controller
                 //insert picture
                 'email' => $request->email,
                 'phone_number' => $request->phone_number
-                ]);
+            ]);
 
         return redirect('/company/details/' . $id);
     }
