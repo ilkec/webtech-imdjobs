@@ -8,7 +8,11 @@
         <div class="alert alert-success">{{ $flash }}</div>
     @endif
     <h1>Hi, i'm {{ $users->first_name }} {{ $users->last_name }}</h1>
-    <img src="{{ $users->picture }}" alt="profilepicture">
+    <div class="img-thumbnail">
+        <img src="{{ asset('storage/' . $users->picture) }}" alt="profilepicture" id="profilePicture">
+    </div>
+    
+    
     <div class='description'>
         <h4>What I would like you to know</h4>
         <p>{{ $users->description }}</p>

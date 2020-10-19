@@ -19,8 +19,9 @@ class ProfileController extends Controller
 
     public function handleUpdateProfile(Request $request){
 
-        //$request->image->store('images', 'public');
-        //dd($request->file('image'));
+       // $request->image->store('images', 'public');
+        //$request->photo->path();
+        //dd($request->image->path());
         
         $id = session('User');
         $validation = $request->validate([
@@ -37,12 +38,12 @@ class ProfileController extends Controller
             
         ]);
 
-        $request->image->store('images', 'public');
+       $imagePath = $request->image->store('images', 'public');
         $request->flash();
         DB::table('users')
             ->where('id', $id )
             ->update([
-                'picture' => $request->image,
+                'picture' => $imagePath,
                 'first_name' => $request->firstname,
                 'last_name' => $request->lastname,
                 'description' => $request->description,
@@ -55,7 +56,7 @@ class ProfileController extends Controller
                 ]);
 
 
-        $request->session()->flash('updateMessage', 'Your profile was successfully updated');        
+        $request->session()->flash('updateMessage', 'Your profile was successfully updated');      
         return redirect('/user/profile/' . $id);
         //return redirect('/user/profile/52');
         
@@ -64,6 +65,7 @@ class ProfileController extends Controller
     public function showProfile($id){
         
         $data['users'] =  \App\Models\User::where('id', $id)->first();
+        
         return view('/user/profile', $data);
         
     
