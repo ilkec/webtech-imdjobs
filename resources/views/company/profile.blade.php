@@ -15,10 +15,12 @@
             @if($flash = session('addInternshipError'))
                 <div class="alert alert-danger"> {{ $flash }} </div>
             @endif
+            @if(\Auth::user()->can('update', $company))
             <form method="post" action="">
             {{csrf_field()}}
                 <button type="submit" class="btn btn-primary">Add Internship offer</button>
             </form>
+            @endif()
             @foreach ($internships as $internship)
                 <div>  
                     <h4>{{$internship->title}}</h4>
