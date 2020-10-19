@@ -35,9 +35,21 @@ class CompanyController extends Controller
         $url = "https://api.foursquare.com/v2/venues/search?client_id=4TAFZM0IL2S430ZFFPTO5ILZRM1GLRD2QRELEPDEYIADKF5V&client_secret=1W1UAU1GEYO2E3BA5Q45BT1FNAXNM5P5ZP2JJZ3CBAUCDMBB&v=20180323";
         $addonUrl = "&near=" . $data['company']->city . "&query=" . $data['company']->name;
         $completeUrl = $url . $addonUrl;
-        $json = file_get_contents($completeUrl);
-        $realjson = json_decode($json);
-        $companyData = $realjson->response->venues['0'];
+        try {
+            $json = file_get_contents($completeUrl);
+        } catch (\Exception $e) {
+            $json = "";
+        }
+        if ($json != "") {
+            $realjson = json_decode($json);
+            if (!empty($realjson->response->venues['0'])) {
+                $companyData = $realjson->response->venues['0'];
+            } else {
+                $companyData = "";
+            }
+        } else {
+            $companyData = "";
+        }
         $data['foursquare'] = $companyData;
         return view('/company/update', $data);
     }
