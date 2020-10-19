@@ -25,6 +25,10 @@ class CreateUsersTable extends Migration
             $table->string('city',300)->nullable();
             $table->date('birthday')->nullable();
             $table->string('language')->nullable();
+            $table->string('dribbble')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('behance')->nullable();
+            $table->string('website')->nullable();
             $table->boolean('account_type');
             $table->string('password');
             $table->rememberToken();

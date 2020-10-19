@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,13 +36,15 @@ Route::get('/login', [UserController::class, 'login']);
 Route::post('/login', [UserController::class, 'handleLogin']);
 
 //====== STUDENT
-Route::get('/students', function () {
+/*Route::get('/students', function () {
     return view('student/profile');
-});
+});*/
 
-Route::any('/students/{id}', function () {
-    return view('student/details');
-});
+Route::get('/user/profile/{id}', [ProfileController::class, 'showProfile']);
+Route::get('/user/update', [ProfileController::class, 'updateProfile']);
+Route::post('/user/update', [ProfileController::class, 'handleUpdateProfile']);
+
+
 
 //=== Students applications
 /*Route::get('/students/{id}/applications', function () {
@@ -59,6 +63,11 @@ Route::get('/companies/{company}/internships/{internship}', [CompanyController::
 // Route::get('/companies', function () {
 //     return view('company/profile');
 // });
+Route::get('/company/profile/{id}', [CompanyController::class, 'showCompany']);
+Route::post('/company/profile/{id}', [CompanyController::class, 'addInternshipOffer']);
+
+Route::get('/company/addInternship/{id}', [CompanyController::class, 'addInternship']);
+Route::post('/company/addInternship/{id}', [CompanyController::class, 'handleAddInternship']);
 
 Route::get('/company/add', [CompanyController::class, 'addCompany']);
 Route::post('/company/add', [CompanyController::class, 'handleAddCompany']);

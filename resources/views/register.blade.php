@@ -13,19 +13,29 @@
             <form action="" method="post">
                 @csrf
 
+                @if( $errors->any() )
+                    @component('components/alert')
+                        @slot('type', 'danger')
+                        <ul>
+                            @foreach($errors->all() as $e)
+                                <li>{{ $e }}</li>
+                            @endforeach
+                        </ul>   
+                    @endcomponent
+                @endif
                 <div class="form_group">
                     <label for="firstname-student">Firstname</label>
-                    <input class="form-control" type="text" name="firstname" id="firstname-student" aria-describedby="emailHelp" placeholder="Enter your first name">
+                    <input value="{{ old('firstname') }}" class="form-control" type="text" name="firstname" id="firstname-student" aria-describedby="emailHelp" placeholder="Enter your first name">
                 </div>
                 <div class="form_group">
                     <label for="lastname-student">Lastname</label>
-                    <input class="form-control" type="text" name="lastname" id="lastname-student" aria-describedby="emailHelp" placeholder="Enter your last name">
+                    <input value="{{ old('lastname') }}" class="form-control" type="text" name="lastname" id="lastname-student" aria-describedby="emailHelp" placeholder="Enter your last name">
                 </div>
 
                 <div class="form-group">
                     <label for="email-student">Email address</label>
-                    <input type="email" name="email" class="form-control" id="email-student" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <input value="{{ old('email') }}" type="email" name="email" class="form-control" id="email-student" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">Only register with schoolmail for example: firstname.lastname@student.thomasmore.be</small>
                 </div>
                 <div class="form-group">
                     <label for="password-student">Password</label>
@@ -44,18 +54,29 @@
                 <form action="" method="post">
                     @csrf
 
+                    @if( $errors->any() )
+                        @component('components/alert')
+                            @slot('type', 'danger')
+                            <ul>
+                                @foreach($errors->all() as $e)
+                                    <li>{{ $e }}</li>
+                                @endforeach
+                            </ul>   
+                        @endcomponent
+                    @endif
+
                     <div class="form_group">
                         <label for="firstname-employer">Firstname</label>
-                        <input class="form-control" type="text" name="firstname" id="firstname-employer" aria-describedby="emailHelp" placeholder="Enter your first name">
+                        <input value="{{ old('firstname') }}" class="form-control" type="text" name="firstname" id="firstname-employer" aria-describedby="emailHelp" placeholder="Enter your first name">
                     </div>
                     <div class="form_group">
                         <label for="lastname-employer">Lastname</label>
-                        <input class="form-control" type="text" name="lastname" id="lastname-employer" aria-describedby="emailHelp" placeholder="Enter your last name">
+                        <input value="{{ old('lastname') }}" class="form-control" type="text" name="lastname" id="lastname-employer" aria-describedby="emailHelp" placeholder="Enter your last name">
                     </div>
 
                     <div class="form-group">
                         <label for="email-employer">Email address</label>
-                        <input type="email" name="email" class="form-control" id="email-employer" aria-describedby="emailHelp" placeholder="Enter email">
+                        <input value="{{ old('email') }}" type="email" name="email" class="form-control" id="email-employer" aria-describedby="emailHelp" placeholder="Enter email">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div class="form-group">
