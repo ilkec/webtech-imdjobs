@@ -8,15 +8,15 @@
         <div class="alert alert-success">{{ $flash }}</div>
     @endif
     <h1>Hi, i'm {{ $users->first_name }} {{ $users->last_name }}</h1>
+    
+    <div class="container-img">
     @if (empty( $users->picture ))
-    <div class="container-img">
-        <img class="img-thumbnail" src="{{ asset('images/profilePic.jpg') }}" alt="profilepicture" id="profilePicture">
-    </div>
+        <img class="img-thumbnail" src="{{ asset('images/profilePic.jpg') }}" width="500" height="500" alt="profilepicture" id="profilePicture">
     @else
-    <div class="container-img">
-        <img class="img-thumbnail" src="{{ asset('storage/' . $users->picture) }}" alt="profilepicture" id="profilePicture">
+        <img class="img-thumbnail" src="{{ asset('storage/' . $users->picture) }}" width="500" height="500" alt="profilepicture" id="profilePicture">
+        @endif
     </div>
-    @endif
+
     
     <div class='description'>
         <h4>What I would like you to know</h4>
