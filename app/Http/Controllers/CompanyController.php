@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Classes\Foursquare;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
@@ -24,7 +26,7 @@ class CompanyController extends Controller
         $company = new \App\Models\Companies();
         $company->name = $request->input('name');
         $company->city = $request->input('city');
-        $company->users_id = \Auth::user()->id; //=====Hard coded: change to session/cookie id once completed
+        $company->users_id = Auth::user()->id; //=====Hard coded: change to session/cookie id once completed
         $company->save();
         $id = $company->id;
 
@@ -71,7 +73,7 @@ class CompanyController extends Controller
 
         $imagePath = $request->image->store('images', 'public');
 
-        \DB::table('companies')
+        DB::table('companies')
             ->where('id', $id)
             ->update([
                 'name' => $request->name,
@@ -98,7 +100,7 @@ class CompanyController extends Controller
 
     public function addInternshipOffer(Request $request, $id)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
         $companies = \App\Models\Companies::find($request->id);
         
         if ($user->can('update', $companies)) {
