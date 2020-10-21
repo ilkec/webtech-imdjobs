@@ -23,7 +23,7 @@
             {{csrf_field()}}
                 <button type="submit" class="btn btn-primary">Add Internship offer</button>
             </form>
-            @endif()
+            @endif
             @foreach ($internships as $internship)
                 <div>  
                     <h4>{{$internship->title}}</h4>
