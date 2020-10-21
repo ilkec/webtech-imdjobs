@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Classes\Foursquare;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 
 class CompanyController extends Controller
 {
@@ -37,21 +38,17 @@ class CompanyController extends Controller
         $addonUrl = "&near=" . $data['company']->city . "&query=" . $data['company']->name;
         $completeUrl = $url . $addonUrl;
         try {
-            $json = file_get_contents($completeUrl);
+            $response = Http::get($completeUrl)->json();
         } catch (\Exception $e) {
-            $json = "";
+            $response = "";
         }
-        if ($json != "") {
-            $realjson = json_decode($json);
-            if (!empty($realjson->response->venues['0'])) {
-                $companyData = $realjson->response->venues['0'];
-            } else {
-                $companyData = "";
+        $data['foursquare'] = "";
+        if ($response != "") {
+            if (!empty($response['response']['venues']['0'])) {
+                $data['foursquare'] = $response['response']['venues']['0'];
             }
-        } else {
-            $companyData = "";
         }
-        $data['foursquare'] = $companyData;
+        //dd($data['foursquare']['name']);
         return view('/company/update', $data);
     }
 
