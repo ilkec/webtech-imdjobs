@@ -46,9 +46,12 @@ class CompanyController extends Controller
         if ($response != "") {
             if (!empty($response['response']['venues']['0'])) {
                 $data['foursquare'] = $response['response']['venues']['0'];
+            } else {
+                session()->flash('noCompany', 'We could not find the company you are looking for, please complete this form about the company!');
             }
+        } else {
+            session()->flash('noCompany', 'We could not find the company you are looking for, please complete this form about the company!');
         }
-        //dd($data['foursquare']['name']);
         return view('/company/update', $data);
     }
 

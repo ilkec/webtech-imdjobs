@@ -19,6 +19,9 @@
             </ul>
         @endcomponent
         @endif
+        @if($flash = session('noCompany'))
+            <div class="alert alert-success"> {{ $flash }} </div>
+        @endif
 
         <div class="form-group">
             <label for="name">Company name</label>
