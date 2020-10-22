@@ -9,3 +9,33 @@
    max-width: 200px;
    height: 200px;
 }
+
+.container-signup{
+   border: 1px solid black;
+   width: 650px;
+   height: 514px;
+   margin-top: 20vh;
+   padding: 2em; 
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   grid-template-rows: auto;
+}
+
+#container-signup-student,#container-signup-employer {
+   grid-column: 1/3;
+}
+
+.header-signup{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#header-student{
+   border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+
+/*#header-student{
+   background-color: grey;
+}*/
