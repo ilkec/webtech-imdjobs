@@ -25,7 +25,7 @@
 
                 
                 <div class="form_group">
-                    <p>Profile picture *</p>
+                    <p>Profile picture</p>
                     <!--<label for="image">Choose a picture</label>-->
                     <input type="file" name="image" class="btn mb-3" id="image" accept="image/*">
                     
@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="form_group">
-                    <p>Upload your cv *</p>
+                    <p>Upload your cv</p>
                     <!--<label for="image" class="btn">Choose a file</label>-->
                     <input type="file" name="cv" class="btn mb-3" id="cv" accept=".pdf">
                     <small id="fieldHelp" class="form-text text-muted">pdf files only</small>

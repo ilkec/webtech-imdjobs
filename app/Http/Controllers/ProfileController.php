@@ -25,13 +25,13 @@ class ProfileController extends Controller
         
         $id = session('User');
         $validation = $request->validate([
-            'image' => 'required',
+            'image' => 'nullable',
             'firstname' => 'required',
             'lastname' => 'required',
             'description' => 'required',
             'phonenumber' => 'required',
             'city' => 'required',
-            'cv' => 'required',
+            'cv' => 'nullable',
             'linkedin'=> 'nullable',
             'dribbble'=> 'nullable',
             'behance'=> 'nullable',
@@ -40,8 +40,15 @@ class ProfileController extends Controller
             
         ]);
 
-       $imagePath = $request->image->store('images', 'public');
-       $cvPath = $request->cv->store('files', 'public');
+        if ($request->image){
+            $imagePath = $request->image->store('images', 'public');
+        }
+
+        if($request->cv){
+            $cvPath = $request->cv->store('files', 'public');
+        }
+       
+       
         $request->flash();
         DB::table('users')
             ->where('id', $id )
