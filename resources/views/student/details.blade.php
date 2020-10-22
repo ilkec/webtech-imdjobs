@@ -1,5 +1,9 @@
-@include('partials.header')
-<div class="app">
-Student Details
-</div>
-@include('partials.footer')
+@extends('partials.app')
+
+@section('title')
+    Profile
+@stop
+
+@section('content')
+    <h1>test dribbble</h1>
+@stop

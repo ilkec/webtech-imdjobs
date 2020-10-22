@@ -44,6 +44,7 @@ Route::post('/user/update', [ProfileController::class, 'handleUpdateProfile']);
 
 
 
+
 //=== Students applications
 /*Route::get('/students/{id}/applications', function () {
     return view('home');

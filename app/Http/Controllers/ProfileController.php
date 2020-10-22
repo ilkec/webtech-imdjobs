@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Http;
 
 class ProfileController extends Controller
 {
@@ -22,7 +23,10 @@ class ProfileController extends Controller
        // $request->image->store('images', 'public');
         //$request->photo->path();
         //dd($request->image->path());
-        
+        $url = "https://api.behance.net/v2/users/matiascorea";
+        $respo = Http::get($url);
+
+
         $id = session('User');
         $validation = $request->validate([
             'image' => 'required',

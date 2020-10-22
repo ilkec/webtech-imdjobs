@@ -47,9 +47,9 @@
         @if (!empty( $users->dribbble ))
             <a href="{{ $users->dribbble }}"><p>Dribbble</p></a>
         @endif
-        @if (!empty( $users->behance ))
+        <!--@if (!empty( $users->behance ))
             <a href="{{ $users->behance }}"><p>Behance</p></a>
-        @endif
+        @endif-->
         @if (!empty( $users->github ))
             <a href="{{ $users->github }}"><p>Github</p></a>
         @endif
