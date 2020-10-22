@@ -13,6 +13,6 @@
         @yield('content')
     </div>
     
-
+    <footer>&copy; Interact</footer>
 </body>
 </html>

@@ -40,6 +40,13 @@
    grid-row:1;
 }
 
+footer{
+   background-color: #333333;
+   color: #fff;
+   text-align: center;
+   padding: 10px;
+}
+
 
 /*#header-student{
    background-color: grey;
