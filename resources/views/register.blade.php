@@ -9,9 +9,6 @@
     <h1>Register</h1>
     <div class="container-signup">
         <h2 id="header-student" class="header-signup" onclick="myFunction()">I am a student</h2>
-        <h2 id="header-employer" class="header-signup" onclick="myFunctionI()">I am an employer</h2>
-        
-        
         <div id="container-signup-student">
             
             <form action="" method="post">
@@ -52,7 +49,7 @@
                 <button type="submit" class="btn btn-primary" name="register-student">Sign me up</button>
             </form>
         </div>
-
+        <h2 id="header-employer" class="header-signup" onclick="myFunctionI()">I am an employer</h2>
         <div id="container-signup-employer" style="display:none;">
             
                 <form action="" method="post">
