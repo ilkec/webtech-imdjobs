@@ -24,7 +24,7 @@
         @endcomponent
         @endif
 
-        <div class="form-group">
+        <!--<div class="form-group">
             <label for="type">Internship type</label>
             <select class="custom-select" id="inputTypeSelect">
                 <option selected>graphic design</option>
@@ -33,7 +33,7 @@
                 <option value="3">back-end development</option>
                 <option value="3">full-stack development</option>
             </select>
-        </div>
+        </div>-->
         <div class="form-group">
             <label for="city">City</label>
             <input name="city" type="text" class="form-control" id="city" placeholder="City">

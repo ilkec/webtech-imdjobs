@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\InternshipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', function () {
     return view('home');
 });
+Route::post('/', [InternshipController::class], 'searchInternships');
 
 
 Route::post('/logout', function () {
