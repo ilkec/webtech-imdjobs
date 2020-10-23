@@ -39,6 +39,8 @@ class ProfileController extends Controller
             'website'=> 'nullable',
             
         ]);
+        $imagePath ="";
+        $cvPath ="";
 
         if ($request->image){
             $imagePath = $request->image->store('images', 'public');
