@@ -17,17 +17,14 @@ class InternshipController extends Controller
             ->orwhere('tasks', 'LIKE', "%" . $request->type . "%")
             ->orwhere('profile', 'LIKE', "%" . $request->type . "%")
             ->get();
-        //dd($data['internships']);
         $data['nearbyInternships'] = [];
         if ($request->city) {
             foreach ($data['internships'] as $internship) {
                 if (strtolower($internship['city']) == strtolower($request->city)) {
-                    //dd($internship);
                     $data['nearbyInternships'][] = $internship;
                 }
             }
         }
-        //dd($data['nearbyInternships']);
         return view('/internship/show', $data);
     }
 
