@@ -21,7 +21,9 @@ use App\Http\Controllers\InternshipController;
 Route::get('/', function () {
     return view('home');
 });
-Route::post('/', [InternshipController::class], 'searchInternships');
+Route::post('/', [InternshipController::class, 'searchInternships']);
+
+Route::get('/internships', [InternshipController::class, 'displayInternships']);
 
 
 Route::post('/logout', function () {

@@ -24,16 +24,16 @@
         @endcomponent
         @endif
 
-        <!--<div class="form-group">
+        <div class="form-group">
             <label for="type">Internship type</label>
-            <select class="custom-select" id="inputTypeSelect">
-                <option selected>graphic design</option>
-                <option value="1">UI/UX design</option>
-                <option value="2">front-end development</option>
-                <option value="3">back-end development</option>
-                <option value="3">full-stack development</option>
+            <select name="type" class="custom-select" id="inputTypeSelect">
+                <option value="graphic design" selected>graphic design</option>
+                <option value="UI/UX">UI/UX design</option>
+                <option value="front-end">front-end development</option>
+                <option value="back-end">back-end development</option>
+                <option value="full-stack">full-stack development</option>
             </select>
-        </div>-->
+        </div>
         <div class="form-group">
             <label for="city">City</label>
             <input name="city" type="text" class="form-control" id="city" placeholder="City">
