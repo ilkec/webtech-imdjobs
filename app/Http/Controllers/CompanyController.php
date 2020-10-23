@@ -73,8 +73,7 @@ class CompanyController extends Controller
 
         $imagePath = $request->image->store('images', 'public');
 
-        DB::table('companies')
-            ->where('id', $id)
+        \App\Models\Companies::where('id', $id)
             ->update([
                 'name' => $request->name,
                 'city' => $request->city,
