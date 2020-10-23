@@ -102,7 +102,7 @@ class CompanyController extends Controller
     {
         $user = Auth::user();
         $companies = \App\Models\Companies::find($request->id);
-        
+       
         if ($user->can('update', $companies)) {
             $data['user'] = $user;
             $data['company'] = $companies;
