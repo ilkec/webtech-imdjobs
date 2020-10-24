@@ -41,7 +41,7 @@ Route::post('/login', [UserController::class, 'handleLogin']);
 Route::get('/user/profile/{id}', [ProfileController::class, 'showProfile']);
 Route::get('/user/update', [ProfileController::class, 'updateProfile']);
 Route::post('/user/update', [ProfileController::class, 'handleUpdateProfile']);
-
+Route::get('/user/portfolio', [ProfileController::class, 'showPortfolio']);
 
 
 

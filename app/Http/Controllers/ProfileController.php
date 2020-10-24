@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Http;
+use Goutte\Client;
+
 
 class ProfileController extends Controller
 {
@@ -78,6 +79,12 @@ class ProfileController extends Controller
         return view('/user/profile', $data);
         
     
+    }
+
+    public function showPortfolio(){
+        $crawler = Goutte::request('GET', 'https://dribbble.com/pitch');
+        dd($crawler);
+        return view('/student/details');
     }
 
     
