@@ -7,17 +7,20 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function updateProfile(){
+    public function updateProfile()
+    {
         $id = session('User');
         $data['users'] =  \App\Models\User::where('id', $id)->first();
         
         return view('/user/update', $data);
     }
 
-    public function handleUpdateProfile(Request $request){
+    public function handleUpdateProfile(Request $request)
+    {
 
        // $request->image->store('images', 'public');
         //$request->photo->path();
@@ -42,18 +45,18 @@ class ProfileController extends Controller
         $imagePath ="";
         $cvPath ="";
 
-        if ($request->image){
+        if ($request->image) {
             $imagePath = $request->image->store('images', 'public');
         }
 
-        if($request->cv){
+        if ($request->cv) {
             $cvPath = $request->cv->store('files', 'public');
         }
        
        
         $request->flash();
         DB::table('users')
-            ->where('id', $id )
+            ->where('id', $id)
             ->update([
                 'picture' => $imagePath,
                 'cv' => $cvPath,
@@ -70,20 +73,20 @@ class ProfileController extends Controller
                 ]);
 
 
-        $request->session()->flash('updateMessage', 'Your profile was successfully updated');      
+        $request->session()->flash('updateMessage', 'Your profile was successfully updated');
         return redirect('/user/profile/' . $id);
-        //return redirect('/user/profile/52');
-        
     }
     
-    public function showProfile($id){
-        
+    public function showProfile($id)
+    {
         $data['users'] =  \App\Models\User::where('id', $id)->first();
         
         return view('/user/profile', $data);
-        
-    
     }
 
-    
+    public function userType()
+    {
+        $data['user'] = Auth::user();
+        return view('home', $data);
+    }
 }

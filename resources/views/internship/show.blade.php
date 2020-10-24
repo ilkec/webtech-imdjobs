@@ -7,28 +7,28 @@
 @section('content')
 
 @if($nearbyInternships)
-    <h1>Internships in {{$nearbyInternships[0]->city}}</h1>
-    @foreach ($nearbyInternships as $nearbyInternship)
-    <div>
-        <h2>{{$nearbyInternship->title}}</h2>
-        <p>{{$nearbyInternship->description}}</p>
-    </div>
-    @endforeach
+        <h1>Internships in {{$nearbyInternships[0]->city}}</h1>
+        <section class="gray">
+        @foreach ($nearbyInternships as $nearbyInternship)
+        <div>
+            <h2>{{$nearbyInternship->title}}</h2>
+            <p>{{$nearbyInternship->description}}</p>
+        </div>
+        @endforeach
+    </section>
 @endif
-
-    @if(empty($nearbyInternships))
-        <h1>Sorry! We did not find any internships of this type in your city, but here are some internships of this type in other places</h1>
-    @else
-        <h1>Internships in other cities:</h1>
-    @endif
+<hr>
+@if(empty($nearbyInternships))
+    <h1>Sorry! We did not find any internships of this type in your city, but here are some internships of this type in other places</h1>
+@else
+    <h1>Internships in other cities:</h1>
+@endif
+<section class="gray">
     @foreach ($internships as $internship)
     <div>
         <h2>{{$internship->title}}</h2>
         <p>{{$internship->description}}</p>
     </div>
     @endforeach
-
-<hr>
-
-  
+</section>
 @endsection
