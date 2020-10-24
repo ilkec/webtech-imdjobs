@@ -17,6 +17,14 @@ class ProfileController extends Controller
         return view('/user/update', $data);
     }
 
+    public function showApplications()
+    {
+        $id = session('User');
+        $data['applications'] = \DB::table('applications')->join('internships', 'internships.id', '=', 'applications.internship_id')->where('user_id', $id)->get();
+        return view('/user/applications', $data);
+        // dd($data);
+    }
+
     public function handleUpdateProfile(Request $request){
 
         //$request->image->store('images', 'public');

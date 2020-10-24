@@ -66,7 +66,8 @@
   $('select').on('change', function() {
     var id = $(this).data();
     var selectedValue = $(this).children("option:selected").val();
-    console.log("test");
+    console.log(id);
+    console.log(selectedValue);
     $.ajax({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -80,8 +81,9 @@
       dataType: 'JSON',
       success:function(data){
         alert(data);
-    },error:function(){ 
-        alert("error!!!!");
+    },error:function(e){ 
+      console.log(e);
+        //alert("error!!!!");
     }
     });
   })
