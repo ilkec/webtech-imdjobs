@@ -32,8 +32,6 @@ class Foursquare
             if (!empty($response['response']['venues']['0'])) {
                 return $response['response']['venues']['0'];
             }
-            session()->flash('noCompany', 'We could not find the company you are looking for, please complete this form about the company!');
-            return "";
         }
         session()->flash('noCompany', 'We could not find the company you are looking for, please complete this form about the company!');
         return "";
