@@ -40,6 +40,7 @@ Route::post('/login', [UserController::class, 'handleLogin']);
 Route::get('/user/profile/{id}', [ProfileController::class, 'showProfile']);
 Route::get('/user/update', [ProfileController::class, 'updateProfile']);
 Route::post('/user/update', [ProfileController::class, 'handleUpdateProfile']);
+Route::get('/user/applications', [ProfileController::class, 'showApplications']);
 
 
 
@@ -53,6 +54,12 @@ Route::get('/students/{id}/applications/{application_id}', function () {
 });*/
 
 //======= COMPANY
+Route::get('/companies', [CompanyController::class, 'index']);
+Route::get('/companies/{company}', [CompanyController::class, 'show']);
+Route::get('/companies/{company}/internships', [CompanyController::class, 'indexInternships']);
+Route::get('/companies/{company}/internships/{internship}', [CompanyController::class, 'showInternship']);
+
+// = /companies/{company}
 Route::get('/company/profile/{id}', [CompanyController::class, 'showCompany']);
 Route::post('/company/profile/{id}', [CompanyController::class, 'addInternshipOffer']);
 

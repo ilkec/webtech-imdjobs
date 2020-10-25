@@ -7,6 +7,7 @@
 @section('content')
     @if( $flash = session('User') )
         <a href="/user/profile/{{ $flash }}"><button type="button" class="btn btn-primary">checkout profile</button></a>
+        <a href="/user/applications"><button type="button" class="btn btn-primary">View applications</button></a>
         @if($user->account_type == 0) 
             <a href="/company/add"><button type="button" class="btn btn-primary">add company <br> (temp btn, change to if user has no company -> add company, else -> company profile)</button></a>
         @endif
