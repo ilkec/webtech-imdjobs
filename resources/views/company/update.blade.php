@@ -20,16 +20,16 @@
         @endcomponent
         @endif
         @if($flash = session('noCompany'))
-            <div class="alert alert-success"> {{ $flash }} </div>
+            <div class="alert alert-danger"> {{ $flash }} </div>
         @endif
 
         <div class="form-group">
             <label for="name">Company name</label>
-            <input name="name" type="text" class="form-control" id="name" value="@if(!empty($foursquare['name'])) {{$foursquare['name']}} @endif" placeholder="Company name">
+            <input name="name" type="text" class="form-control" id="name" value="@if(!empty($foursquare['name'])) {{$foursquare['name']}} @else {{$company->name}} @endif" placeholder="Company name">
         </div>
         <div class="form-group">
             <label for="city">City</label>
-            <input name="city" type="text" class="form-control" id="city" value="@if(!empty($foursquare['location']['city'])) {{$foursquare['location']['city']}} @endif" placeholder="City">
+            <input name="city" type="text" class="form-control" id="city" value="@if(!empty($foursquare['location']['city'])) {{$foursquare['location']['city']}} @else {{$company->city}} @endif" placeholder="City">
         </div>
 
         <div class="form-group">

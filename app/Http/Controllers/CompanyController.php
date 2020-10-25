@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Classes\Foursquare;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -37,22 +36,9 @@ class CompanyController extends Controller
     {
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
         $foursquare = new Foursquare();
-        $completeUrl = $foursquare->getUrl($id, $data);
-        try {
-            $response = Http::get($completeUrl)->json();
-        } catch (\Exception $e) {
-            $response = "";
-        }
-        $data['foursquare'] = "";
-        if ($response != "") {
-            if (!empty($response['response']['venues']['0'])) {
-                $data['foursquare'] = $response['response']['venues']['0'];
-            } else {
-                session()->flash('noCompany', 'We could not find the company you are looking for, please complete this form about the company!');
-            }
-        } else {
-            session()->flash('noCompany', 'We could not find the company you are looking for, please complete this form about the company!');
-        }
+        $completeUrl = $foursquare->getUrl($data);
+        $response = $foursquare->getResult($completeUrl);
+        $data['foursquare'] = $foursquare->setData($response);
         return view('/company/update', $data);
     }
 
