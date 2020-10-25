@@ -36,9 +36,8 @@ class CompanyController extends Controller
     public function updateCompany($id)
     {
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
-        $url = "https://api.foursquare.com/v2/venues/search?client_id=4TAFZM0IL2S430ZFFPTO5ILZRM1GLRD2QRELEPDEYIADKF5V&client_secret=1W1UAU1GEYO2E3BA5Q45BT1FNAXNM5P5ZP2JJZ3CBAUCDMBB&v=20180323";
-        $addonUrl = "&near=" . $data['company']->city . "&query=" . $data['company']->name;
-        $completeUrl = $url . $addonUrl;
+        $foursquare = new Foursquare();
+        $completeUrl = $foursquare->getUrl($id, $data);
         try {
             $response = Http::get($completeUrl)->json();
         } catch (\Exception $e) {
@@ -73,7 +72,8 @@ class CompanyController extends Controller
 
         $imagePath = $request->image->store('images', 'public');
 
-        \App\Models\Companies::where('id', $id)
+        DB::table('companies')
+            ->where('id', $id)
             ->update([
                 'name' => $request->name,
                 'city' => $request->city,
@@ -101,7 +101,7 @@ class CompanyController extends Controller
     {
         $user = Auth::user();
         $companies = \App\Models\Companies::find($request->id);
-       
+        
         if ($user->can('update', $companies)) {
             $data['user'] = $user;
             $data['company'] = $companies;
