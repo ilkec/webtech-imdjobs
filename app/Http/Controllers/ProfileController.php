@@ -82,9 +82,39 @@ class ProfileController extends Controller
     }
 
     public function showPortfolio(){
-        $crawler = Goutte::request('GET', 'https://dribbble.com/pitch');
-        dd($crawler);
-        return view('/student/details');
+        $client = new Client;
+        
+        /*$url = 'http://ilkecauwenbergh.be';
+        $crawler = $client->request('GET', $url);
+        $test['testing'] = $crawler->filter('img')->each(function ($node) {
+            return 'http://ilkecauwenbergh.be'. "/" . $node->attr('src');
+
+         });
+
+         $data['href'] = $crawler->filter('a')->each(function ($node) {
+            return 'http://ilkecauwenbergh.be'. "/" . $node->attr('href');
+        
+         });*/
+
+         $url = 'https://dribbble.com/Piqodesign';
+        $crawler = $client->request('GET', $url);
+        $test['testing'] = $crawler->filter('.js-shot-thumbnail-base')->each(function ($node) {
+            $images =  $node->filter('figure > img')->attr('src');
+            $text = $node->filter('.shot-title')->text();
+            $link = "https://dribbble.com" . $node->filter('.shot-thumbnail-link')->attr('href');
+            return ["link"=>$link, "image"=> $images, "text"=>$text];
+         });
+
+         /*$data['href'] = $crawler->filter('a')->each(function ($node) {
+            return 'http://ilkecauwenbergh.be'. "/" . $node->attr('href');
+        
+         });*/
+         
+         
+         
+        //dd($test['testing']);
+       
+        return view('/student/details', $test);
     }
 
     
