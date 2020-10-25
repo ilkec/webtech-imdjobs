@@ -29,8 +29,10 @@ class CompanyController extends Controller
         return view('companies/internships', $data);
     }
 
-    public function showInternship($company, $internship)
+    public function showInternship($company, $internship, Request $request)
     {
+
+        $url['status'] = $request;
         $data['details'] = \DB::table('internships')->where('id', $internship)->get();
         //$data['applications'] = \DB::table('applications')->where('internship_id', $internship)->get();
         $data['applications'] = \DB::table('applications')->join('users', 'users.id', '=', 'applications.user_id')->get();
@@ -39,7 +41,7 @@ class CompanyController extends Controller
         //     $user = \DB::table('users')->where('id', $application->user_id)->get();
         //     array_push($data['users'], $user);
         // }
-        return view('companies/internshipDetails', $data);
+        return view('companies/internshipDetails', $data, $url);
     }
 
     public function addCompany()
