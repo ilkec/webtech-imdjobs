@@ -12,7 +12,7 @@
 @endforeach
 <h1>Applications for this internship</h1>
 
-@foreach( $applications as $application)
+<!-- @foreach( $applications as $application)
 <div class="container">
   <div class="row">
     <div class="col-sm">
@@ -29,7 +29,7 @@
     </div>
   </div>
 </div>
-@endforeach
+@endforeach -->
 
 <table class="table">
   <thead>
@@ -38,7 +38,6 @@
       <th scope="col">Last name</th>
       <th scope="col">Profile</th>
       <th scope="col">Status</th>
-      <th scope="col">Message</th>
     </tr>
   </thead>
   <tbody>
@@ -79,7 +78,6 @@
           <option selected>Declined</option>
         </select></td>
       @endif
-      <td><textarea></textarea></td>
     </tr>
     @endforeach
   </tbody>

@@ -55,9 +55,8 @@ Route::get('/companies', [CompanyController::class, 'index']);
 Route::get('/companies/{company}', [CompanyController::class, 'show']);
 Route::get('/companies/{company}/internships', [CompanyController::class, 'indexInternships']);
 Route::get('/companies/{company}/internships/{internship}', [CompanyController::class, 'showInternship']);
-// Route::get('/companies', function () {
-//     return view('company/profile');
-// });
+
+// = /companies/{company}
 Route::get('/company/profile/{id}', [CompanyController::class, 'showCompany']);
 Route::post('/company/profile/{id}', [CompanyController::class, 'addInternshipOffer']);
 
