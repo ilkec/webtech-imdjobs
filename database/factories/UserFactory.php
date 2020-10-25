@@ -30,7 +30,6 @@ class UserFactory extends Factory
             'phone_number' => $this->faker->phoneNumber,
             'city' => $this->faker->city,
             'birthday' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
-            'language' => $this->faker->languageCode,
             'account_type' => 0,
             'password' => $this->faker->password,
             'remember_token' => $this->faker->uuid

@@ -52,7 +52,7 @@ class UserController extends Controller
         
         return redirect('/');
         } else{
-            $request->session()->flash('Login', 'Oeps something went wrong, try again!');
+            $request->session()->flash('Login', 'Oops something went wrong, try again!');
             return view('/login');
         }
     }

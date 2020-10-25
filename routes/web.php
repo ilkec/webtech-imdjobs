@@ -17,11 +17,7 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
-
+Route::get('/', [ProfileController::class, 'userType']);
 Route::post('/logout', function () {
     return view('home');
 });

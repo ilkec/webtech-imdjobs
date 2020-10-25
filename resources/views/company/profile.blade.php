@@ -7,11 +7,18 @@
 @section('content')
  
         <section>
+        <div class="container-img">
+        @if (empty( $company->picture ))
+            <img class="img-thumbnail" src="{{ asset('images/profilePic.jpg') }}" width="500" height="500" alt="profilepicture" id="profilePicture">
+        @else
+            <img class="img-thumbnail" src="{{ asset('storage/' . $company->picture) }}" width="500" height="500" alt="profilepicture" id="profilePicture">
+        @endif
+        </div>
         <h2>{{$company->name}}</h2>
         <p>{{$company->description}}</p>
         </section>
 
-        <section style="background-color: #f7f7f7">
+        <section class="gray">
             @if($flash = session('addInternshipError'))
                 <div class="alert alert-danger"> {{ $flash }} </div>
             @endif
@@ -20,7 +27,7 @@
             {{csrf_field()}}
                 <button type="submit" class="btn btn-primary">Add Internship offer</button>
             </form>
-            @endif()
+            @endif
             @foreach ($internships as $internship)
                 <div>  
                     <h4>{{$internship->title}}</h4>

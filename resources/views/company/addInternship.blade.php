@@ -8,7 +8,7 @@
    <form method="post" action="">
         {{csrf_field()}}
         <h2>Add an internship for {{$company->name}}</h2>
-
+       
         @if( $errors->any())
         @component('components/alert')
             @slot('type') danger @endslot
