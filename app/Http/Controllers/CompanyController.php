@@ -39,16 +39,6 @@ class CompanyController extends Controller
         return view('companies/internshipDetails', $data);
     }
 
-    public function updateApplicationStatus(Request $request)
-    {
-        echo "yo I'm here";
-die();
-        \DB::table('applications')->where('id',$id)->update(array(
-            'status'=>$selectedValue,
-        ));
-        return 'success';
-    }
-
     public function addCompany()
     {
         return view('/company/add');

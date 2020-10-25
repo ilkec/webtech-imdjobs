@@ -11,6 +11,26 @@
 <p>{{ $detail->tasks }}</p>
 @endforeach
 <h1>Applications for this internship</h1>
+
+@foreach( $applications as $application)
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+    <p>{{$application->first_name}}</p>
+    </div>
+    <div class="col-sm">
+      <p><td>{{$application->last_name}}</td></p>
+    </div>
+    <div class="col-sm">
+    <a href="/user/profile/{{$application->user_id}}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">View Profile</a>
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+  </div>
+</div>
+@endforeach
+
 <table class="table">
   <thead>
     <tr>
@@ -18,6 +38,7 @@
       <th scope="col">Last name</th>
       <th scope="col">Profile</th>
       <th scope="col">Status</th>
+      <th scope="col">Message</th>
     </tr>
   </thead>
   <tbody>
@@ -58,34 +79,9 @@
           <option selected>Declined</option>
         </select></td>
       @endif
+      <td><textarea></textarea></td>
     </tr>
     @endforeach
   </tbody>
 </table>
-<script type="text/javascript">
-  $('select').on('change', function() {
-    var id = $(this).data();
-    var selectedValue = $(this).children("option:selected").val();
-    console.log(id);
-    console.log(selectedValue);
-    $.ajax({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      url: '/company/updateApplicationStatus',
-      type: 'PUT',
-      data: {
-        id: id,
-        selectedValue: selectedValue
-      },
-      dataType: 'JSON',
-      success:function(data){
-        alert(data);
-    },error:function(e){ 
-      console.log(e);
-        //alert("error!!!!");
-    }
-    });
-  })
-</script>
 @endsection

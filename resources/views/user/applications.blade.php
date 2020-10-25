@@ -16,11 +16,8 @@
   <tbody>
     @foreach( $applications as $application)
     <tr>
-      <!-- $user = zoek in de database in de tabel users naar de user met id $application->user_id -->
-      <!-- <td>$user[firstname]</td>
-      <td>$user[lastname]</td> -->
       <td>{{$application->title}}</td>
-      <td><a href="/companies/{company}/internships/{internship}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">View internship</a></td>
+      <td><a href="/companies/{{$application->company_id}}/internships/{{$application->internship_id}}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">View internship</a></td>
       @if ($application->status == 0)
       <td>Under review</td>
       @elseif ($application->status == 1)
