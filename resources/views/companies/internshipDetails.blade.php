@@ -38,6 +38,7 @@
       <th scope="col">Last name</th>
       <th scope="col">Profile</th>
       <th scope="col">Status</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -48,38 +49,17 @@
       <td>$user[lastname]</td> -->
       <td>{{$application->first_name}}</td>
       <td>{{$application->last_name}}</td>
-      <td><a href="/user/profile/{{$application->user_id}}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">View Profile</a></td>
-      @if ($application->status == 0)
-      <td><select data-id='{{$application->id}}' class="form-control" id="exampleFormControlSelect1">
-          <option selected>New</option>
-          <option>Starred</option>
-          <option>Approved</option>
-          <option>Declined</option>
-        </select></td>
-      @elseif ($application->status == 1)
-      <td><select data-id='{{$application->id}}' class="form-control" id="exampleFormControlSelect1">
-          <option>New</option>
-          <option selected>Starred</option>
-          <option>Approved</option>
-          <option>Declined</option>
-        </select></td>
-      @elseif ($application->status == 2)
-      <td><select data-id='{{$application->id}}' class="form-control" id="exampleFormControlSelect1">
-          <option>New</option>
-          <option>Starred</option>
-          <option selected>Approved</option>
-          <option>Declined</option>
-        </select></td>
-      @elseif ($application->status == 3)
-      <td><select data-id='{{$application->id}}' class="form-control" id="exampleFormControlSelect1">
-          <option>New</option>
-          <option>Starred</option>
-          <option>Approved</option>
-          <option selected>Declined</option>
-        </select></td>
-      @endif
+      <td><a href="/user/profile/{{$application->user_id}}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">View Profile</a></td>
+      <td><p>
+        @if ($application->status == 0) New @endif
+        @if ($application->status == 1) Starred @endif
+        @if ($application->status == 2) Declined @endif
+        @if ($application->status == 3) Approved @endif
+      </p></td>
+      <td><a href=""><button type="button" class="btn btn-success btn-sm">Edit status</button></a></td>
     </tr>
     @endforeach
   </tbody>
 </table>
+
 @endsection

@@ -1,9 +1,11 @@
 @extends('partials.app')
 
 @section('title')
-    My applications
+My applications
 @stop
+
 @section('content')
+
 <h1>My applications</h1>
 <table class="table">
   <thead>
@@ -30,4 +32,6 @@
     </tr>
     @endforeach
   </tbody>
+</table>
+
 @stop
