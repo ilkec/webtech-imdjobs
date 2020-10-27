@@ -16,8 +16,10 @@ class CreateApplicationsTable extends Migration
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('student_id');
-            $table->string('vacature_id');
+            $table->integer('user_id');
+            $table->integer('internship_id');
+            $table->integer('companie_id');
+            $table->integer('status');
             $table->longText('message')->nullable();
         });
     }

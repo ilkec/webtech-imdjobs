@@ -1,9 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\InternshipController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,11 +19,9 @@ use App\Http\Controllers\ApplicationController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
-
+Route::get('/', [ProfileController::class, 'userType']);
+Route::post('/', [InternshipController::class, 'searchInternships']);
+Route::get('/internships', [InternshipController::class, 'desplayInternships']);
 Route::post('/logout', function () {
     return view('home');
 });
@@ -36,12 +38,12 @@ Route::post('/login', [UserController::class, 'handleLogin']);
     return view('student/profile');
 });*/
 
-Route::get('/profile', [ProfileController::class, 'profile']);
-Route::put('/profile', [ProfileController::class, 'updateProfile']);
+Route::get('/user/profile/{id}', [ProfileController::class, 'showProfile']);
+Route::get('/user/update', [ProfileController::class, 'updateProfile']);
+Route::post('/user/update', [ProfileController::class, 'handleUpdateProfile']);
+Route::get('/user/applications', [ProfileController::class, 'showApplications']);
 
-Route::any('/students/{id}', function () {
-    return view('student/details');
-});
+
 
 //=== Students applications
 /*Route::get('/students/{id}/applications', function () {
@@ -53,9 +55,17 @@ Route::get('/students/{id}/applications/{application_id}', function () {
 });*/
 
 //======= COMPANY
-Route::get('/companies', function () {
-    return view('company/profile');
-});
+Route::get('/companies', [CompanyController::class, 'index']);
+Route::get('/companies/{company}', [CompanyController::class, 'show']);
+Route::get('/companies/{company}/internships', [CompanyController::class, 'indexInternships']);
+Route::get('/companies/{company}/internships/{internship}', [CompanyController::class, 'showInternship']);
+
+// = /companies/{company}
+Route::get('/company/profile/{id}', [CompanyController::class, 'showCompany']);
+Route::post('/company/profile/{id}', [CompanyController::class, 'addInternshipOffer']);
+
+Route::get('/company/addInternship/{id}', [CompanyController::class, 'addInternship']);
+Route::post('/company/addInternship/{id}', [CompanyController::class, 'handleAddInternship']);
 
 Route::get('/company/add', [CompanyController::class, 'addCompany']);
 Route::post('/company/add', [CompanyController::class, 'handleAddCompany']);

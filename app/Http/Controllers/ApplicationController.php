@@ -22,5 +22,4 @@ class ApplicationController extends Controller
 
         return redirect('/application/add/');
     }
-
 }
