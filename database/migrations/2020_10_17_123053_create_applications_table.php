@@ -18,9 +18,11 @@ class CreateApplicationsTable extends Migration
             $table->timestamps();
             $table->integer('user_id');
             $table->integer('internship_id');
-            $table->integer('companie_id');
+            $table->integer('company_id');
             $table->integer('status');
             $table->longText('message')->nullable();
+            $table->longText('feedback')->nullable();
+
         });
     }
 

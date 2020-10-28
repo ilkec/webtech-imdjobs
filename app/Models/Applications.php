@@ -17,9 +17,12 @@ class Applications extends Model
      * @var array
      */
     protected $fillable = [
-        'student_id',
-        'vacature_id',
-        'message'
+        'user_id',
+        'internship_id',
+        'company_id',
+        'status',
+        'message',
+        'feedback'
     ];
 
      /**

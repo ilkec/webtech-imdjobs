@@ -60,6 +60,12 @@ Route::get('/companies/{company}', [CompanyController::class, 'show']);
 Route::get('/companies/{company}/internships', [CompanyController::class, 'indexInternships']);
 Route::get('/companies/{company}/internships/{internship}', [CompanyController::class, 'showInternship']);
 
+// Edit internschip
+Route::get('/companies/{company}/internships/{internship}/edit', [CompanyController::class, 'showInternship']);
+Route::post('/companies/{company}/internships/{internship}/edit', [CompanyController::class, 'showInternship']);
+
+
+
 // = /companies/{company}
 Route::get('/company/profile/{id}', [CompanyController::class, 'showCompany']);
 Route::post('/company/profile/{id}', [CompanyController::class, 'addInternshipOffer']);
@@ -92,5 +98,9 @@ Route::get('/vacatures', function () {
 
 
 
-Route::get('/application/add', [ApplicationController::class, 'addApplication']);
-Route::post('/application/add', [ApplicationController::class, 'handleAddAplication']);
+Route::get('/companies/{company}/internships/{internship}/applications/add', [ApplicationController::class, 'addApplication']);
+Route::post('/companies/{company}/internships/{internship}/applications/add', [ApplicationController::class, 'handleAddAplication']);
+
+//Edit application status
+Route::get('/company/{company}/applications/edit/{application}', [ApplicationController::class, 'editApplication']);
+Route::post('/company/{company}/applications/edit/{application}', [ApplicationController::class, 'handleEditAplication']);
