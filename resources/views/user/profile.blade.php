@@ -3,6 +3,24 @@
 @section('title')
     Profile
 @stop
+
+@section('navigation')
+    
+        <p>Interact</p>
+    @if( $flash = session('User') )
+
+        <div>
+                <a href="/user/applications">
+                    <button type="button" class="btn btn-primary">View applications</button>
+                </a>
+                @if ( $flash = session('User') === $users->id )
+                <button type="button" class="btn btn-light">logout</button>
+                @endif
+        </div>
+    @endif    
+    
+
+@stop 
 @section('content')
     @if( $flash = session('updateMessage') )
         <div class="alert alert-success">{{ $flash }}</div>
@@ -63,6 +81,7 @@
         
         @if( $flash = session('User') === $users->id )
             <a href="/user/update"><button type="button" class="btn btn-primary">update profile</button></a>
+            
         @endif
         
         
