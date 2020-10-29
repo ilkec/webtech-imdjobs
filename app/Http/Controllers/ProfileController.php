@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Goutte\Client;
 
@@ -103,16 +105,21 @@ class ProfileController extends Controller
         }else{
             $scrape['items'] = "no items to update";
         }
-        
-
-
-
-
+    
 
         //dd($scrape);
         return view('/user/profile', $data, $scrape);
         
     
+    }
+
+    public function userType()
+    {
+        $data['user'] = Auth::user();
+        return view('home', $data);
+
+
+
     }
 
     
