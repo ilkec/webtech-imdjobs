@@ -59,8 +59,11 @@
                 <div class="form-check hidden">
                     <input type="hidden" name="accountType" value="1"> 
                 </div>
+
+                <div class="center">
+                    <button type="submit" class="btn btn-primary" name="register-student">Sign me up</button>
+                </div>
                 
-                <button type="submit" class="btn btn-primary" name="register-student">Sign me up</button>
             </form>
         </div>
         <h2 id="header-employer" class="header-signup" onclick="myFunctionI()">I am an employer</h2>
@@ -101,8 +104,10 @@
                     <div class="form-check hidden">
                         <input type="hidden" name="accountType" value="0"> 
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary" name="register-employer">Sign me up</button>
+
+                    <div class="center">
+                        <button type="submit" class="btn btn-primary" name="register-employer">Sign me up</button>
+                    </div>
                 </form>
         </div>
     </div>

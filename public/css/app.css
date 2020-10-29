@@ -20,6 +20,10 @@ body{
    height: 200px;
 }
 
+.center {
+   text-align: center;
+}
+
 /*----------signup----------*/
 .container-signup{
    border: 1px solid black;

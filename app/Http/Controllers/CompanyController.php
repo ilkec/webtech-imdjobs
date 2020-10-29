@@ -18,8 +18,10 @@ class CompanyController extends Controller
 
     public function show($company)
     {
-        $data['details'] = DB::table('companies')->where('id', $company)->get();
-        return view('companies/profile', $data);
+        $data['company'] =  \App\Models\Companies::where('id', $company)->first();
+        //get current internships and put in array
+        $data['internships'] = \App\Models\Internships::where('company_id', $company)->get();
+        return view('/companies/profile', $data);
     }
 
     public function indexInternships($company)
@@ -113,22 +115,16 @@ class CompanyController extends Controller
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
         //get current internships and put in array
         $data['internships'] = \App\Models\Internships::where('company_id', $id)->get();
-        return view('/company/profile', $data);
+        return view('/companies/profile', $data);
     }
 
     public function addInternshipOffer(Request $request, $id)
     {
         $user = Auth::user();
         $companies = \App\Models\Companies::find($request->id);
-        
-        if ($user->can('update', $companies)) {
-            $data['user'] = $user;
-            $data['company'] = $companies;
-            return redirect('/company/addInternship/' . $id);
-        } else {
-            $request->session()->flash('addInternshipError', 'Something went wrong, you have no access to this company');
-            return back();
-        }
+        $data['user'] = $user;
+        $data['company'] = $companies;
+        return redirect('/company/addInternship/' . $id);
     }
 
     public function addInternship($id)
@@ -158,7 +154,10 @@ class CompanyController extends Controller
         $internship->active = 1;
         $internship->company_id = $id;
         $internship->save();
-        
-        return redirect('/company/profile/' . $id);
+
+        $data['company'] =  \App\Models\Companies::where('id', $id)->first();
+        //get current internships and put in array
+        $data['internships'] = \App\Models\Internships::where('company_id', $id)->get();
+        return view('/companies/profile', $data);
     }
 }
