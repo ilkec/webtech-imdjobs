@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -43,14 +44,20 @@ class UserController extends Controller
 
     public function handleLogin(Request $request){
         $info = $request->only('email', 'password');
+        
 
         $request->flash();
         if (Auth::attempt($info)) {
             $request->flash();
             $id = Auth::id();
             $request->session()->put('User', $id);
+            $data['user'] = DB::table('users')->where('id', $id)->get();
+            if(empty($data['user']->description)){
+                return redirect('/user/update');
+            }else{
+                return redirect('/');
+            }
         
-        return redirect('/');
         } else{
             $request->session()->flash('Login', 'Oops something went wrong, try again!');
             return view('/login');
