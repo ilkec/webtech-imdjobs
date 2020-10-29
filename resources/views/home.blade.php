@@ -4,6 +4,20 @@
     Interact home
 @stop
 
+@section('navigation')
+    
+        <p>Interact</p>
+        <div>
+            <a href="/login">
+                <button type="button" class="btn btn-light">login</button>
+            </a>
+            <a href="/register">
+                <button type="button" class="btn btn-primary">register</button>
+            </a>
+        </div>
+        
+
+@stop 
 @section('content')
     @if( $flash = session('User') )
         <a href="/user/profile/{{ $flash }}"><button type="button" class="btn btn-primary">checkout profile</button></a>
@@ -48,4 +62,4 @@
     </form>
     
     
-@endsection
+@stop

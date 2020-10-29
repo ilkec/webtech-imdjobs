@@ -5,8 +5,22 @@
     Register
 @stop
 
+@section('navigation')
+    
+        <p>Interact</p>
+        <div>
+            <a href="/login">
+                <button type="button" class="btn btn-light">login</button>
+            </a>
+            <a href="/register">
+                <button type="button" class="btn btn-primary">register</button>
+            </a>
+        </div>
+        
+
+@stop 
+
 @section('content')
-    <h1>Register</h1>
     <div class="container-signup">
         <h2 id="header-student" class="header-signup" onclick="myFunction()">I am a student</h2>
         <div id="container-signup-student">
@@ -96,14 +110,22 @@
         function myFunctionI() {
             var x = document.getElementById("container-signup-student");
             var y = document.getElementById("container-signup-employer");
+            var student = document.getElementById("header-student");
+            var employer = document.getElementById("header-employer");
             x.style.display = "none";
             y.style.display = "block";
+            student.style.backgroundColor = "#F2F2F2";
+            employer.style.backgroundColor = "#56A7F1";
         }
         function myFunction() {
             var x = document.getElementById("container-signup-student");
             var y = document.getElementById("container-signup-employer");
+            var student = document.getElementById("header-student");
+            var employer = document.getElementById("header-employer");
             x.style.display = "block";
             y.style.display = "none";
+            employer.style.backgroundColor = "#F2F2F2";
+            student.style.backgroundColor = "#56A7F1";
         }
 
         

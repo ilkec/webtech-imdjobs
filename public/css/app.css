@@ -1,3 +1,8 @@
+body{
+   color: #333333;
+   /*background-image: url('/images/.bg-img.jpg');*/
+}
+
 #profilePicture{
    width: 200px;
    -o-object-fit: cover;
@@ -10,19 +15,24 @@
    height: 200px;
 }
 
+/*----------signup----------*/
 .container-signup{
    border: 1px solid black;
    width: 650px;
    height: 514px;
    margin-top: 20vh;
-   padding: 2em; 
    display: grid;
    grid-template-columns: 1fr 1fr;
    grid-template-rows: auto;
+   margin-left: auto;
+   margin-right: auto;
+   margin-bottom: 50px;
 }
 
 #container-signup-student,#container-signup-employer {
    grid-column: 1/3;
+   padding: 0 2em;
+
 }
 
 .header-signup{
@@ -34,17 +44,32 @@
 
 #header-student{
    border-right: 1px solid rgba(0,0,0,0.1);
+   background-color: #56A7F1;
 }
 #header-employer{
    grid-column: 2/3;
    grid-row:1;
+   background-color: #F2F2F2;
 }
+
+/*----------nav----------*/
+
+
+nav, nav .btn{
+   text-transform: uppercase;
+   font-weight: 700;
+}
+
+
+
+/*----------footer----------*/
 
 footer{
    background-color: #333333;
    color: #fff;
    text-align: center;
    padding: 10px;
+   
 }
 
 .gray {
