@@ -25,7 +25,11 @@
     @if( $flash = session('updateMessage') )
         <div class="alert alert-success">{{ $flash }}</div>
     @endif
-    <h1>Hi, i'm {{ $users->first_name }} {{ $users->last_name }}</h1>
+    <h1>{{ $users->first_name }} {{ $users->last_name }}</h1>
+    <p> I live in {{ $users->city }}</p>
+    <div class='description'>
+        <p>{{ $users->description }}</p>
+    </div>
     
     <div class="container-img">
     @if (empty( $users->picture ))
@@ -36,15 +40,19 @@
     </div>
 
     
-    <div class='description'>
-        <h4>What I would like you to know</h4>
-        <p>{{ $users->description }}</p>
-        <p> I live in {{ $users->city }}</p>
-    </div>
+    
     <div class='contact'>
         <h4>You can contact me by mail or give me a call </h4>
-        <p>{{ $users->email }}</p>
-        <p>{{ $users->phone_number }}</p>
+        <div>
+            <!--icon mail-->
+            <p>{{ $users->email }}</p>
+        </div>
+        <div>
+            <!--icon phone-->
+            <p>{{ $users->phone_number }}</p>
+        </div>
+        
+        
     </div>
     
     @if (!empty( $users->cv ))
