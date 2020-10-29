@@ -45,11 +45,17 @@
             <a href="{{ $users->linkedin }}"><p>Linkedin</p></a>
         @endif
         @if (!empty( $users->dribbble ))
-            <a href="{{ $users->dribbble }}"><p>Dribbble</p></a>
+            <!--<a href="{{ $users->dribbble }}"><p>Dribbble</p></a>-->
+            @for ($i = 0; $i < 5; $i++)
+                
+                <a href="{{ $items[$i]['link'] }}">
+                    <img src="{{ $items[$i]['image']}}" alt="portfolio item">
+                </a>
+            @endfor
         @endif
-        @if (!empty( $users->behance ))
+        <!--@if (!empty( $users->behance ))
             <a href="{{ $users->behance }}"><p>Behance</p></a>
-        @endif
+        @endif-->
         @if (!empty( $users->github ))
             <a href="{{ $users->github }}"><p>Github</p></a>
         @endif
