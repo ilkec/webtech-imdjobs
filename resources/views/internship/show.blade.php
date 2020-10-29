@@ -21,7 +21,7 @@
 @if(empty($nearbyInternships))
     <h1>Sorry! We did not find any internships of this type in your city, but here are some internships of this type in other places</h1>
 @else
-    <h1>Internships in other cities:</h1>
+    <h1>All internships of this type:</h1>
 @endif
 <section class="gray">
     @foreach ($internships as $internship)
