@@ -24,7 +24,12 @@ class CreateUsersTable extends Migration
             $table->string('phone_number',300)->nullable();
             $table->string('city',300)->nullable();
             $table->date('birthday')->nullable();
-            $table->string('language')->nullable();
+            $table->string('dribbble')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('behance')->nullable();
+            $table->string('github')->nullable();
+            $table->string('website')->nullable();
+            $table->string('cv')->nullable();
             $table->boolean('account_type');
             $table->string('password');
             $table->rememberToken();

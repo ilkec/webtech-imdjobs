@@ -22,11 +22,11 @@
 
         <div class="form-group">
             <label for="name">Company name</label>
-            <input name="name" type="text" class="form-control" id="name" placeholder="Company name">
+            <input name="name" type="text" class="form-control" id="name" value="{{old('name')}}" placeholder="Company name">
         </div>
         <div class="form-group">
             <label for="city">City</label>
-            <input name="city" type="text" class="form-control" id="city" placeholder="City">
+            <input name="city" type="text" class="form-control" id="city" value="{{old('city')}}" placeholder="City">
         </div>
         
         <button type="submit" class="btn btn-primary">Add company</button>

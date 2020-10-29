@@ -8,8 +8,9 @@
 @section('content')
     <h1>Register</h1>
     <div class="container-signup">
-        <div class="container-signup-student">
-            <h2>I am a student</h2>
+        <h2 id="header-student" class="header-signup" onclick="myFunction()">I am a student</h2>
+        <div id="container-signup-student">
+            
             <form action="" method="post">
                 @csrf
 
@@ -48,9 +49,9 @@
                 <button type="submit" class="btn btn-primary" name="register-student">Sign me up</button>
             </form>
         </div>
-
-        <div class="container-signup-employer">
-            <h2>I am an employer</h2>
+        <h2 id="header-employer" class="header-signup" onclick="myFunctionI()">I am an employer</h2>
+        <div id="container-signup-employer" style="display:none;">
+            
                 <form action="" method="post">
                     @csrf
 
@@ -91,4 +92,20 @@
                 </form>
         </div>
     </div>
+    <script>
+        function myFunctionI() {
+            var x = document.getElementById("container-signup-student");
+            var y = document.getElementById("container-signup-employer");
+            x.style.display = "none";
+            y.style.display = "block";
+        }
+        function myFunction() {
+            var x = document.getElementById("container-signup-student");
+            var y = document.getElementById("container-signup-employer");
+            x.style.display = "block";
+            y.style.display = "none";
+        }
+
+        
+</script>
 @stop 
