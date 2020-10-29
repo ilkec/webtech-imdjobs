@@ -1,6 +1,11 @@
 body{
    color: #333333;
+   
    /*background-image: url('/images/.bg-img.jpg');*/
+}
+
+.container{
+   margin-bottom: 50px;
 }
 
 #profilePicture{
@@ -20,13 +25,12 @@ body{
    border: 1px solid black;
    width: 650px;
    height: 514px;
-   margin-top: 20vh;
+   margin-top: 10vh;
    display: grid;
    grid-template-columns: 1fr 1fr;
    grid-template-rows: auto;
    margin-left: auto;
    margin-right: auto;
-   margin-bottom: 50px;
 }
 
 #container-signup-student,#container-signup-employer {
@@ -50,6 +54,17 @@ body{
    grid-column: 2/3;
    grid-row:1;
    background-color: #F2F2F2;
+}
+
+/*----------login----------*/
+
+.container-login{
+   border: 1px solid black;
+   width: 650px;
+   padding: 2em;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 10vh;
 }
 
 /*----------nav----------*/
