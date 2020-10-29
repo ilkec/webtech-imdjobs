@@ -13,19 +13,19 @@ class CompanyController extends Controller
 
     public function index()
     {
-        $data['companies'] = \DB::table('companies')->get();
+        $data['companies'] = DB::table('companies')->get();
         return view('companies/index', $data);
     }
 
     public function show($company)
     {
-        $data['details'] = \DB::table('companies')->where('id', $company)->get();
+        $data['details'] = DB::table('companies')->where('id', $company)->get();
         return view('companies/profile', $data);
     }
 
     public function indexInternships($company)
     {
-        $data['internships'] = \DB::table('internships')->where('company_id', $company)->get();
+        $data['internships'] = DB::table('internships')->where('company_id', $company)->get();
         return view('companies/internships', $data);
     }
 
@@ -33,9 +33,9 @@ class CompanyController extends Controller
     {
 
         $url['status'] = $request;
-        $data['details'] = \DB::table('internships')->where('id', $internship)->get();
+        $data['details'] = DB::table('internships')->where('id', $internship)->get();
         //$data['applications'] = \DB::table('applications')->where('internship_id', $internship)->get();
-        $data['applications'] = \DB::table('applications')->join('users', 'users.id', '=', 'applications.user_id')->get();
+        $data['applications'] = DB::table('applications')->join('users', 'users.id', '=', 'applications.user_id')->get();
         // $data['users'] = [];
         // foreach ($data['applications'] as $application) {
         //     $user = \DB::table('users')->where('id', $application->user_id)->get();
