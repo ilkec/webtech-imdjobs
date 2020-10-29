@@ -9,6 +9,8 @@
 <p>{{ $detail->title }}</p>
 <p>{{ $detail->description }}</p>
 <p>{{ $detail->tasks }}</p>
+<a href="/companies/{{$detail->company_id}}/internships/{{$detail->id}}/applications/add"><button type="button" class="btn btn-success btn-sm">Apply</button></a>
+
 @endforeach
 <h1>Applications for this internship</h1>
 
@@ -98,7 +100,10 @@
           @if ($application->status == 2) Declined @endif
           @if ($application->status == 3) Approved @endif
         </p></td>
-        <td><a href=""><button type="button" class="btn btn-success btn-sm">Edit status</button></a></td>
+        
+        <td><a href="/company/{{$application->company_id}}/applications/edit/{{$application->id}}">
+            <button type="button" class="btn btn-success btn-sm">Edit status</button>
+          </a></td>
        </tr>
       @endif
     @endforeach

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InternshipController;
 
@@ -59,6 +60,12 @@ Route::get('/companies/{company}', [CompanyController::class, 'show']);
 Route::get('/companies/{company}/internships', [CompanyController::class, 'indexInternships']);
 Route::get('/companies/{company}/internships/{internship}', [CompanyController::class, 'showInternship']);
 
+// Edit internschip
+Route::get('/companies/{company}/internships/{internship}/edit', [CompanyController::class, 'showInternship']);
+Route::post('/companies/{company}/internships/{internship}/edit', [CompanyController::class, 'showInternship']);
+
+
+
 // = /companies/{company}
 Route::get('/company/profile/{id}', [CompanyController::class, 'showCompany']);
 Route::post('/company/profile/{id}', [CompanyController::class, 'addInternshipOffer']);
@@ -88,3 +95,12 @@ Route::any('/companies/{id}/vacatures/{vacature_id}', function () {
 Route::get('/vacatures', function () {
     return view('home');
 });
+
+
+
+Route::get('/companies/{company}/internships/{internship}/applications/add', [ApplicationController::class, 'addApplication']);
+Route::post('/companies/{company}/internships/{internship}/applications/add', [ApplicationController::class, 'handleAddAplication']);
+
+//Edit application status
+Route::get('/company/{company}/applications/edit/{application}', [ApplicationController::class, 'editApplication']);
+Route::post('/company/{company}/applications/edit/{application}', [ApplicationController::class, 'handleEditAplication']);
