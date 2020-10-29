@@ -56,7 +56,8 @@ Route::get('/students/{id}/applications/{application_id}', function () {
 
 //======= COMPANY
 Route::get('/companies', [CompanyController::class, 'index']);
-Route::get('/companies/{company}', [CompanyController::class, 'show']);
+Route::get('/companies/{company}', [CompanyController::class, 'showCompany']);
+Route::post('/companies/{company}', [CompanyController::class, 'addInternshipOffer']);
 Route::get('/companies/{company}/internships', [CompanyController::class, 'indexInternships']);
 Route::get('/companies/{company}/internships/{internship}', [CompanyController::class, 'showInternship']);
 
@@ -67,9 +68,6 @@ Route::post('/companies/{company}/internships/{internship}/edit', [CompanyContro
 
 
 // = /companies/{company}
-Route::get('/company/profile/{id}', [CompanyController::class, 'showCompany']);
-Route::post('/company/profile/{id}', [CompanyController::class, 'addInternshipOffer']);
-
 Route::get('/company/addInternship/{id}', [CompanyController::class, 'addInternship']);
 Route::post('/company/addInternship/{id}', [CompanyController::class, 'handleAddInternship']);
 
@@ -79,9 +77,9 @@ Route::post('/company/add', [CompanyController::class, 'handleAddCompany']);
 Route::get('/company/update/{id}', [CompanyController::class, 'updateCompany']);
 Route::post('/company/update/{id}', [CompanyController::class, 'handleUpdateCompany']);
 
-Route::any('/companies/{id}', function () {
+/*Route::any('/companies/{id}', function () {
     return view('company/details');
-});
+});*/
 //=======company Vacatures
 /*Route::any('/companies/{id}/vacatures', function () {
     return view('home');
