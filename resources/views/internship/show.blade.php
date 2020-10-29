@@ -10,10 +10,10 @@
         <h1>Internships in {{$nearbyInternships[0]->city}}</h1>
         <section class="gray">
         @foreach ($nearbyInternships as $nearbyInternship)
-        <div>
+        <a href="/companies/{{$nearbyInternship->company_id}}/internships/{{$nearbyInternship->id}}"><div>
             <h2>{{$nearbyInternship->title}}</h2>
             <p>{{$nearbyInternship->description}}</p>
-        </div>
+        </div></a>
         @endforeach
     </section>
 @endif
@@ -25,7 +25,7 @@
 @endif
 <section class="gray">
     @foreach ($internships as $internship)
-    <div>
+    <a href="/companies/{{$internship->company_id}}/internships/{{$internship->id}}"><div>
         <h2>{{$internship->title}}</h2>
         <p>{{$internship->description}}</p>
     </div>
