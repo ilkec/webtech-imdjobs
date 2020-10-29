@@ -52,7 +52,8 @@ class UserController extends Controller
             $id = Auth::id();
             $request->session()->put('User', $id);
             $data['user'] = DB::table('users')->where('id', $id)->get();
-            if(empty($data['user']->description)){
+            
+            if($data['user'][0]->description == null){
                 return redirect('/user/update');
             }else{
                 return redirect('/');
