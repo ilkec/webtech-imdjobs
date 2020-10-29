@@ -118,7 +118,7 @@ class ProfileController extends Controller
         $data['user'] = Auth::user();
         return view('home', $data);
 
-
+        
 
     }
 

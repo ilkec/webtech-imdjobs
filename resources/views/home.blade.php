@@ -4,16 +4,38 @@
     Interact home
 @stop
 
-@section('content')
+@section('navigation')
+    
+        <p>Interact</p>
     @if( $flash = session('User') )
-        <a href="/user/profile/{{ $flash }}"><button type="button" class="btn btn-primary">checkout profile</button></a>
-        <a href="/user/applications"><button type="button" class="btn btn-primary">View applications</button></a>
-        @if($user->account_type == 0) 
-            <a href="/company/add"><button type="button" class="btn btn-primary">add company <br> (temp btn, change to if user has no company -> add company, else -> company profile)</button></a>
-        @endif
-    @endif
 
+        <div>
+                <a href="/user/profile/{{ $flash }}">
+                    <button type="button" class="btn btn-light">checkout profile</button>
+                </a>
+                <a href="/user/applications">
+                    <button type="button" class="btn btn-primary">View applications</button>
+                </a>
+                {{-- @if($user->account_type == 0) --}}
+                <!--<a href="/company/add"><button type="button" class="btn btn-primary">add company <br> (temp btn, change to if user has no company -> add company, else -> company profile)</button></a>-->
+                {{-- @endif --}}
+        </div>
+        
+    @else
+         <div>
+            <a href="/login">
+                <button type="button" class="btn btn-light">login</button>
+            </a>
+            <a href="/register">
+                <button type="button" class="btn btn-primary">register</button>
+            </a>
+        </div>
+    
+    @endif   
 
+@stop 
+@section('content')
+    
     <form method="post" action="">
         {{csrf_field()}}
         <h2>Search for an internship</h2>
@@ -34,7 +56,7 @@
             <select name="type" class="custom-select" id="inputTypeSelect">
                 <option value="graphic design" selected>graphic design</option>
                 <option value="UI/UX">UI/UX design</option>
-                <option value="front-end">front-end development</option>
+                <option value="font-end">front-end development</option>
                 <option value="back-end">back-end development</option>
                 <option value="full-stack">full-stack development</option>
             </select>
@@ -46,6 +68,8 @@
         
         <button type="submit" class="btn btn-primary">Search!</button>
     </form>
+
     
     
-@endsection
+    
+@stop
