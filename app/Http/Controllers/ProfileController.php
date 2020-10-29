@@ -24,19 +24,19 @@ class ProfileController extends Controller
        // $request->image->store('images', 'public');
         //$request->photo->path();
         //dd($request->image->path());
-        $url = "https://api.behance.net/v2/users/matiascorea";
-        $respo = Http::get($url);
+        //$url = "https://api.behance.net/v2/users/matiascorea";
+        //$respo = Http::get($url);
 
 
         $id = session('User');
         $validation = $request->validate([
-            'image' => 'required',
+            'image' => 'nullable',
             'firstname' => 'required',
             'lastname' => 'required',
             'description' => 'required',
             'phonenumber' => 'required',
             'city' => 'required',
-            'cv' => 'required',
+            'cv' => 'nullable',
             'linkedin'=> 'nullable',
             'dribbble'=> 'nullable',
             'behance'=> 'nullable',
@@ -45,8 +45,16 @@ class ProfileController extends Controller
             
         ]);
 
-       $imagePath = $request->image->store('images', 'public');
-       $cvPath = $request->cv->store('files', 'public');
+        $imagePath ="";
+        $cvPath ="";
+
+        if ($request->image) {
+            $imagePath = $request->image->store('images', 'public');
+        }
+
+        if ($request->cv) {
+            $cvPath = $request->cv->store('files', 'public');
+        }
         $request->flash();
         DB::table('users')
             ->where('id', $id )
@@ -75,8 +83,28 @@ class ProfileController extends Controller
     public function showProfile($id){
         
         $data['users'] =  \App\Models\User::where('id', $id)->first();
+        $url = $data['users']->dribbble;
         
-        return view('/user/profile', $data);
+        if(!empty($url)){
+            $client = new Client;
+            $crawler = $client->request('GET', $url);
+            $scrape['items'] = $crawler->filter('.js-shot-thumbnail-base')->each(function ($node) {
+                $images =  $node->filter('figure > img')->attr('src');
+                $text = $node->filter('.shot-title')->text();
+                $link = "https://dribbble.com" . $node->filter('.shot-thumbnail-link')->attr('href');
+                return ["link"=>$link, "image"=> $images, "text"=>$text];
+             });
+        }else{
+            $scrape['items'] = "no items to update";
+        }
+        
+
+
+
+
+
+        //dd($scrape);
+        return view('/user/profile', $data, $scrape);
         
     
     }
