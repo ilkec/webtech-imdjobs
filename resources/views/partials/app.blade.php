@@ -11,7 +11,32 @@
 <body>
     
     <nav class="navbar">
-        @yield('navigation')
+    <a href="http://homestead.test"><p>Interact</p></a>
+    @if( $flash = session('User') )
+
+        <div>
+                <a href="/user/profile/{{ $flash }}">
+                    <button type="button" class="btn btn-light">checkout profile</button>
+                </a>
+                <a href="/user/applications">
+                    <button type="button" class="btn btn-primary">View applications</button>
+                </a>
+                {{-- @if($user->account_type == 0) --}}
+                <!--<a href="/company/add"><button type="button" class="btn btn-primary">add company <br> (temp btn, change to if user has no company -> add company, else -> company profile)</button></a>-->
+                {{-- @endif --}}
+        </div>
+        
+    @else
+         <div>
+            <a href="/login">
+                <button type="button" class="btn btn-light">login</button>
+            </a>
+            <a href="/register">
+                <button type="button" class="btn btn-primary">register</button>
+            </a>
+        </div>
+    
+    @endif   
     </nav>
     <div class="container">
         @yield('content')
