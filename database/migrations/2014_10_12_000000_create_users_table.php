@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->longText('description')->nullable();
             $table->string('picture',300)->nullable();
             $table->string('phone_number',300)->nullable();
+            $table->string('education', 300)->nullable();
+            $table->string('school', 300)->nullable();
             $table->string('city',300)->nullable();
             $table->date('birthday')->nullable();
             $table->string('dribbble')->nullable();
