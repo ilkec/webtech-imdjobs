@@ -20,7 +20,7 @@ class ApplicationController extends Controller
 
         //save
         $application = new \App\Models\Applications();
-        $application->user_id = $studentId; 
+        $application->user_id = $studentId;
         $application->internship_id = $internship;
         $application->company_id = $company;
         $application->status = 0;
@@ -32,7 +32,7 @@ class ApplicationController extends Controller
     }
 
     //Edit application status
-    public function editApplication($company, $internship) 
+    public function editApplication($company, $internship)
     {
         $studentId = session('User');
         $data['application'] =  DB::table('applications')->where('user_id', $studentId)->where('id', $internship)->get();
@@ -47,14 +47,12 @@ class ApplicationController extends Controller
         $feedback = $request->feedback;
 
         DB::table('applications')
-        ->where('id', $application )
+        ->where('id', $application)
         ->update([
             'status' => $status,
             'feedback' => $feedback
         ]);
 
-    return redirect('/company/'. $company .'/internships/' . $application);
+        return redirect('/companies/'. $company .'/internships/' . $application);
     }
-
-
 }
