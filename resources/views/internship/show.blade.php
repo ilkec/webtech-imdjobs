@@ -13,6 +13,7 @@
         <a href="/companies/{{$nearbyInternship->company_id}}/internships/{{$nearbyInternship->id}}"><div>
             <h2>{{$nearbyInternship->title}}</h2>
             <p>{{$nearbyInternship->description}}</p>
+            <p>{{$nearbyInternship->city}}</p>
         </div></a>
         @endforeach
     </section>
@@ -28,6 +29,7 @@
     <a href="/companies/{{$internship->company_id}}/internships/{{$internship->id}}"><div>
         <h2>{{$internship->title}}</h2>
         <p>{{$internship->description}}</p>
+        <p>{{$internship->city}}</p>
     </div>
     @endforeach
 </section>
