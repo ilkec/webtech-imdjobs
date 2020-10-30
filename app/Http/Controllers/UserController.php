@@ -42,6 +42,11 @@ class UserController extends Controller
         return view('/login');
     }
 
+    public function logout(){
+        Auth::logout();
+        return redirect('/login');
+    }
+
     public function handleLogin(Request $request){
         $info = $request->only('email', 'password');
         
