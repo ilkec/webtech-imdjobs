@@ -107,7 +107,7 @@ class CompanyController extends Controller
                 'phone_number' => $request->phone_number
             ]);
 
-        return redirect('/company/profile/' . $id);
+        return redirect('/companies/' . $id);
     }
 
     public function showCompany($id)
