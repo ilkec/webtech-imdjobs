@@ -72,6 +72,7 @@
         
         @if( $flash = session('User') === $users->id )
             <a href="/user/update"><button type="button" class="btn btn-primary">update profile</button></a>
+            <a href="/logout"><button type="button" class="btn btn-danger">Logout</button></a>
             
         @endif
         
