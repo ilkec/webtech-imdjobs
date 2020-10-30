@@ -1,5 +1,4 @@
 @extends('partials.app')
-<meta name="csrf-token" content="{{ csrf_token() }}">
 @section('content')
 <h1>Internship details</h1>
 @foreach( $details as $detail)
@@ -102,7 +101,7 @@
         </p></td>
         
         <td><a href="/company/{{$application->company_id}}/applications/edit/{{$application->id}}">
-            <button type="button" class="btn btn-success btn-sm">Edit status</button>
+            <button type="button" class="btn btn-success btn-sm">Review</button>
           </a></td>
        </tr>
       @endif

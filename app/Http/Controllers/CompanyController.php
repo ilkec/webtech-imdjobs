@@ -34,14 +34,14 @@ class CompanyController extends Controller
     {
         $url['status'] = $request;
         $data['details'] = DB::table('internships')->where('id', $internship)->get();
-        $data['applications'] = DB::table('applications')->where('internship_id', $internship)->get();
-        $data['applications'] = DB::table('applications')->join('users', 'users.id', '=', 'applications.user_id')->get();
-        $data['users'] = [];
-        foreach ($data['applications'] as $application) {
-            $user = DB::table('users')->where('id', $application->user_id)->get();
-            array_push($data['users'], $user);
-        }
+        $data['applications'] = DB::table('applications')->where('internship_id', $internship)->join('users', 'users.id', '=', 'applications.user_id')->get();
+        // $data['users'] = [];
+        // foreach ($data['applications'] as $application) {
+        //     $user = DB::table('users')->where('id', $application->user_id)->get();
+        //     array_push($data['users'], $user);
+        // }
 
+        //dd($data['applications']);
         return view('companies/internshipDetails', $data, $url);
     }
 

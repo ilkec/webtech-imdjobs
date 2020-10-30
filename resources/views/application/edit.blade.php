@@ -5,6 +5,7 @@ Edit applications status
 @stop
 
 @section('content')
+
 <form method="post" action="">
     {{csrf_field()}}
     <h2>Edit application status</h2>

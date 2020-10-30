@@ -32,8 +32,11 @@ class ApplicationController extends Controller
     }
 
     //Edit application status
-    public function editApplication() 
+    public function editApplication($company, $internship) 
     {
+        $studentId = session('User');
+        $data['application'] =  DB::table('applications')->where('user_id', $studentId)->where('id', $internship)->get();
+        //dd($data['application']);
         return view('/application/edit');
     }
 
@@ -50,7 +53,7 @@ class ApplicationController extends Controller
             'feedback' => $feedback
         ]);
 
-    return redirect('/company/'. $company .'/internships/');
+    return redirect('/company/'. $company .'/internships/' . $application);
     }
 
 
