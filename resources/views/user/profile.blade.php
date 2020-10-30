@@ -8,24 +8,30 @@
     @if( $flash = session('updateMessage') )
         <div class="alert alert-success">{{ $flash }}</div>
     @endif
-    <h1>{{ $users->first_name }} {{ $users->last_name }}</h1>
-    <p> I live in {{ $users->city }}</p>
-    <div class='description'>
-        <p>{{ $users->description }}</p>
-    </div>
-    
-    <div class="container-img">
-    @if (empty( $users->picture ))
-        <img class="img-thumbnail" src="{{ asset('images/profilePic.jpg') }}" width="500" height="500" alt="profilepicture" id="profilePicture">
-    @else
-        <img class="img-thumbnail" src="{{ asset('storage/' . $users->picture) }}" width="500" height="500" alt="profilepicture" id="profilePicture">
+
+    <div class="intro">
+        <h1>{{ $users->first_name }} {{ $users->last_name }}</h1>
+        @if ($users->account_type == 1 )
+
+            <p id="education-info">Student {{ $users->education }} at {{ $users->school }} </p>
         @endif
+        <div class='description'>
+            <p>{{ $users->description }}</p>
+        </div>
+    
+        <div class="container-img">
+        @if (empty( $users->picture ))
+            <img class="img-thumbnail" src="{{ asset('images/profilePic.jpg') }}" width="500" height="500" alt="profilepicture" id="profilePicture">
+        @else
+            <img class="img-thumbnail" src="{{ asset('storage/' . $users->picture) }}" width="500" height="500" alt="profilepicture" id="profilePicture">
+            @endif
+        </div>
     </div>
 
     
     
     <div class='contact'>
-        <h4>You can contact me by mail or give me a call </h4>
+        <h4>Contact </h4>
         <div>
             <!--icon mail-->
             <p>{{ $users->email }}</p>
@@ -55,27 +61,27 @@
         @endif
         @if (!empty( $users->dribbble ))
             <!--<a href="{{ $users->dribbble }}"><p>Dribbble</p></a>-->
-            @for ($i = 0; $i < 5; $i++)
+            @for ($i = 0; $i < 4; $i++)
                 
                 <a href="{{ $items[$i]['link'] }}">
                     <img src="{{ $items[$i]['image']}}" alt="portfolio item">
                 </a>
             @endfor
         @endif
-        <!--@if (!empty( $users->behance ))
+        @if (!empty( $users->behance ))
             <a href="{{ $users->behance }}"><p>Behance</p></a>
-        @endif-->
+        @endif
         @if (!empty( $users->github ))
             <a href="{{ $users->github }}"><p>Github</p></a>
         @endif
     @endif
-        
-        @if( $flash = session('User') === $users->id )
-            <a href="/user/update"><button type="button" class="btn btn-primary">update profile</button></a>
-            <a href="/logout"><button type="button" class="btn btn-danger">Logout</button></a>
-            
-        @endif
-        
+        <div>
+            @if( $flash = session('User') === $users->id )
+                <a href="/user/update"><button type="button" class="btn btn-primary">update profile</button></a>
+                <a href="/logout"><button type="button" class="btn btn-danger">Logout</button></a>
+                
+            @endif
+        </div>
         
     </div>
 @stop

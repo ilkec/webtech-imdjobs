@@ -79,7 +79,25 @@ nav, nav .btn{
    font-weight: 700;
 }
 
+.intro{
+   display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: auto;
+}
 
+#education-info{
+   grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+.intro .description{
+   grid-column: 1/2;
+    grid-row: 3/4;
+}
+
+.intro .container-img{
+   grid-row: 1/4;
+}
 
 /*----------footer----------*/
 
@@ -99,3 +117,19 @@ footer{
 /*#header-student{
    background-color: grey;
 }*/
+
+@media all and (min-width:1024px) {
+
+   .links{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 2em;
+   }
+
+   .links h4{
+
+      grid-column: 1/3;
+   }
+
+
+}
