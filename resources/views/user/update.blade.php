@@ -49,6 +49,16 @@
                     <input value="{{ $users->phone_number }}" class="form-control" type="text" name="phonenumber" id="phonenumber"  placeholder="Enter your phonenumber">
                 </div>
 
+                <div class="form_group">
+                    <label for="education">Education *</label>
+                    <input value="{{ $users->education }}" class="form-control" type="text" name="education" id="education"  placeholder="Enter your education">
+                </div>
+
+                <div class="form_group">
+                    <label for="school">School *</label>
+                    <input value="{{ $users->school }}" class="form-control" type="text" name="school" id="school"  placeholder="School">
+                </div>
+
                 <div class="form-group">
                     <label for="city">City *</label>
                     <input value="{{ $users->city }}" type="input" name="city" class="form-control" id="city" placeholder="City">
