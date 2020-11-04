@@ -16,23 +16,23 @@
 <form action="" method="GET">
  
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="status" id="status-all" value="4" @if($status->status == "4") checked @endif>
+    <input class="form-check-input" type="radio" name="status" id="status-all" value="4" @if($status == 4) checked @endif>
     <label class="form-check-label" for="status-all">All</label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="status" id="status-new" value="0" @if($status->status == 0) checked @endif>
+    <input class="form-check-input" type="radio" name="status" id="status-new" value="0" @if($status == 0) checked @endif>
     <label class="form-check-label" for="status-all">New</label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="status" id="status-starred" value="1" @if($status->status == 1) checked @endif>
+    <input class="form-check-input" type="radio" name="status" id="status-starred" value="1" @if($status == 1) checked @endif>
     <label class="form-check-label" for="status-all">Starred</label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="status" id="status-approved" value="3" @if($status->status == 3) checked @endif>
+    <input class="form-check-input" type="radio" name="status" id="status-approved" value="3" @if($status == 3) checked @endif>
     <label class="form-check-label" for="status-all">Approved</label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="status" id="status-declined" value="2" @if($status->status == 2) checked @endif>
+    <input class="form-check-input" type="radio" name="status" id="status-declined" value="2" @if($status == 2) checked @endif>
     <label class="form-check-label" for="status-all">Declined</label>
   </div>
   <button type="submit" class="btn btn-primary" name="filter">filter status</button>
@@ -69,7 +69,7 @@
   </thead>
   <tbody>
     @foreach( $applications as $application)
-      @if ($status->status == 4)
+      @if ($status == 4)
       <tr>
         <!-- $user = zoek in de database in de tabel users naar de user met id $application->user_id -->
         <!-- <td>$user[firstname]</td>
@@ -85,7 +85,7 @@
         </p></td>
         <td><a href=""><button type="button" class="btn btn-success btn-sm">Edit status</button></a></td>
       </tr>
-      @elseif ($status->status == $application->status)  
+      @elseif ($status == $application->status)  
       <tr>
         <!-- $user = zoek in de database in de tabel users naar de user met id $application->user_id -->
         <!-- <td>$user[firstname]</td>

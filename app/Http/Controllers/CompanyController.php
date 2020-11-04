@@ -32,7 +32,19 @@ class CompanyController extends Controller
 
     public function showInternship($company, $internship, Request $request)
     {
-        $url['status'] = $request;
+        
+        if( $request->status == null ){
+            
+            $url['status'] = "4";
+            //dd($url['status']);
+        }else{
+            //$url['status'] = $request;
+            //dd($request->status);
+            $url['status']=$request->status;
+        }
+    
+       
+        
         $data['details'] = DB::table('internships')->where('id', $internship)->get();
         $data['applications'] = DB::table('applications')->where('internship_id', $internship)->join('users', 'users.id', '=', 'applications.user_id')->get();
         // $data['users'] = [];
