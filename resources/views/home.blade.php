@@ -20,7 +20,6 @@
             </ul>
         @endcomponent
         @endif
-
         <div class="form-group">
             <label for="type">Internship type</label>
             <select name="type" class="custom-select" id="inputTypeSelect">
