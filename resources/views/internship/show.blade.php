@@ -10,27 +10,46 @@
         <h1>Internships in {{$nearbyInternships[0]->city}}</h1>
         <section class="gray">
         @foreach ($nearbyInternships as $nearbyInternship)
-        <a href="/companies/{{$nearbyInternship->company_id}}/internships/{{$nearbyInternship->id}}"><div>
-            <h2>{{$nearbyInternship->title}}</h2>
+        <div>
+         <a href="/companies/{{$nearbyInternship->company_id}}/internships/{{$nearbyInternship->id}}"><h2>{{$nearbyInternship->title}}</h2></a>
+        <div>
+            <P>Description:</p>
             <p>{{$nearbyInternship->description}}</p>
-            <p>{{$nearbyInternship->city}}</p>
-        </div></a>
+        </div>
+        <div>
+            <P>Tasks:</p>
+            <p>{{$nearbyInternship->tasks}}</p>
+        </div>
+        <a href="/companies/{{$nearbyInternship->company_id}}"><p>{{$companies[$nearbyInternship->company_id - 1]->name}}</p></a>
+        <p>{{$nearbyInternship->postal_code}}, {{$nearbyInternship->city}}</p>
+    </div>
+    <hr>
         @endforeach
     </section>
 @endif
-<hr>
-@if(empty($nearbyInternships))
-    <h1>Sorry! We did not find any internships of this type in your city, but here are some internships of this type in other places</h1>
+@if(empty($nearbyInternships) && empty($otherInternships))
+    <h1>Sorry! there are currently no internships of this type available.</h1>
+@elseif(empty($nearbyInternships))
+    <h1>Sorry! We did not find any internships of this type in your city, but here are some internships of this type in other places:</h1>
 @else
-    <h1>All internships of this type:</h1>
+    <h1>internships in other cities:</h1>
 @endif
 <section class="gray">
-    @foreach ($internships as $internship)
-    <a href="/companies/{{$internship->company_id}}/internships/{{$internship->id}}"><div>
-        <h2>{{$internship->title}}</h2>
-        <p>{{$internship->description}}</p>
-        <p>{{$internship->city}}</p>
+    @foreach ($otherInternships as $internship)
+   <div>
+         <a href="/companies/{{$internship->company_id}}/internships/{{$internship->id}}"><h2>{{$internship->title}}</h2></a>
+        <div>
+            <P>Description:</p>
+            <p>{{$internship->description}}</p>
+        </div>
+        <div>
+            <P>Tasks:</p>
+            <p>{{$internship->tasks}}</p>
+        </div>
+        <a href="/companies/{{$internship->company_id}}"><p>{{$companies[$internship->company_id - 1]->name}}</p></a>
+        <p>{{$internship->postal_code}}, {{$internship->city}}</p>
     </div>
+    <hr>
     @endforeach
 </section>
 @endsection
