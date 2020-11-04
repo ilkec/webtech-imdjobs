@@ -16,7 +16,7 @@
 <form action="" method="GET">
  
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="status" id="status-all" value="4" @if($status->status == "4") checked @endif>
+    <input class="form-check-input" type="radio" name="status" id="status-all" value="4" @if($status->status == 4) checked @endif>
     <label class="form-check-label" for="status-all">All</label>
   </div>
   <div class="form-check">

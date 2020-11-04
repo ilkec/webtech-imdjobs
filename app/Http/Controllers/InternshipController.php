@@ -17,11 +17,17 @@ class InternshipController extends Controller
             ->orwhere('tasks', 'LIKE', "%" . $request->type . "%")
             ->orwhere('profile', 'LIKE', "%" . $request->type . "%")
             ->get();
+        
         $data['nearbyInternships'] = [];
+        $data['companies'] = [];
         if ($request->city) {
             foreach ($data['internships'] as $internship) {
                 if (strtolower($internship['city']) == strtolower($request->city)) {
                     $data['nearbyInternships'][] = $internship;
+                }
+                $company = \App\Models\Companies::where('id', $internship['company_id'])->first();
+                if (!in_array($company, $data['companies'])) {
+                    $data['companies'][] = $company;
                 }
             }
         }

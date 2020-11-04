@@ -26,7 +26,7 @@
             <select name="type" class="custom-select" id="inputTypeSelect">
                 <option value="graphic design" selected>graphic design</option>
                 <option value="UI/UX">UI/UX design</option>
-                <option value="font-end">front-end development</option>
+                <option value="front-end">front-end development</option>
                 <option value="back-end">back-end development</option>
                 <option value="full-stack">full-stack development</option>
             </select>
