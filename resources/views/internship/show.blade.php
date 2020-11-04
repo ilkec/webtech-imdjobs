@@ -27,13 +27,15 @@
         @endforeach
     </section>
 @endif
-@if(empty($nearbyInternships))
-    <h1>Sorry! We did not find any internships of this type in your city, but here are some internships of this type in other places</h1>
+@if(empty($nearbyInternships) && empty($otherInternships))
+    <h1>Sorry! there are currently no internships of this type available.</h1>
+@elseif(empty($nearbyInternships))
+    <h1>Sorry! We did not find any internships of this type in your city, but here are some internships of this type in other places:</h1>
 @else
-    <h1>All internships of this type:</h1>
+    <h1>internships in other cities:</h1>
 @endif
 <section class="gray">
-    @foreach ($internships as $internship)
+    @foreach ($otherInternships as $internship)
    <div>
          <a href="/companies/{{$internship->company_id}}/internships/{{$internship->id}}"><h2>{{$internship->title}}</h2></a>
         <div>
