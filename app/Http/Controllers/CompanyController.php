@@ -27,17 +27,16 @@ class CompanyController extends Controller
     public function indexInternships($company)
     {
         $data['internships'] = DB::table('internships')->where('company_id', $company)->get();
+        
         return view('companies/internships', $data);
     }
 
     public function showInternship($company, $internship, Request $request)
     {
-        
-        if( $request->status == null ){
-            
+        if ($request->status == null) {
             $url['status'] = "4";
-            //dd($url['status']);
-        }else{
+        //dd($url['status']);
+        } else {
             //$url['status'] = $request;
             //dd($request->status);
             $url['status']=$request->status;
@@ -46,14 +45,17 @@ class CompanyController extends Controller
        
         
         $data['details'] = DB::table('internships')->where('id', $internship)->get();
-        $data['applications'] = DB::table('applications')->where('internship_id', $internship)->join('users', 'users.id', '=', 'applications.user_id')->get();
-        // $data['users'] = [];
-        // foreach ($data['applications'] as $application) {
-        //     $user = DB::table('users')->where('id', $application->user_id)->get();
-        //     array_push($data['users'], $user);
-        // }
+        $data['applications'] = DB::table('applications')->where('internship_id', $internship)
+            ->join('users', 'users.id', '=', 'applications.user_id')
+            ->select('applications.id', 'user_id', 'internship_id', 'status', 'company_id', 'first_name', 'last_name')
+            ->get('last_name');
+        /*$data['users'] = [];
+        foreach ($data['applications'] as $application) {
+            $user = \App\Models\User::where('id', $application->user_id)->get();
+            $data['users'][] = $user;
+        }*/
 
-        //dd($data['applications']);
+        // dd($data['applications']);
         return view('companies/internshipDetails', $data, $url);
     }
 

@@ -53,6 +53,10 @@ class ApplicationController extends Controller
             'feedback' => $feedback
         ]);
 
-        return redirect('/companies/'. $company .'/internships/' . $application);
+        $application_id =  \App\Models\Applications::where('id', $application)
+            ->select('internship_id')
+            ->first();
+
+        return redirect('/companies/'. $company .'/internships/' . $application_id['internship_id']);
     }
 }
