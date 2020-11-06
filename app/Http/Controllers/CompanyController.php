@@ -43,7 +43,8 @@ class CompanyController extends Controller
         }
     
        
-        
+        $data['company'] = \App\Models\Companies::where('id', $company)->first();
+
         $data['details'] = DB::table('internships')->where('id', $internship)->get();
         $data['applications'] = DB::table('applications')->where('internship_id', $internship)
             ->join('users', 'users.id', '=', 'applications.user_id')
