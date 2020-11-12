@@ -57,6 +57,7 @@ Route::get('/students/{id}/applications/{application_id}', function () {
 
 //======= COMPANY
 Route::get('/companies', [CompanyController::class, 'index']);
+Route::post('/companies', [CompanyController::class, 'filterCompanies']);
 Route::get('/companies/{company}', [CompanyController::class, 'showCompany']);
 Route::post('/companies/{company}', [CompanyController::class, 'addInternshipOffer']);
 Route::get('/companies/{company}/internships', [CompanyController::class, 'indexInternships']);

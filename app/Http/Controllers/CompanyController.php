@@ -12,7 +12,7 @@ class CompanyController extends Controller
 {
     public function index()
     {
-        $data['companies'] = DB::table('companies')->get();
+        $data['companies'] = \App\Models\Companies::all();
         return view('companies/index', $data);
     }
 
@@ -174,5 +174,19 @@ class CompanyController extends Controller
         //get current internships and put in array
         $data['internships'] = \App\Models\Internships::where('company_id', $id)->get();
         return redirect('/companies/' . $id);
+    }
+
+    public function filterCompanies(Request $request)
+    {
+        $validation = $request->validate([
+            'Company' => 'required'
+        ]);
+
+        $data['companies'] =  \App\Models\Companies::where('name', 'LIKE', "%" . $request->Company . "%")
+        ->orwhere('description', 'LIKE', "%" . $request->Company . "%")
+        ->orwhere('city', 'LIKE', "%" . $request->Company . "%")
+        ->get();
+
+        return view('companies/index', $data);
     }
 }

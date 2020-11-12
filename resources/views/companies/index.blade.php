@@ -6,6 +6,28 @@
 
 @section('content')
     <h1>All companies</h1>
+
+     <form method="post" action="">
+        {{csrf_field()}}
+
+        @if( $errors->any())
+        @component('components/alert')
+            @slot('type') danger @endslot
+            <ul>
+                @foreach ($errors->all() as $e)
+                    <li>{{ $e }}</li>
+                @endforeach
+            </ul>
+        @endcomponent
+        @endif
+        <div class="form-group">
+            <label for="Company">Company</label>
+            <input name="Company" type="text" class="form-control" id="Company" placeholder="Company">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Filter!</button>
+    </form>
+
     <section class="list list--companies">
         @foreach( $companies as $company)
         <div class="list__item">
