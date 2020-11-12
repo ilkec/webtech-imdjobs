@@ -113,6 +113,17 @@ footer{
    background-color: #f7f7f7
 }
 
+/*----------list----------*/
+
+.list {
+   display: flex;
+   flex-wrap: wrap;
+}
+
+.list__item {
+   margin: 0.5em;
+   text-align: center;
+}
 
 /*#header-student{
    background-color: grey;
