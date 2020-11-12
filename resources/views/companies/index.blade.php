@@ -6,7 +6,11 @@
 
 @section('content')
     <h1>All companies</h1>
-
+    @if($user->account_type === 0)
+        <a href="/company/add">
+            <button class="btn btn-primary">Add company</button>
+        </a>
+    @endif
      <form method="post" action="">
         {{csrf_field()}}
 
@@ -27,7 +31,6 @@
         
         <button type="submit" class="btn btn-primary">Filter!</button>
     </form>
-
     <section class="list list--companies">
         @foreach( $companies as $company)
         <div class="list__item">

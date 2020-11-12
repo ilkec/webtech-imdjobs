@@ -13,6 +13,7 @@ class CompanyController extends Controller
     public function index()
     {
         $data['companies'] = \App\Models\Companies::all();
+        $data['user'] = Auth::user();
         return view('companies/index', $data);
     }
 
@@ -187,6 +188,7 @@ class CompanyController extends Controller
         ->orwhere('city', 'LIKE', "%" . $request->Company . "%")
         ->get();
 
+        $data['user'] = Auth::user();
         return view('companies/index', $data);
     }
 }
