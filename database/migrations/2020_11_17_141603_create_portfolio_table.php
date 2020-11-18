@@ -15,8 +15,10 @@ class CreatePortfolioTable extends Migration
     {
         Schema::create('portfolio', function (Blueprint $table) {
             $table->id();
-            $table->string('img_path',300);
-            $table->foreignId('users_id')->constrained('users');
+            $table->string('image',300);
+            $table->string('link',300);
+            $table->string('text',300);
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }
