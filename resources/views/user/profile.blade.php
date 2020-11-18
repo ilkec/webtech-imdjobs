@@ -8,7 +8,8 @@
     @if( $flash = session('updateMessage') )
         <div class="alert alert-success">{{ $flash }}</div>
     @endif
-
+    
+    
     <div class="intro">
         <h1>{{ $users->first_name }} {{ $users->last_name }}</h1>
         @if ($users->account_type == 1 )
@@ -62,9 +63,9 @@
         @if (!empty( $users->dribbble ))
             <!--<a href="{{ $users->dribbble }}"><p>Dribbble</p></a>-->
             @for ($i = 0; $i < 4; $i++)
-                
-                <a href="{{ $items[$i]['link'] }}">
-                    <img src="{{ $items[$i]['image']}}" alt="portfolio item">
+           
+                <a href="{{ $users->portfolio[$i]->link}}">
+                    <img src="{{ $users->portfolio[$i]->image}}" alt="portfolio item">
                 </a>
             @endfor
         @endif

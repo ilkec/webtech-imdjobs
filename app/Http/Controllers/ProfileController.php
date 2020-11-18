@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use App\Models\Portfolio;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -31,13 +32,6 @@ class ProfileController extends Controller
 
     public function handleUpdateProfile(Request $request)
     {
-
-       // $request->image->store('images', 'public');
-        //$request->photo->path();
-        //dd($request->image->path());
-        //$url = "https://api.behance.net/v2/users/matiascorea";
-        //$respo = Http::get($url);
-
 
         $id = session('User');
         $validation = $request->validate([
@@ -67,6 +61,37 @@ class ProfileController extends Controller
         if ($request->cv) {
             $cvPath = $request->cv->store('files', 'public');
         }
+
+
+        //scrape dribbble profile and store data in db
+       $url = $request->input('dribbble'); //get dribbble link from inputfield
+        if(!empty($url)){
+            $client = new Client;
+            $crawler = $client->request('GET', $url);
+            $scrape['items'] = $crawler->filter('.js-shot-thumbnail-base')->each(function ($node) {
+                $images =  $node->filter('figure > img')->attr('src');
+                $text = $node->filter('.shot-title')->text();
+                $link = "https://dribbble.com" . $node->filter('.shot-thumbnail-link')->attr('href');
+                return ["link"=>$link, "image"=> $images, "text"=>$text];
+             });
+        }else{
+            $scrape['items'] = "no items to update";
+        }
+        $portfolioItems = array_slice($scrape['items'], 0, 4);
+        
+        //dd($portfolioItems);
+        // functie wordt maar 1 keer uitgevoerd = maar 1 item in database
+        foreach($portfolioItems as $portfolioitem){
+            $portfolio = new \App\Models\Portfolio();
+            $portfolio->image = $portfolioitem['image'];
+            $portfolio->link = $portfolioitem['link'];
+            $portfolio->text = $portfolioitem['text'];
+            $portfolio->user_id = $id;
+            $portfolio->save();
+        
+        }
+        
+
         $request->flash();
         DB::table('users')
             ->where('id', $id)
@@ -94,28 +119,21 @@ class ProfileController extends Controller
     
     public function showProfile($id)
     {
-        $data['users'] =  \App\Models\User::where('id', $id)->first();
-        $url = $data['users']->dribbble;
-        
-        if(!empty($url)){
-            $client = new Client;
-            $crawler = $client->request('GET', $url);
-            $scrape['items'] = $crawler->filter('.js-shot-thumbnail-base')->each(function ($node) {
-                $images =  $node->filter('figure > img')->attr('src');
-                $text = $node->filter('.shot-title')->text();
-                $link = "https://dribbble.com" . $node->filter('.shot-thumbnail-link')->attr('href');
-                return ["link"=>$link, "image"=> $images, "text"=>$text];
-             });
-        }else{
-            $scrape['items'] = "no items to update";
-        }
-    
+        $data['users'] =  \App\Models\User::where('id', $id)->with('portfolio')->get();
+        $data['users'] = $data['users'][0];
 
-        //dd($scrape);
-        return view('/user/profile', $data, $scrape);
+
+        /*$user = \App\Models\User::where('id', 52)->first();
+        dd($user->portfolio()->get());*/
+        
+
+        //dd($data['users']);
+        return view('/user/profile', $data);
         
     
     }
+
+    
 
     public function userType()
     {
