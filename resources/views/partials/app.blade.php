@@ -11,7 +11,7 @@
 <body>
     
     <nav class="navbar">
-    <a href="http://homestead.test"><p>Interact</p></a>
+    <a href="/"><p>Interact</p></a>
     @if( $flash = session('User') )
 
         <div>
