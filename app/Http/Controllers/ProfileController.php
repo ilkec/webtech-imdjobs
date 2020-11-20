@@ -74,22 +74,25 @@ class ProfileController extends Controller
                 $link = "https://dribbble.com" . $node->filter('.shot-thumbnail-link')->attr('href');
                 return ["link"=>$link, "image"=> $images, "text"=>$text];
              });
+             $portfolioItems = array_slice($scrape['items'], 0, 4);
+        
+            //dd($portfolioItems);
+            // functie wordt maar 1 keer uitgevoerd = maar 1 item in database
+            foreach($portfolioItems as $portfolioitem){
+                $portfolio = new \App\Models\Portfolio();
+                $portfolio->image = $portfolioitem['image'];
+                $portfolio->link = $portfolioitem['link'];
+                $portfolio->text = $portfolioitem['text'];
+                $portfolio->user_id = $id;
+                $portfolio->save();
+            
+            }
+        
+
         }else{
             $scrape['items'] = "no items to update";
         }
-        $portfolioItems = array_slice($scrape['items'], 0, 4);
         
-        //dd($portfolioItems);
-        // functie wordt maar 1 keer uitgevoerd = maar 1 item in database
-        foreach($portfolioItems as $portfolioitem){
-            $portfolio = new \App\Models\Portfolio();
-            $portfolio->image = $portfolioitem['image'];
-            $portfolio->link = $portfolioitem['link'];
-            $portfolio->text = $portfolioitem['text'];
-            $portfolio->user_id = $id;
-            $portfolio->save();
-        
-        }
         
 
         $request->flash();
