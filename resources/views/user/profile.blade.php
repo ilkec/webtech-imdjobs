@@ -62,12 +62,16 @@
         @endif
         @if (!empty( $users->dribbble ))
             <!--<a href="{{ $users->dribbble }}"><p>Dribbble</p></a>-->
-            @for ($i = 0; $i < 4; $i++)
-           
-                <a href="{{ $users->portfolio[$i]->link}}">
-                    <img src="{{ $users->portfolio[$i]->image}}" alt="portfolio item">
-                </a>
-            @endfor
+            @if(!empty($users->portfolio[0]))
+                
+                @for ($i = 0; $i < 4; $i++)
+                    
+                        <a href="{{ $users->portfolio[$i]->link}}">
+                            <img src="{{ $users->portfolio[$i]->image}}" alt="portfolio item">
+                        </a>
+                    
+                @endfor
+            @endif
         @endif
         @if (!empty( $users->behance ))
             <a href="{{ $users->behance }}"><p>Behance</p></a>
