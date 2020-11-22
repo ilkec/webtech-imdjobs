@@ -60,6 +60,8 @@ Route::get('/companies', [CompanyController::class, 'index']);
 Route::post('/companies', [CompanyController::class, 'filterCompanies']);
 Route::get('/companies/{company}', [CompanyController::class, 'showCompany']);
 Route::post('/companies/{company}', [CompanyController::class, 'addInternshipOffer']);
+Route::get('/companies/{company}/edit', [CompanyController::class, 'editCompany']);
+Route::post('/companies/{company}/edit', [CompanyController::class, 'handleEditCompany']);
 Route::get('/companies/{company}/internships', [CompanyController::class, 'indexInternships']);
 Route::get('/companies/{company}/internships/{internship}', [CompanyController::class, 'showInternship']);
 

@@ -15,6 +15,9 @@
         @endif
         </div>
         <h2>{{$company->name}}</h2>
+        @if(\Auth::user()->can('update', $company))
+               <a href="/companies/{{$company->id}}/edit"><button type="submit" class="btn btn-primary">edit company</button></a>
+            @endif
         <p>{{$company->description}}</p>
         </section>
 

@@ -135,6 +135,51 @@ class CompanyController extends Controller
         return view('/companies/profile', $data);
     }
 
+    public function editCompany($id)
+    {
+        $data['company'] =  \App\Models\Companies::where('id', $id)->first();
+        return view('/companies/edit', $data);
+    }
+
+    public function handleEditCompany(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'city' => 'required',
+            'province' => 'required',
+            'street_address' => 'required',
+            'postal_code' => 'required',
+            'description' => 'required',
+            'email' => 'required',
+            'phone_number' => "required",
+            'website' => "required"
+        ]);
+        $imagePath ="";
+        if (!empty($request->image)) {
+            $imagePath = $request->image->store('images', 'public');
+        } else {
+            $data['company'] = \App\Models\Companies::where('id', $id)->first();
+            ;
+            $imagePath = $data['company']->picture;
+        }
+
+        \App\Models\Companies::where('id', $id)
+            ->update([
+                'name' => $request->name,
+                'city' => $request->city,
+                'province' => $request->province,
+                'street_address' => $request->street_address,
+                'postal_code' => $request->postal_code,
+                'description' => $request->description,
+                'picture' => $imagePath,
+                'email' => $request->email,
+                'phone_number' => $request->phone_number,
+                'website' => $request->website
+            ]);
+
+        return redirect('/companies/' . $id);
+    }
+
     public function addInternshipOffer(Request $request, $id)
     {
         $user = Auth::user();
