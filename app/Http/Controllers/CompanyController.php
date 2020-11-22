@@ -36,10 +36,7 @@ class CompanyController extends Controller
     {
         if ($request->status == null) {
             $url['status'] = "4";
-        //dd($url['status']);
         } else {
-            //$url['status'] = $request;
-            //dd($request->status);
             $url['status']=$request->status;
         }
     
@@ -51,13 +48,7 @@ class CompanyController extends Controller
             ->join('users', 'users.id', '=', 'applications.user_id')
             ->select('applications.id', 'user_id', 'internship_id', 'status', 'company_id', 'first_name', 'last_name')
             ->get('last_name');
-        /*$data['users'] = [];
-        foreach ($data['applications'] as $application) {
-            $user = \App\Models\User::where('id', $application->user_id)->get();
-            $data['users'][] = $user;
-        }*/
-
-        // dd($data['applications']);
+            
         return view('companies/internshipDetails', $data, $url);
     }
 
@@ -159,7 +150,6 @@ class CompanyController extends Controller
             $imagePath = $request->image->store('images', 'public');
         } else {
             $data['company'] = \App\Models\Companies::where('id', $id)->first();
-            ;
             $imagePath = $data['company']->picture;
         }
 
