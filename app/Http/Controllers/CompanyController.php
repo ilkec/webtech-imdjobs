@@ -233,4 +233,28 @@ class CompanyController extends Controller
         $data['internship'] = \App\Models\Internships::where('id', $internship)->first();
         return view('companies/internshipEdit', $data);
     }
+
+    public function handleEditInternship(Request $request, $company, $internship)
+    {
+        $validation = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'tasks' => 'required',
+            'profile' => 'required',
+            'city' => 'required',
+            'postal_code' => 'required'
+        ]);
+
+        \App\Models\Internships::where('id', $internship)
+            ->update([
+                'title' => $request->title,
+                'postal_code' => $request->postal_code,
+                'city' => $request->city,
+                'description' => $request->description,
+                'tasks' => $request->tasks,
+                'profile' => $request->profile
+            ]);
+
+        return redirect('/companies/' . $company);
+    }
 }
