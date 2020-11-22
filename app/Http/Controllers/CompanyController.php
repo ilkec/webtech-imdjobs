@@ -40,7 +40,6 @@ class CompanyController extends Controller
             $url['status']=$request->status;
         }
     
-       
         $data['company'] = \App\Models\Companies::where('id', $company)->first();
 
         $data['details'] = DB::table('internships')->where('id', $internship)->get();
@@ -48,7 +47,7 @@ class CompanyController extends Controller
             ->join('users', 'users.id', '=', 'applications.user_id')
             ->select('applications.id', 'user_id', 'internship_id', 'status', 'company_id', 'first_name', 'last_name')
             ->get('last_name');
-            
+
         return view('companies/internshipDetails', $data, $url);
     }
 
@@ -226,5 +225,12 @@ class CompanyController extends Controller
 
         $data['user'] = Auth::user();
         return view('companies/index', $data);
+    }
+
+    public function editInternship($company, $internship)
+    {
+        $data['company'] = \App\Models\Companies::where('id', $company)->first();
+        $data['internship'] = \App\Models\Internships::where('id', $internship)->first();
+        return view('companies/internshipEdit', $data);
     }
 }

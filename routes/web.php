@@ -66,8 +66,8 @@ Route::get('/companies/{company}/internships', [CompanyController::class, 'index
 Route::get('/companies/{company}/internships/{internship}', [CompanyController::class, 'showInternship']);
 
 // Edit internschip
-Route::get('/companies/{company}/internships/{internship}/edit', [CompanyController::class, 'showInternship']);
-Route::post('/companies/{company}/internships/{internship}/edit', [CompanyController::class, 'showInternship']);
+Route::get('/companies/{company}/internships/{internship}/edit', [CompanyController::class, 'editInternship']);
+Route::post('/companies/{company}/internships/{internship}/edit', [CompanyController::class, 'handleEditInternship']);
 
 
 

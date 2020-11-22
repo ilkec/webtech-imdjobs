@@ -32,10 +32,15 @@
             </form>
             @endif
             @foreach ($internships as $internship)
-                 <a href="/companies/{{$internship->company_id}}/internships/{{$internship->id}}"><div>  
+            <div class="row">
+                <a href="/companies/{{$internship->company_id}}/internships/{{$internship->id}}"><div>  
                     <h4>{{$internship->title}}</h4>
                     <p>{{$internship->description}}</p>
                 </div></a>
+                <a href="/companies/{{$internship->company_id}}/internships/{{$internship->id}}/edit"><div>  
+                     <button type="submit" class="btn btn-primary">edit internship</button>
+                </div></a>
+            </div> 
             @endforeach
         </section>
             

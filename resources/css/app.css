@@ -152,6 +152,12 @@ footer{
    background-color: grey;
 }*/
 
+/*----------div flexbox----------*/
+.row {
+   display: flex;
+   justify-content: space-between;
+}
+
 @media all and (min-width:1024px) {
 
    .links{
