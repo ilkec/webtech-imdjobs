@@ -61,6 +61,10 @@
             <label for="phone_number">Phone number</label>
             <input name="phone_number" type="tel" class="form-control" id="phone_number" value="@if(!empty(old('phone_number'))) {{old('phone_number')}} @endif" placeholder="Company phone number">
         </div>
+        <div class="form-group">
+            <label for="website">website</label>
+            <input name="website" type="text" class="form-control" id="website" value="{{old('website')}}" placeholder="Website">
+        </div>
         
         <button type="submit" class="btn btn-primary"> Update company</button>
     </form>

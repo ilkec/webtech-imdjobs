@@ -24,6 +24,7 @@ class CreateCompanyTable extends Migration
             $table->string('street_address', 300)->nullable();
             $table->string('city', 300);
             $table->string('postal_code', 300)->nullable();
+            $table->string('website', 300)->nullable();
             $table->foreignId('users_id')->constrained('users'); /*which user made this company profile*/
             $table->timestamps();
         });

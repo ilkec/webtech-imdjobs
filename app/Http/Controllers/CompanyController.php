@@ -104,13 +104,13 @@ class CompanyController extends Controller
             'description' => 'required',
             'image' => 'required',
             'email' => 'required',
-            'phone_number' => "required"
+            'phone_number' => "required",
+            'website' => "required"
         ]);
 
         $imagePath = $request->image->store('images', 'public');
 
-        DB::table('companies')
-            ->where('id', $id)
+        \App\Models\Companies::where('id', $id)
             ->update([
                 'name' => $request->name,
                 'city' => $request->city,
@@ -120,7 +120,8 @@ class CompanyController extends Controller
                 'description' => $request->description,
                 'picture' => $imagePath,
                 'email' => $request->email,
-                'phone_number' => $request->phone_number
+                'phone_number' => $request->phone_number,
+                'website' => $request->website
             ]);
 
         return redirect('/companies/' . $id);

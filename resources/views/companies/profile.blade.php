@@ -41,6 +41,7 @@
             <p>{{$company->street_address}}, {{ $company->postal_code}} {{$company->city}}</p>
             <p>{{$company->phone_number}}</p>
             <p>{{$company->email}}</p>
+            <P><a href="{{$company->website}}" target="_blank">visit our website!</a></p>
         </section>
 
        
