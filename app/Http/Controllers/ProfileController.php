@@ -51,15 +51,22 @@ class ProfileController extends Controller
             'website'=> 'nullable',
             
         ]);
-        $imagePath ="";
+        $imagePath = "";
         $cvPath ="";
 
         if ($request->image) {
             $imagePath = $request->image->store('images', 'public');
+        }else{
+            $data['image'] = \App\Models\User::where('id', $id)->first();
+            $imagePath = $data['image']->picture;  
         }
 
         if ($request->cv) {
             $cvPath = $request->cv->store('files', 'public');
+        }else{
+            $data['cv'] = \App\Models\User::where('id', $id)->first();
+            $cvPath = $data['cv']->cv; 
+            //dd($cvPath); 
         }
 
 
