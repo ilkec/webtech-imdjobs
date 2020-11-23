@@ -25,12 +25,8 @@
         
     @else
          <div>
-            <a href="/login">
-                <button type="button" class="btn btn-light">login</button>
-            </a>
-            <a href="/register">
-                <button type="button" class="btn btn-primary">register</button>
-            </a>
+            <a href="/login"><button type="button" class="btn btn-light">login</button></a>
+            <a href="/register"><button type="button" class="btn btn-primary">register</button></a>
         </div>
     
     @endif   
