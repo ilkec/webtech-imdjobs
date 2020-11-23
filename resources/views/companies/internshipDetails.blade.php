@@ -98,7 +98,7 @@
             </p></td>
             
             <td><a href="/company/{{$application->company_id}}/applications/edit/{{$application->id}}">
-                <button type="button" class="btn btn-success btn-sm">Review</button>
+                <button type="button" class="btn btn-success btn-sm">Edit status</button>
               </a></td>
           </tr>
           @endif
