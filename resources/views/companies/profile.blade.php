@@ -37,9 +37,11 @@
                     <h4>{{$internship->title}}</h4>
                     <p>{{$internship->description}}</p>
                 </div></a>
+                @if(\Auth::user()->can('update', $company))
                 <a href="/companies/{{$internship->company_id}}/internships/{{$internship->id}}/edit"><div>  
                      <button type="submit" class="btn btn-primary">edit internship</button>
                 </div></a>
+                @endif
             </div> 
             @endforeach
         </section>
