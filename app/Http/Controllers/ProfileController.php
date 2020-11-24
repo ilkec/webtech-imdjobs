@@ -85,16 +85,38 @@ class ProfileController extends Controller
              $portfolioItems = array_slice($scrape['items'], 0, 4);
         
             //dd($portfolioItems);
-            
-            foreach($portfolioItems as $portfolioitem){
-                $portfolio = new \App\Models\Portfolio();
-                $portfolio->image = $portfolioitem['image'];
-                $portfolio->link = $portfolioitem['link'];
-                $portfolio->text = $portfolioitem['text'];
-                $portfolio->user_id = $id;
-                $portfolio->save();
-            
+        //bestaan er al al items in db voor user?
+            if(isset($data['users']->portfolio[0])){
+               //echo 'test';
+               $itemsPortfolio[] = \App\Models\Portfolio::where('user_id', $id)
+                    ->orderBy('id', 'asc')
+                    ->get();
+                //dd($itemsPortfolio);
+                $counter = 0;
+                foreach($itemsPortfolio[0] as $itemPortfolio){
+                    
+                    \App\Models\Portfolio::where('id', $itemPortfolio->id)
+                    ->update([
+                        'image' => $portfolioItems[$counter]['image'],
+                        'link' => $portfolioItems[$counter]['link'],
+                        'text' => $portfolioItems[$counter]['text']
+                        
+                    ]);
+                    $counter++;
+                }
+                //dd($test);
+            }else{
+                foreach($portfolioItems as $portfolioitem){
+                    $portfolio = new \App\Models\Portfolio();
+                    $portfolio->image = $portfolioitem['image'];
+                    $portfolio->link = $portfolioitem['link'];
+                    $portfolio->text = $portfolioitem['text'];
+                    $portfolio->user_id = $id;
+                    $portfolio->save();
+                
+                }
             }
+            
         
 
         }else{
