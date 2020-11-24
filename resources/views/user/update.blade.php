@@ -49,50 +49,54 @@
                     <input value="{{ $users->phone_number }}" class="form-control" type="text" name="phonenumber" id="phonenumber"  placeholder="Enter your phonenumber">
                 </div>
 
-                <div class="form_group">
-                    <label for="education">Education *</label>
-                    <input value="{{ $users->education }}" class="form-control" type="text" name="education" id="education"  placeholder="Enter your education">
-                </div>
-
-                <div class="form_group">
-                    <label for="school">School *</label>
-                    <input value="{{ $users->school }}" class="form-control" type="text" name="school" id="school"  placeholder="School">
-                </div>
-
                 <div class="form-group">
-                    <label for="city">City *</label>
-                    <input value="{{ $users->city }}" type="input" name="city" class="form-control" id="city" placeholder="City">
-                </div>
+                        <label for="city">City *</label>
+                        <input value="{{ $users->city }}" type="input" name="city" class="form-control" id="city" placeholder="City">
+                    </div>
+                
+                
+                @if($users->account_type == 1)
+                    <div class="form_group">
+                        <label for="education">Education *</label>
+                        <input value="{{ $users->education }}" class="form-control" type="text" name="education" id="education"  placeholder="Enter your education">
+                    </div>
 
-                <div class="form_group">
-                    <p>Upload your cv</p>
-                    <!--<label for="image" class="btn">Choose a file</label>-->
-                    <input type="file" name="cv" class="btn mb-3" id="cv" accept=".pdf">
-                    <small id="fieldHelp" class="form-text text-muted">pdf files only</small>
-                </div>
+                    <div class="form_group">
+                        <label for="school">School *</label>
+                        <input value="{{ $users->school }}" class="form-control" type="text" name="school" id="school"  placeholder="School">
+                    </div>
 
-                <div class="form_group">
-                    <label for="linkedin">Linkedin profile</label>
-                    <input value="{{ $users->linkedin }}" class="form-control" type="url" name="linkedin" id="linkedin"  placeholder="Enter the link to your linkedin account">
-                </div>
-                <div class="form_group">
-                    <label for="dribbble">Dribbble profile</label>
-                    <input value="{{ $users->dribbble }}" class="form-control" type="url" name="dribbble" id="dribbble"  placeholder="Enter the link to your dribbble account">
-                </div>
-                <div class="form_group">
-                    <label for="behance">Behance profile</label>
-                    <input value="{{ $users->behance }}" class="form-control" type="url" name="behance" id="behance"  placeholder="Enter the link to your behance account">
-                </div>
-                <div class="form_group">
-                    <label for="github">Github profile</label>
-                    <input value="{{ $users->github }}" class="form-control" type="url" name="github" id="github"  placeholder="Enter the link to your github account">
-                </div>
-                <div class="form_group">
-                    <label for="website">Website</label>
-                    <input value="{{ $users->website }}" class="form-control" type="url" name="website" id="website"  placeholder="Enter the link to your website">
-                    <small id="fieldHelp" class="form-text text-muted">*These fields are required</small>
-                </div>
-
+                    
+                    <div class="form_group">
+                        <p>Upload your cv</p>
+                        <!--<label for="image" class="btn">Choose a file</label>-->
+                        <input type="file" name="cv" class="btn mb-3" id="cv" accept=".pdf">
+                        <small id="fieldHelp" class="form-text text-muted">pdf files only</small>
+                    </div>
+                
+                    <div class="form_group">
+                        <label for="linkedin">Linkedin profile</label>
+                        <input value="{{ $users->linkedin }}" class="form-control" type="url" name="linkedin" id="linkedin"  placeholder="Enter the link to your linkedin account">
+                    </div>
+                    <div class="form_group">
+                        <label for="dribbble">Dribbble profile</label>
+                        <input value="{{ $users->dribbble }}" class="form-control" type="url" name="dribbble" id="dribbble"  placeholder="Enter the link to your dribbble account">
+                    </div>
+                    <div class="form_group">
+                        <label for="behance">Behance profile</label>
+                        <input value="{{ $users->behance }}" class="form-control" type="url" name="behance" id="behance"  placeholder="Enter the link to your behance account">
+                    </div>
+                    <div class="form_group">
+                        <label for="github">Github profile</label>
+                        <input value="{{ $users->github }}" class="form-control" type="url" name="github" id="github"  placeholder="Enter the link to your github account">
+                    </div>
+                    <div class="form_group">
+                        <label for="website">Website</label>
+                        <input value="{{ $users->website }}" class="form-control" type="url" name="website" id="website"  placeholder="Enter the link to your website">
+                        
+                    </div>
+                @endif
+                <small id="fieldHelp" class="form-text text-muted">*These fields are required</small>
                 <button type="submit" class="btn btn-primary" name="register-student">update profile</button>
             </form>
         </div>

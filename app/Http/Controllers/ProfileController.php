@@ -40,8 +40,8 @@ class ProfileController extends Controller
             'lastname' => 'required',
             'description' => 'required',
             'phonenumber' => 'required',
-            'education'=>'required',
-            'school'=>'required',
+            'education'=>'nullable',
+            'school'=>'nullable',
             'city' => 'required',
             'cv' => 'nullable',
             'linkedin'=> 'nullable',
@@ -72,6 +72,7 @@ class ProfileController extends Controller
 
         //scrape dribbble profile and store data in db
        $url = $request->input('dribbble'); //get dribbble link from inputfield
+       $data['users'] =  \App\Models\User::where('id', $id)->with('portfolio')->first();
         if(!empty($url)){
             $client = new Client;
             $crawler = $client->request('GET', $url);
@@ -84,7 +85,7 @@ class ProfileController extends Controller
              $portfolioItems = array_slice($scrape['items'], 0, 4);
         
             //dd($portfolioItems);
-            // functie wordt maar 1 keer uitgevoerd = maar 1 item in database
+            
             foreach($portfolioItems as $portfolioitem){
                 $portfolio = new \App\Models\Portfolio();
                 $portfolio->image = $portfolioitem['image'];
@@ -129,15 +130,15 @@ class ProfileController extends Controller
     
     public function showProfile($id)
     {
-        $data['users'] =  \App\Models\User::where('id', $id)->with('portfolio')->get();
-        $data['users'] = $data['users'][0];
+        $data['users'] =  \App\Models\User::where('id', $id)->with('portfolio')->first();
+       // $data['users'] = $data['users'][0];
 
 
         /*$user = \App\Models\User::where('id', 52)->first();
         dd($user->portfolio()->get());*/
         
 
-        //dd($data['users']);
+        //dd($data['users']->portfolio);
         return view('/user/profile', $data);
         
     
