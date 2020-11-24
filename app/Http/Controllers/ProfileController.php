@@ -88,19 +88,23 @@ class ProfileController extends Controller
         //bestaan er al al items in db voor user?
             if(isset($data['users']->portfolio[0])){
                //echo 'test';
-                for($i = 0; $i < 4; $i++){
-                    dd($portfolioItems[$i]['image']);
-                    //SELECT * FROM portfolio WHERE user_id = 52 ORDER BY id ASC LIMIT 0,1
-                    \App\Models\Portfolio::where('user_id', $id)
+               $itemsPortfolio[] = \App\Models\Portfolio::where('user_id', $id)
                     ->orderBy('id', 'asc')
-                    ->limit($i,1)
+                    ->get();
+                //dd($itemsPortfolio);
+                $counter = 0;
+                foreach($itemsPortfolio[0] as $itemPortfolio){
+                    
+                    \App\Models\Portfolio::where('id', $itemPortfolio->id)
                     ->update([
-                        'image' => $portfolioItems[$i]['image'],
-                        'link' => $portfolioItems[$i]['link'],
-                        'text' => $portfolioItems[$i]['text']
+                        'image' => $portfolioItems[$counter]['image'],
+                        'link' => $portfolioItems[$counter]['link'],
+                        'text' => $portfolioItems[$counter]['text']
                         
                     ]);
-                };
+                    $counter++;
+                }
+                //dd($test);
             }else{
                 foreach($portfolioItems as $portfolioitem){
                     $portfolio = new \App\Models\Portfolio();
