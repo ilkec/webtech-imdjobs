@@ -39,8 +39,13 @@
                 <p>{{$company->description}}</p>
             </div>
             <div class="container-img">
-                <img class="img-thumbnail" src="{{ asset('storage/' . $company->picture) }}" width="500" height="500" alt="companylogo" id="companyPicture">
+            @if (empty( $company->picture ))
+                <img class="img-thumbnail" src="{{ asset('images/profilePic.jpg') }}" width="500" height="500" alt="profilepicture" id="profilePicture">
+            @else
+                <img class="img-thumbnail" src="{{ asset('storage/' . $company->picture) }}" width="500" height="500" alt="profilepicture" id="profilePicture">
+            @endif
             </div>
+            
         </div>
         @endforeach
     </section>

@@ -96,8 +96,10 @@ class CompanyController extends Controller
             'phone_number' => "required",
             'website' => "required"
         ]);
-
-        $imagePath = $request->image->store('images', 'public');
+        $imagePath ="";
+        if (!empty($request->image)) {
+            $imagePath = $request->image->store('images', 'public');
+        }
 
         \App\Models\Companies::where('id', $id)
             ->update([
