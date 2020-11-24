@@ -92,7 +92,6 @@ class CompanyController extends Controller
             'street_address' => 'required',
             'postal_code' => 'required',
             'description' => 'required',
-            'image' => 'required',
             'email' => 'required',
             'phone_number' => "required",
             'website' => "required"
