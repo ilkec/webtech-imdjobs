@@ -85,16 +85,34 @@ class ProfileController extends Controller
              $portfolioItems = array_slice($scrape['items'], 0, 4);
         
             //dd($portfolioItems);
-            
-            foreach($portfolioItems as $portfolioitem){
-                $portfolio = new \App\Models\Portfolio();
-                $portfolio->image = $portfolioitem['image'];
-                $portfolio->link = $portfolioitem['link'];
-                $portfolio->text = $portfolioitem['text'];
-                $portfolio->user_id = $id;
-                $portfolio->save();
-            
+        //bestaan er al al items in db voor user?
+            if(isset($data['users']->portfolio[0])){
+               //echo 'test';
+                for($i = 0; $i < 4; $i++){
+                    dd($portfolioItems[$i]['image']);
+                    //SELECT * FROM portfolio WHERE user_id = 52 ORDER BY id ASC LIMIT 0,1
+                    \App\Models\Portfolio::where('user_id', $id)
+                    ->orderBy('id', 'asc')
+                    ->limit($i,1)
+                    ->update([
+                        'image' => $portfolioItems[$i]['image'],
+                        'link' => $portfolioItems[$i]['link'],
+                        'text' => $portfolioItems[$i]['text']
+                        
+                    ]);
+                };
+            }else{
+                foreach($portfolioItems as $portfolioitem){
+                    $portfolio = new \App\Models\Portfolio();
+                    $portfolio->image = $portfolioitem['image'];
+                    $portfolio->link = $portfolioitem['link'];
+                    $portfolio->text = $portfolioitem['text'];
+                    $portfolio->user_id = $id;
+                    $portfolio->save();
+                
+                }
             }
+            
         
 
         }else{
