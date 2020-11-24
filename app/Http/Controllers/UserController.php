@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    /* --- REGISTER --- */
     public function register()
     {
         return view('/register');
@@ -36,16 +37,10 @@ class UserController extends Controller
         return redirect('/login');
     }
 
+    /* --- LOGIN --- */
     public function login()
     {
         return view('/login');
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->flush();
-        return redirect('/login');
     }
 
     public function handleLogin(Request $request)
@@ -68,5 +63,13 @@ class UserController extends Controller
             $request->session()->flash('Login', 'Oops something went wrong, try again!');
             return view('/login');
         }
+    }
+ 
+    /* --- LOGOUT --- */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->flush();
+        return redirect('/login');
     }
 }
