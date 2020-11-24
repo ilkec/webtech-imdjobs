@@ -36,7 +36,6 @@ class ApplicationController extends Controller
     {
         $studentId = session('User');
         $data['application'] =  DB::table('applications')->where('user_id', $studentId)->where('id', $internship)->get();
-        //dd($data['application']);
         return view('/application/edit');
     }
 

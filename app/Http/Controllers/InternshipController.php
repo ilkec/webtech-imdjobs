@@ -25,7 +25,7 @@ class InternshipController extends Controller
             foreach ($data['internships'] as $internship) {
                 if (strtolower($internship['city']) == strtolower($request->city)) {
                     $data['nearbyInternships'][] = $internship;
-                }else {
+                } else {
                     $data['otherInternships'][]= $internship;
                 }
                 $company = \App\Models\Companies::where('id', $internship['company_id'])->first();
@@ -35,9 +35,5 @@ class InternshipController extends Controller
             }
         }
         return view('/internship/show', $data);
-    }
-
-    public function displayInternships()
-    {
     }
 }
