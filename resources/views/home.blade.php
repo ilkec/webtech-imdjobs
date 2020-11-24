@@ -4,8 +4,7 @@
     Interact home
 @stop
 
-@section('content')
-    
+@section('content')   
     <form method="post" action="">
         {{csrf_field()}}
         <h2>Search for an internship</h2>
@@ -36,9 +35,5 @@
         </div>
         
         <button type="submit" class="btn btn-primary">Search!</button>
-    </form>
-
-    
-    
-    
+    </form> 
 @stop

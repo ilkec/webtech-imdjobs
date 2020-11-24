@@ -6,7 +6,6 @@
 @stop
 
 @section('navigation')
-    
         <p>Interact</p>
         <div>
             <a href="/login">
@@ -16,8 +15,6 @@
                 <button type="button" class="btn btn-primary">register</button>
             </a>
         </div>
-        
-
 @stop 
 
 @section('content')
@@ -46,7 +43,6 @@
                     <label for="lastname-student">Lastname</label>
                     <input value="{{ old('lastname') }}" class="form-control" type="text" name="lastname" id="lastname-student" aria-describedby="emailHelp" placeholder="Enter your last name">
                 </div>
-
                 <div class="form-group">
                     <label for="email-student">Email address</label>
                     <input value="{{ old('email') }}" type="email" name="email" class="form-control" id="email-student" aria-describedby="emailHelp" placeholder="Enter email">
@@ -59,11 +55,9 @@
                 <div class="form-check hidden">
                     <input type="hidden" name="accountType" value="1"> 
                 </div>
-
                 <div class="center">
                     <button type="submit" class="btn btn-primary" name="register-student">Sign me up</button>
-                </div>
-                
+                </div>   
             </form>
         </div>
         <h2 id="header-employer" class="header-signup" onclick="myFunctionI()">I am an employer</h2>
@@ -91,7 +85,6 @@
                         <label for="lastname-employer">Lastname</label>
                         <input value="{{ old('lastname') }}" class="form-control" type="text" name="lastname" id="lastname-employer" aria-describedby="emailHelp" placeholder="Enter your last name">
                     </div>
-
                     <div class="form-group">
                         <label for="email-employer">Email address</label>
                         <input value="{{ old('email') }}" type="email" name="email" class="form-control" id="email-employer" aria-describedby="emailHelp" placeholder="Enter email">
@@ -104,7 +97,6 @@
                     <div class="form-check hidden">
                         <input type="hidden" name="accountType" value="0"> 
                     </div>
-
                     <div class="center">
                         <button type="submit" class="btn btn-primary" name="register-employer">Sign me up</button>
                     </div>
@@ -131,8 +123,6 @@
             y.style.display = "none";
             employer.style.backgroundColor = "#F2F2F2";
             student.style.backgroundColor = "#56A7F1";
-        }
-
-        
+        }        
 </script>
 @stop 
