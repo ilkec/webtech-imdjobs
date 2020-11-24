@@ -14,10 +14,10 @@
     <nav class="navbar">
     <a href="/"><p>Interact</p></a>
     @if( $flash = session('User') )
-
+        
         <div>
                 <a href="/user/profile/{{ $flash }}"><button type="button" class="btn btn-light">checkout profile</button></a>
-                <a href="/user/applications" class="app" ><button type="button" class="btn btn-primary">View applications</button></a>
+                <a href="/user/applications" id="app" v-if="button === {{ $users->account_type }} "><button type="button" class="btn btn-primary">View applications</button></a>
                 <a href="/companies"><button class="btn btn-primary">company list</button></a>
                 {{-- @if($user->account_type == 0) --}}
                 <!--<a href="/company/add"><button type="button" class="btn btn-primary">add company <br> (temp btn, change to if user has no company -> add company, else -> company profile)</button></a>-->
@@ -39,14 +39,21 @@
     
     <footer>&copy; Interact</footer>
     <script>
-        /*var app = new Vue({
+        var app = new Vue({
             el: '#app',
             data: {
-                showButton: true
+                button: 1
             }
         })
-        v-if="{{ $user->account_type == 1 }}" 
-        */
+
+        /*var buttonProfile = new Vue({
+            el: '#buttonProfile',
+            data: {
+                button: 
+            }
+        })*/
+         
+        
     </script>
 </body>
 </html>
