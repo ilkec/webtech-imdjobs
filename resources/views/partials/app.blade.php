@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 <body>
     
@@ -16,7 +17,7 @@
 
         <div>
                 <a href="/user/profile/{{ $flash }}"><button type="button" class="btn btn-light">checkout profile</button></a>
-                <a href="/user/applications"><button type="button" class="btn btn-primary">View applications</button></a>
+                <a href="/user/applications" class="app" ><button type="button" class="btn btn-primary">View applications</button></a>
                 <a href="/companies"><button class="btn btn-primary">company list</button></a>
                 {{-- @if($user->account_type == 0) --}}
                 <!--<a href="/company/add"><button type="button" class="btn btn-primary">add company <br> (temp btn, change to if user has no company -> add company, else -> company profile)</button></a>-->
@@ -37,5 +38,15 @@
     
     
     <footer>&copy; Interact</footer>
+    <script>
+        /*var app = new Vue({
+            el: '#app',
+            data: {
+                showButton: true
+            }
+        })
+        v-if="{{ $user->account_type == 1 }}" 
+        */
+    </script>
 </body>
 </html>
