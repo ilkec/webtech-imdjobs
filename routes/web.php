@@ -21,7 +21,7 @@ use App\Http\Controllers\InternshipController;
 
 /* --- HOME + LOGIN --- */
 //home
-Route::get('/', [ProfileController::class, 'userType']);
+Route::get('/', [ProfileController::class, 'showHome']);
 //register
 Route::get('/register', [UserController::class, 'register']);
 Route::post('/register', [UserController::class, 'handleRegister']);
@@ -69,7 +69,7 @@ Route::get('/company/addInternship/{id}', [CompanyController::class, 'addInterns
 Route::post('/company/addInternship/{id}', [CompanyController::class, 'handleAddInternship']);
 
 /* --- applications --- */
-Route::get('/user/applications', [ProfileController::class, 'showApplications']);
+Route::get('/user/applications', [ApplicationController::class, 'showApplications']);
 Route::get('/companies/{company}/internships/{internship}/applications/add', [ApplicationController::class, 'addApplication']);
 Route::post('/companies/{company}/internships/{internship}/applications/add', [ApplicationController::class, 'handleAddAplication']);
 Route::get('/company/{company}/applications/edit/{application}', [ApplicationController::class, 'editApplication']);

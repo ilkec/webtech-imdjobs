@@ -14,19 +14,20 @@ use Goutte\Client;
 
 class ProfileController extends Controller
 {
+    /* --- PROFILE --- */
+    public function showProfile($id)
+    {
+        $data['users'] =  \App\Models\User::where('id', $id)->with('portfolio')->first();
+        return view('/user/profile', $data);
+    }
+
+    /* --- UPDATE PROFILE --- */
     public function updateProfile()
     {
         $id = session('User');
         $data['users'] =  \App\Models\User::where('id', $id)->first();
         
         return view('/user/update', $data);
-    }
-
-    public function showApplications()
-    {
-        $id = session('User');
-        $data['applications'] = DB::table('applications')->join('internships', 'internships.id', '=', 'applications.internship_id')->join('companies', 'companies.id', '=', 'applications.company_id')->where('user_id', $id)->get();
-        return view('/user/applications', $data);
     }
 
     public function handleUpdateProfile(Request $request)
@@ -50,8 +51,6 @@ class ProfileController extends Controller
             
         ]);
         $imagePath = "";
-        $cvPath ="";
-
         if ($request->image) {
             $imagePath = $request->image->store('images', 'public');
         } else {
@@ -59,13 +58,13 @@ class ProfileController extends Controller
             $imagePath = $data['image']->picture;
         }
 
+        $cvPath ="";
         if ($request->cv) {
             $cvPath = $request->cv->store('files', 'public');
         } else {
             $data['cv'] = \App\Models\User::where('id', $id)->first();
             $cvPath = $data['cv']->cv;
         }
-
 
         //scrape dribbble profile and store data in db
         $url = $request->input('dribbble'); //get dribbble link from inputfield
@@ -80,7 +79,6 @@ class ProfileController extends Controller
                 return ["link"=>$link, "image"=> $images, "text"=>$text];
             });
             $portfolioItems = array_slice($scrape['items'], 0, 4);
-        
             
             //bestaan er al al items in db voor user?
             if (isset($data['users']->portfolio[0])) {
@@ -95,7 +93,6 @@ class ProfileController extends Controller
                         'image' => $portfolioItems[$counter]['image'],
                         'link' => $portfolioItems[$counter]['link'],
                         'text' => $portfolioItems[$counter]['text']
-                        
                     ]);
                     $counter++;
                 }
@@ -133,20 +130,13 @@ class ProfileController extends Controller
                 'website'=> $request->website,
                 ]);
 
-
         $request->session()->flash('updateMessage', 'Your profile was successfully updated');
         return redirect('/user/profile/' . $id);
     }
-    
-    public function showProfile($id)
-    {
-        $data['users'] =  \App\Models\User::where('id', $id)->with('portfolio')->first();
-        return view('/user/profile', $data);
-    }
 
-    public function userType()
+    /* --- HOMEPAGE --- */
+    public function showHome()
     {
-        $data['user'] = Auth::user();
-        return view('home', $data);
+        return view('home');
     }
 }
