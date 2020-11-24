@@ -51,7 +51,6 @@
         </div>
         <div class="form_group">
             <input type="file" name="image" class="btn mb-3" id="image" accept="image/*">
-            <label for="image" class="btn">Choose a file</label>
         </div>
         <div class="form-group">
             <label for="email">email</label>
@@ -66,6 +65,6 @@
             <input name="website" type="text" class="form-control" id="website" value="{{old('website')}}" placeholder="Website">
         </div>
         
-        <button type="submit" class="btn btn-primary"> Update company</button>
+        <button type="submit" class="btn btn-primary">Update company</button>
     </form>
 @endsection

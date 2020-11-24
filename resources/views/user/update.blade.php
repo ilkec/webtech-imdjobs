@@ -26,7 +26,6 @@
                 
                 <div class="form_group">
                     <p>Profile picture</p>
-                    <!--<label for="image">Choose a picture</label>-->
                     <input type="file" name="image" class="btn mb-3" id="image" accept="image/*">
                     
                 </div>
