@@ -59,14 +59,14 @@ Route::post('/company/update/{id}', [CompanyController::class, 'handleUpdateComp
 //filter
 Route::post('/', [InternshipController::class, 'searchInternships']);
 //plural
-Route::get('/companies/{company}/internships', [CompanyController::class, 'indexInternships']);
-Route::get('/companies/{company}/internships/{internship}', [CompanyController::class, 'showInternship']);
-Route::get('/companies/{company}/internships/{internship}/edit', [CompanyController::class, 'editInternship']);
-Route::post('/companies/{company}/internships/{internship}/edit', [CompanyController::class, 'handleEditInternship']);
-Route::post('/companies/{company}', [CompanyController::class, 'addInternshipOffer']);
+Route::get('/companies/{company}/internships', [InternshipController::class, 'indexInternships']);
+Route::get('/companies/{company}/internships/{internship}', [InternshipController::class, 'showInternship']);
+Route::get('/companies/{company}/internships/{internship}/edit', [InternshipController::class, 'editInternship']);
+Route::post('/companies/{company}/internships/{internship}/edit', [InternshipController::class, 'handleEditInternship']);
+Route::post('/companies/{company}', [InternshipController::class, 'addInternshipOffer']);
 //singular
-Route::get('/company/addInternship/{id}', [CompanyController::class, 'addInternship']);
-Route::post('/company/addInternship/{id}', [CompanyController::class, 'handleAddInternship']);
+Route::get('/company/addInternship/{id}', [InternshipController::class, 'addInternship']);
+Route::post('/company/addInternship/{id}', [InternshipController::class, 'handleAddInternship']);
 
 /* --- applications --- */
 Route::get('/user/applications', [ApplicationController::class, 'showApplications']);
