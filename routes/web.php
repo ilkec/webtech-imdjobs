@@ -19,90 +19,58 @@ use App\Http\Controllers\InternshipController;
 |
 */
 
-Route::get('/', [ProfileController::class, 'userType']);
-Route::post('/', [InternshipController::class, 'searchInternships']);
-Route::get('/internships', [InternshipController::class, 'desplayInternships']);
-Route::post('/logout', function () {
-    return view('home');
-});
-
-
-
+/* --- HOME + LOGIN --- */
+//home
+Route::get('/', [ProfileController::class, 'showHome']);
+//register
 Route::get('/register', [UserController::class, 'register']);
 Route::post('/register', [UserController::class, 'handleRegister']);
+//login
 Route::get('/login', [UserController::class, 'login']);
 Route::post('/login', [UserController::class, 'handleLogin']);
+//logout
 Route::get('/logout', [UserController::class, 'logout']);
 
-//====== STUDENT
-/*Route::get('/students', function () {
-    return view('student/profile');
-});*/
 
+/* --- profile --- */
+//show profile
 Route::get('/user/profile/{id}', [ProfileController::class, 'showProfile']);
+//update profile
 Route::get('/user/update', [ProfileController::class, 'updateProfile']);
 Route::post('/user/update', [ProfileController::class, 'handleUpdateProfile']);
-Route::get('/user/applications', [ProfileController::class, 'showApplications']);
 
-
-
-//=== Students applications
-/*Route::get('/students/{id}/applications', function () {
-    return view('home');
-});
-
-Route::get('/students/{id}/applications/{application_id}', function () {
-    return view('home');
-});*/
-
-//======= COMPANY
+/* --- company --- */
+//plural
+//companies
 Route::get('/companies', [CompanyController::class, 'index']);
 Route::post('/companies', [CompanyController::class, 'filterCompanies']);
 Route::get('/companies/{company}', [CompanyController::class, 'showCompany']);
-Route::post('/companies/{company}', [CompanyController::class, 'addInternshipOffer']);
+//edit companies
 Route::get('/companies/{company}/edit', [CompanyController::class, 'editCompany']);
 Route::post('/companies/{company}/edit', [CompanyController::class, 'handleEditCompany']);
-Route::get('/companies/{company}/internships', [CompanyController::class, 'indexInternships']);
-Route::get('/companies/{company}/internships/{internship}', [CompanyController::class, 'showInternship']);
-
-// Edit internschip
-Route::get('/companies/{company}/internships/{internship}/edit', [CompanyController::class, 'editInternship']);
-Route::post('/companies/{company}/internships/{internship}/edit', [CompanyController::class, 'handleEditInternship']);
-
-
-
-// = /companies/{company}
-Route::get('/company/addInternship/{id}', [CompanyController::class, 'addInternship']);
-Route::post('/company/addInternship/{id}', [CompanyController::class, 'handleAddInternship']);
-
+//singular
+//add companies
 Route::get('/company/add', [CompanyController::class, 'addCompany']);
 Route::post('/company/add', [CompanyController::class, 'handleAddCompany']);
-
 Route::get('/company/update/{id}', [CompanyController::class, 'updateCompany']);
 Route::post('/company/update/{id}', [CompanyController::class, 'handleUpdateCompany']);
 
-/*Route::any('/companies/{id}', function () {
-    return view('company/details');
-});*/
-//=======company Vacatures
-/*Route::any('/companies/{id}/vacatures', function () {
-    return view('home');
-});
-Route::any('/companies/{id}/vacatures/{vacature_id}', function () {
-    return view('home');
-});*/
+/* --- internships --- */
+//filter
+Route::post('/', [InternshipController::class, 'searchInternships']);
+//plural
+Route::get('/companies/{company}/internships', [InternshipController::class, 'indexInternships']);
+Route::get('/companies/{company}/internships/{internship}', [InternshipController::class, 'showInternship']);
+Route::get('/companies/{company}/internships/{internship}/edit', [InternshipController::class, 'editInternship']);
+Route::post('/companies/{company}/internships/{internship}/edit', [InternshipController::class, 'handleEditInternship']);
+Route::post('/companies/{company}', [InternshipController::class, 'addInternshipOffer']);
+//singular
+Route::get('/company/addInternship/{id}', [InternshipController::class, 'addInternship']);
+Route::post('/company/addInternship/{id}', [InternshipController::class, 'handleAddInternship']);
 
-
-// Vacatures?
-Route::get('/vacatures', function () {
-    return view('home');
-});
-
-
-
+/* --- applications --- */
+Route::get('/user/applications', [ApplicationController::class, 'showApplications']);
 Route::get('/companies/{company}/internships/{internship}/applications/add', [ApplicationController::class, 'addApplication']);
 Route::post('/companies/{company}/internships/{internship}/applications/add', [ApplicationController::class, 'handleAddAplication']);
-
-//Edit application status
 Route::get('/company/{company}/applications/edit/{application}', [ApplicationController::class, 'editApplication']);
 Route::post('/company/{company}/applications/edit/{application}', [ApplicationController::class, 'handleEditAplication']);

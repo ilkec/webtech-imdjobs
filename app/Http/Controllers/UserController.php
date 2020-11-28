@@ -9,20 +9,31 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function register(){
+    /* --- REGISTER --- */
+    public function register()
+    {
         return view('/register');
     }
 
-    public function handleRegister(Request $request){
+    public function handleRegister(Request $request)
+    {
+        if($request->input('accountType') == 1){
+            $validation = $request->validate([
+                'firstname' => 'required',
+                'lastname' => 'required',
+                'email' => 'required|email|max:255|regex:/(.*)@student.thomasmore\.be/i|unique:users',
+                'password' => 'required',
+            ]);
+        }else{
+            $validation = $request->validate([
+                'firstname' => 'required',
+                'lastname' => 'required',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required',
+            ]);
+        }
+        
 
-        $validation = $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'email' => 'required|email|max:255|unique:users', //regex:/(.*)@student.thomasmore\.be/i|unique:users',
-            'password' => 'required',
-        ]);
-
-        //$request->session()->flash('status', 'Task was successful!');
         $request->flash();
         $user = new \App\Models\User();
         $user->first_name = $request->input('firstname');
@@ -30,28 +41,22 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->account_type = $request->input('accountType');
         $user->password = Hash::make($request->input('password'));
-        $user->save(); 
-
+        $user->save();
         $request->session()->flash('message', 'Your registration was successful');
         
         return redirect('/login');
-        
     }
 
-    public function login(){
+    /* --- LOGIN --- */
+    public function login()
+    {
         return view('/login');
     }
 
-    public function logout(Request $request){
-        Auth::logout();
-        $request->session()->flush();
-        return redirect('/login');
-    }
-
-    public function handleLogin(Request $request){
+    public function handleLogin(Request $request)
+    {
         $info = $request->only('email', 'password');
         
-
         $request->flash();
         if (Auth::attempt($info)) {
             $request->flash();
@@ -59,15 +64,22 @@ class UserController extends Controller
             $request->session()->put('User', $id);
             $data['user'] = DB::table('users')->where('id', $id)->get();
             
-            if($data['user'][0]->description == null){
+            if ($data['user'][0]->description == null) {
                 return redirect('/user/update');
-            }else{
+            } else {
                 return redirect('/');
             }
-        
-        } else{
+        } else {
             $request->session()->flash('Login', 'Oops something went wrong, try again!');
             return view('/login');
         }
+    }
+ 
+    /* --- LOGOUT --- */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->flush();
+        return redirect('/login');
     }
 }

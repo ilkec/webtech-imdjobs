@@ -36,7 +36,6 @@ class ApplicationController extends Controller
     {
         $studentId = session('User');
         $data['application'] =  DB::table('applications')->where('user_id', $studentId)->where('id', $internship)->get();
-        //dd($data['application']);
         return view('/application/edit');
     }
 
@@ -58,5 +57,12 @@ class ApplicationController extends Controller
             ->first();
 
         return redirect('/companies/'. $company .'/internships/' . $application_id['internship_id']);
+    }
+    
+    public function showApplications()
+    {
+        $id = session('User');
+        $data['applications'] = DB::table('applications')->join('internships', 'internships.id', '=', 'applications.internship_id')->join('companies', 'companies.id', '=', 'applications.company_id')->where('user_id', $id)->get();
+        return view('/user/applications', $data);
     }
 }

@@ -35,25 +35,6 @@
       <button type="submit" class="btn btn-primary" name="filter">filter status</button>
     </form>
 
-    <!-- @foreach( $applications as $application)
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-        <p>{{$application->first_name}}</p>
-        </div>
-        <div class="col-sm">
-          <p><td>{{$application->last_name}}</td></p>
-        </div>
-        <div class="col-sm">
-        <a href="/user/profile/{{$application->user_id}}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">View Profile</a>
-        </div>
-        <div class="col-sm">
-          One of three columns
-        </div>
-      </div>
-    </div>
-    @endforeach -->
-
     <table class="table">
       <thead>
         <tr>
@@ -68,9 +49,6 @@
         @foreach( $applications as $application)
           @if ($status == 4)
           <tr>
-            <!-- $user = zoek in de database in de tabel users naar de user met id $application->user_id -->
-            <!-- <td>$user[firstname]</td>
-            <td>$user[lastname]</td> -->
             <td>{{$application->first_name}}</td>
             <td>{{$application->last_name}}</td>
             <td><a href="/user/profile/{{$application->user_id}}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">View Profile</a></td>
@@ -84,9 +62,6 @@
           </tr>
           @elseif ($status == $application->status)  
           <tr>
-            <!-- $user = zoek in de database in de tabel users naar de user met id $application->user_id -->
-            <!-- <td>$user[firstname]</td>
-            <td>$user[lastname]</td> -->
             <td>{{$application->first_name}}</td>
             <td>{{$application->last_name}}</td>
             <td><a href="/user/profile/{{$application->user_id}}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">View Profile</a></td>

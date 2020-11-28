@@ -8,8 +8,7 @@
     @if( $flash = session('updateMessage') )
         <div class="alert alert-success">{{ $flash }}</div>
     @endif
-    
-    
+       
     <div class="intro">
         <h1>{{ $users->first_name }} {{ $users->last_name }}</h1>
         @if ($users->account_type == 1 )
@@ -28,9 +27,7 @@
             @endif
         </div>
     </div>
-
-    
-    
+ 
     <div class='contact'>
         <h4>Contact </h4>
         <div>
@@ -40,9 +37,7 @@
         <div>
             <!--icon phone-->
             <p>{{ $users->phone_number }}</p>
-        </div>
-        
-        
+        </div>     
     </div>
     
     @if (!empty( $users->cv ))
@@ -61,15 +56,12 @@
             <a href="{{ $users->linkedin }}"><p>Linkedin</p></a>
         @endif
         @if (!empty( $users->dribbble ))
-            <!--<a href="{{ $users->dribbble }}"><p>Dribbble</p></a>-->
             @if(!empty($users->portfolio[0]))
                 
                 @for ($i = 0; $i < 4; $i++)
-                    
                         <a href="{{ $users->portfolio[$i]->link}}">
                             <img src="{{ $users->portfolio[$i]->image}}" alt="portfolio item">
                         </a>
-                    
                 @endfor
             @endif
         @endif
@@ -86,7 +78,6 @@
                 <a href="/logout"><button type="button" class="btn btn-danger">Logout</button></a>
                 
             @endif
-        </div>
-        
+        </div>  
     </div>
 @stop
