@@ -19343,6 +19343,8 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./buttonProfile.js */ "./resources/js/buttonProfile.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -19377,6 +19379,24 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/buttonProfile.js":
+/*!***************************************!*\
+  !*** ./resources/js/buttonProfile.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+//buttonProfile
+console.log(user);
+var buttonProfile = new Vue({
+  el: '#buttonProfile',
+  data: {
+    button: 52
+  }
+});
+
+/***/ }),
+
 /***/ 0:
 /*!***********************************************************!*\
   !*** multi ./resources/js/app.js ./resources/css/app.css ***!
@@ -19384,8 +19404,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\school\3imd\webtech\webtech-imdjobs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\school\3imd\webtech\webtech-imdjobs\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\Users\Ilke\Documents\IMD\3IMD\webtech\webtech-imdjobs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Ilke\Documents\IMD\3IMD\webtech\webtech-imdjobs\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

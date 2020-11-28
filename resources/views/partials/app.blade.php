@@ -17,7 +17,7 @@
         
         <div>
                 <a href="/user/profile/{{ $flash }}"><button type="button" class="btn btn-light">checkout profile</button></a>
-                <a href="/user/applications" id="app" v-if="button === {{ $users->account_type }} "><button type="button" class="btn btn-primary">View applications</button></a>
+                <a href="/user/applications"><button type="button" class="btn btn-primary">View applications</button></a>
                 <a href="/companies"><button class="btn btn-primary">company list</button></a>
         </div>
         
@@ -35,22 +35,6 @@
     
     
     <footer>&copy; Interact</footer>
-    <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                button: 1
-            }
-        })
-
-        /*var buttonProfile = new Vue({
-            el: '#buttonProfile',
-            data: {
-                button: 
-            }
-        })*/
-         
-        
-    </script>
+   
 </body>
 </html>
