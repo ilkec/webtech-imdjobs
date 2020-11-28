@@ -6,6 +6,9 @@ body{
 
 .container{
    margin-bottom: 50px;
+   width: 90%;
+   padding-right: 0;
+   padding-left: 0;
 }
 
 #profilePicture{
@@ -78,25 +81,7 @@ nav, nav .btn{
    font-weight: 700;
 }
 
-.intro{
-   display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: auto;
-}
 
-#education-info{
-   grid-column: 1/2;
-    grid-row: 2/3;
-}
-
-.intro .description{
-   grid-column: 1/2;
-    grid-row: 3/4;
-}
-
-.intro .container-img{
-   grid-row: 1/4;
-}
 
 /*----------footer----------*/
 
@@ -156,6 +141,36 @@ footer{
 .row {
    display: flex;
    justify-content: space-between;
+}
+
+.links img{
+   width: 100%;
+   margin-bottom: 20px;
+}
+
+@media all and (min-width: 768px){
+
+   .intro{
+      display: grid;
+       grid-template-columns: 3fr 1fr;
+       grid-template-rows: auto;
+   }
+   
+   #education-info{
+      grid-column: 1/2;
+       grid-row: 2/3;
+   }
+   
+   .intro .description{
+      grid-column: 1/2;
+       grid-row: 3/4;
+   }
+   
+   .intro .container-img{
+      grid-row: 1/4;
+   }
+
+  
 }
 
 @media all and (min-width:1024px) {
