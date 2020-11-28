@@ -20,7 +20,7 @@
             <P>Tasks:</p>
             <p>{{$nearbyInternship->tasks}}</p>
         </div>
-        <a href="/companies/{{$nearbyInternship->company_id}}"><p>{{$companies[$nearbyInternship->company_id - 1]->name}}</p></a>
+        <a href="/companies/{{$nearbyInternship->company_id}}"><p>{{$companies[array_search($nearbyInternship->company_id,array_column($companies,'id'))]->name}}</p></a>
         <p>{{$nearbyInternship->postal_code}}, {{$nearbyInternship->city}}</p>
     </div>
     <hr>
@@ -46,7 +46,7 @@
             <P>Tasks:</p>
             <p>{{$internship->tasks}}</p>
         </div>
-        <a href="/companies/{{$internship->company_id}}"><p>{{$companies[$internship->company_id - 1]->name}}</p></a>
+        <a href="/companies/{{$internship->company_id}}"><p>{{{{$companies[array_search($nearbyInternship->company_id,array_column($companies,'id'))]->name}}}}</p></a>
         <p>{{$internship->postal_code}}, {{$internship->city}}</p>
     </div>
     <hr>
