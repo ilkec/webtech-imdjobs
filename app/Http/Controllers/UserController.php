@@ -17,12 +17,22 @@ class UserController extends Controller
 
     public function handleRegister(Request $request)
     {
-        $validation = $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'email' => 'required|email|max:255|unique:users', //regex:/(.*)@student.thomasmore\.be/i|unique:users',
-            'password' => 'required',
-        ]);
+        if($request->input('accountType') == 1){
+            $validation = $request->validate([
+                'firstname' => 'required',
+                'lastname' => 'required',
+                'email' => 'required|email|max:255|regex:/(.*)@student.thomasmore\.be/i|unique:users',
+                'password' => 'required',
+            ]);
+        }else{
+            $validation = $request->validate([
+                'firstname' => 'required',
+                'lastname' => 'required',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required',
+            ]);
+        }
+        
 
         $request->flash();
         $user = new \App\Models\User();
