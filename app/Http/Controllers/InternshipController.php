@@ -36,7 +36,6 @@ class InternshipController extends Controller
                 }
             }
         }
-        //dd($data['companies']);
         return view('/internship/show', $data);
     }
 

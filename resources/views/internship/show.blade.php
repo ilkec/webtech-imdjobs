@@ -46,7 +46,7 @@
             <P>Tasks:</p>
             <p>{{$internship->tasks}}</p>
         </div>
-        <a href="/companies/{{$internship->company_id}}"><p>{{{{$companies[array_search($nearbyInternship->company_id,array_column($companies,'id'))]->name}}}}</p></a>
+        <a href="/companies/{{$internship->company_id}}"><p>{{$companies[array_search($internship->company_id,array_column($companies,'id'))]->name}}</p></a>
         <p>{{$internship->postal_code}}, {{$internship->city}}</p>
     </div>
     <hr>
