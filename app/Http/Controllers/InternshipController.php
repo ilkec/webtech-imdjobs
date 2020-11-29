@@ -30,7 +30,7 @@ class InternshipController extends Controller
                 } else {
                     $data['otherInternships'][]= $internship;
                 }
-                $company = \App\Models\Companies::where('id', $internship['company_id'])->first();
+                $company = \App\Models\Companies::where('id', $internship['companies_id'])->first();
                 if (!in_array($company, $data['companies'])) {
                     $data['companies'][] = $company;
                 }
@@ -42,7 +42,7 @@ class InternshipController extends Controller
     /* --- ALL INTERNSHIPS OF COMPANY --- */
     public function indexInternships($company)
     {
-        $data['internships'] = \App\Models\Internships::where('company_id', $company)->get();
+        $data['internships'] = \App\Models\Internships::where('companies_id', $company)->get();
         return view('companies/internships', $data);
     }
 
@@ -59,7 +59,7 @@ class InternshipController extends Controller
         $data['details'] = \App\Models\Internships::where('id', $internship)->get();
         $data['applications'] = \App\Models\Applications::where('internship_id', $internship)
             ->join('users', 'users.id', '=', 'applications.user_id')
-            ->select('applications.id', 'user_id', 'internship_id', 'status', 'company_id', 'first_name', 'last_name')
+            ->select('applications.id', 'user_id', 'internship_id', 'status', 'companies_id', 'first_name', 'last_name')
             ->get('last_name');
 
         return view('companies/internshipDetails', $data, $url);
@@ -132,12 +132,12 @@ class InternshipController extends Controller
         $internship->tasks = $request->tasks;
         $internship->profile = $request->profile;
         $internship->active = 1;
-        $internship->company_id = $id;
+        $internship->companies_id = $id;
         $internship->save();
 
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
         //get current internships and put in array
-        $data['internships'] = \App\Models\Internships::where('company_id', $id)->get();
+        $data['internships'] = \App\Models\Internships::where('companies_id', $id)->get();
         return redirect('/companies/' . $id);
     }
 }

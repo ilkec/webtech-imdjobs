@@ -23,7 +23,7 @@ class CompanyController extends Controller
     {
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
         //get current internships and put in array
-        $data['internships'] = \App\Models\Internships::where('company_id', $id)->get();
+        $data['internships'] = \App\Models\Internships::where('companies_id', $id)->get();
         return view('/companies/profile', $data);
     }
 

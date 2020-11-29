@@ -11,7 +11,7 @@
         <section class="gray">
         @foreach ($nearbyInternships as $nearbyInternship)
         <div>
-         <a href="/companies/{{$nearbyInternship->company_id}}/internships/{{$nearbyInternship->id}}"><h2>{{$nearbyInternship->title}}</h2></a>
+         <a href="/companies/{{$nearbyInternship->companies_id}}/internships/{{$nearbyInternship->id}}"><h2>{{$nearbyInternship->title}}</h2></a>
         <div>
             <P>Description:</p>
             <p>{{$nearbyInternship->description}}</p>
@@ -20,7 +20,7 @@
             <P>Tasks:</p>
             <p>{{$nearbyInternship->tasks}}</p>
         </div>
-        <a href="/companies/{{$nearbyInternship->company_id}}"><p>{{$companies[array_search($nearbyInternship->company_id,array_column($companies,'id'))]->name}}</p></a>
+        <a href="/companies/{{$nearbyInternship->companies_id}}"><p>{{$companies[array_search($nearbyInternship->companies_id,array_column($companies,'id'))]->name}}</p></a>
         <p>{{$nearbyInternship->postal_code}}, {{$nearbyInternship->city}}</p>
     </div>
     <hr>
@@ -37,7 +37,7 @@
 <section class="gray">
     @foreach ($otherInternships as $internship)
    <div>
-         <a href="/companies/{{$internship->company_id}}/internships/{{$internship->id}}"><h2>{{$internship->title}}</h2></a>
+         <a href="/companies/{{$internship->companies_id}}/internships/{{$internship->id}}"><h2>{{$internship->title}}</h2></a>
         <div>
             <P>Description:</p>
             <p>{{$internship->description}}</p>
@@ -46,7 +46,7 @@
             <P>Tasks:</p>
             <p>{{$internship->tasks}}</p>
         </div>
-        <a href="/companies/{{$internship->company_id}}"><p>{{$companies[array_search($internship->company_id,array_column($companies,'id'))]->name}}</p></a>
+        <a href="/companies/{{$internship->companies_id}}"><p>{{$companies[array_search($internship->companies_id,array_column($companies,'id'))]->name}}</p></a>
         <p>{{$internship->postal_code}}, {{$internship->city}}</p>
     </div>
     <hr>

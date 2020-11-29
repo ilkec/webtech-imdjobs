@@ -33,12 +33,12 @@
             @endif
             @foreach ($internships as $internship)
             <div class="row">
-                <a href="/companies/{{$internship->company_id}}/internships/{{$internship->id}}"><div>  
+                <a href="/companies/{{$internship->companies_id}}/internships/{{$internship->id}}"><div>  
                     <h4>{{$internship->title}}</h4>
                     <p>{{$internship->description}}</p>
                 </div></a>
                 @if(\Auth::user()->can('update', $company))
-                <a href="/companies/{{$internship->company_id}}/internships/{{$internship->id}}/edit"><div>  
+                <a href="/companies/{{$internship->companies_id}}/internships/{{$internship->id}}/edit"><div>  
                      <button type="submit" class="btn btn-primary">edit internship</button>
                 </div></a>
                 @endif

@@ -27,7 +27,7 @@ class ReviewsFactory extends Factory
             'score' => $this->faker->numberBetween($min = 1, $max = 10),
             'mentoring' => 1,
             'Users_id' => 5,
-            'company_id' => 3
+            'companies_id' => 3
         ];
     }
 }

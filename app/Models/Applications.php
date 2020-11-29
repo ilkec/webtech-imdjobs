@@ -33,7 +33,7 @@ class Applications extends Model
     protected $fillable = [
         'user_id',
         'internship_id',
-        'company_id',
+        'companies_id',
         'status',
         'message',
         'feedback'

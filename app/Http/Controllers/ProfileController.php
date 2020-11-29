@@ -141,20 +141,30 @@ class ProfileController extends Controller
         $data['users'] =  \App\Models\User::where('id', $id)->with('company')->first();
     
         if(!empty($data['users']->company[0])){
-            $data['companies'] = [];
+            $data['count'] = [];
+            $data['countApplications'] = [];
             foreach ($data['users']->company as $companyId) {
-                array_push($data['companies'], $companyId->id);
-                $data['application'] =  \App\Models\Companies::where('id', $companyId->id)->with('application')->first();
-                dd($data['application']);
-            }   
-            dd($data['application']);      
+                $data['applications'] = DB::table('applications')
+                ->join('internships', 'internships.id', '=', 'applications.internship_id')
+                ->join('companies', 'companies.id', '=', 'applications.companies_id')
+                ->join('users', 'users.id', "=" , "companies.user_id")
+                ->where('companies.user_id', $id)->get();
+            } 
+            
+            foreach($data['applications'] as $application){
+                if($application->status == 0){
+                    array_push($data['count'], $application);
+                }
+            }
+
+            $data['counter'] = count($data['count']);
             
             
         }
                 
                 
         
-        //dd($data['users']);
-        //return view('home');
+       // dd(count($data['count']));
+        return view('home', $data);
     }
 }
