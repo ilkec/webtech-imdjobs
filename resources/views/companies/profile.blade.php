@@ -5,7 +5,6 @@
 @stop
 
 @section('content')
- 
         <section>
         <div class="container-img">
         @if (empty( $company->picture ))
@@ -54,5 +53,13 @@
             <P><a href="{{$company->website}}" target="_blank">visit our website!</a></p>
         </section>
 
+        <section>
+        <h3>Public Transport</h3>
+        @if($company->halte_beschrijving != "")
+            <p>DeLijn: Halte {{$company->halte_beschrijving}} ({{$company->haltenummer}})</p>
+        @else
+            <p>No public transport nearby</p>
+        @endif
+        </section>
        
 @endsection

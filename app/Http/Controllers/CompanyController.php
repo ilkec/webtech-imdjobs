@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Classes\Foursquare;
+use App\Classes\DeLijn;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
@@ -74,9 +76,25 @@ class CompanyController extends Controller
             'phone_number' => "required",
             'website' => "required"
         ]);
-        $imagePath ="";
+        $imagePath = "";
         if (!empty($request->image)) {
             $imagePath = $request->image->store('images', 'public');
+        }
+
+        $data['street_address'] = $request->street_address;
+        $data['city'] = $request->city;
+        $deLijn = new DeLijn();
+        $completeUrl = $deLijn->getUrl($data['street_address'], $data['city']);
+        $response = json_decode($deLijn->getResult($completeUrl), true);
+        $data['deLijn'] = $deLijn->setData($response);
+
+
+        if ($data['deLijn']) {
+            $haltenummer = $data['deLijn']['haltenummer'];
+            $halte_omschrijving = $data['deLijn']['omschrijving'];
+        } else {
+            $haltenummer = "";
+            $halte_omschrijving = "";
         }
 
         \App\Models\Companies::where('id', $id)
@@ -90,7 +108,9 @@ class CompanyController extends Controller
                 'picture' => $imagePath,
                 'email' => $request->email,
                 'phone_number' => $request->phone_number,
-                'website' => $request->website
+                'website' => $request->website,
+                'haltenummer' => $haltenummer,
+                'halte_beschrijving' => $halte_omschrijving
             ]);
 
         return redirect('/companies/' . $id);
@@ -116,7 +136,7 @@ class CompanyController extends Controller
             'phone_number' => "required",
             'website' => "required"
         ]);
-        $imagePath ="";
+        $imagePath = "";
         if (!empty($request->image)) {
             $imagePath = $request->image->store('images', 'public');
         } else {
@@ -149,9 +169,9 @@ class CompanyController extends Controller
         ]);
 
         $data['companies'] =  \App\Models\Companies::where('name', 'LIKE', "%" . $request->Company . "%")
-        ->orwhere('description', 'LIKE', "%" . $request->Company . "%")
-        ->orwhere('city', 'LIKE', "%" . $request->Company . "%")
-        ->get();
+            ->orwhere('description', 'LIKE', "%" . $request->Company . "%")
+            ->orwhere('city', 'LIKE', "%" . $request->Company . "%")
+            ->get();
 
         $data['user'] = Auth::user();
         return view('companies/index', $data);
