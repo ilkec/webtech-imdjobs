@@ -18,7 +18,7 @@ class CreateApplicationsTable extends Migration
             $table->timestamps();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('internship_id')->constrained('internships');
-            $table->foreignId('company_id')->constrained('companies');
+            $table->foreignId('companies_id')->constrained('companies');
             $table->integer('status');
             $table->longText('message')->nullable();
             $table->longText('feedback')->nullable();

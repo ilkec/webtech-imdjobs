@@ -137,9 +137,24 @@ class ProfileController extends Controller
     /* --- HOMEPAGE --- */
     public function showHome()
     {
-        /*$id = session('User');
-        $data['users'] =  \App\Models\User::where('id', $id)->first();
-        dd($data['users']);*/
-        return view('home');
+        $id = session('User');
+        $data['users'] =  \App\Models\User::where('id', $id)->with('company')->first();
+    
+        if(!empty($data['users']->company[0])){
+            $data['companies'] = [];
+            foreach ($data['users']->company as $companyId) {
+                array_push($data['companies'], $companyId->id);
+                $data['application'] =  \App\Models\Companies::where('id', $companyId->id)->with('application')->first();
+                dd($data['application']);
+            }   
+            dd($data['application']);      
+            
+            
+        }
+                
+                
+        
+        //dd($data['users']);
+        //return view('home');
     }
 }
