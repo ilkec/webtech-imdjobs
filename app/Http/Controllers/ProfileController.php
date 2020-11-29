@@ -137,6 +137,9 @@ class ProfileController extends Controller
     /* --- HOMEPAGE --- */
     public function showHome()
     {
+        /*$id = session('User');
+        $data['users'] =  \App\Models\User::where('id', $id)->first();
+        dd($data['users']);*/
         return view('home');
     }
 }

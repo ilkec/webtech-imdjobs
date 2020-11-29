@@ -43,7 +43,7 @@ class CompanyController extends Controller
         $company = new \App\Models\Companies();
         $company->name = $request->input('name');
         $company->city = $request->input('city');
-        $company->users_id = Auth::user()->id;
+        $company->user_id = Auth::user()->id;
         $company->save();
         $id = $company->id;
 

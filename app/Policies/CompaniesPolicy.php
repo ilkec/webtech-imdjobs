@@ -53,7 +53,7 @@ class CompaniesPolicy
      */
     public function update(User $user, Companies $companies)
     {
-        return $user->id === $companies->users_id;
+        return $user->id === $companies->user_id;
     }
 
     /**

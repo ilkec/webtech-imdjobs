@@ -62,7 +62,7 @@ class ApplicationController extends Controller
     public function showApplications()
     {
         $id = session('User');
-        $data['applications'] = DB::table('applications')->join('internships', 'internships.id', '=', 'applications.internship_id')->join('companies', 'companies.id', '=', 'applications.company_id')->where('user_id', $id)->get();
+        $data['applications'] = DB::table('applications')->join('internships', 'internships.id', '=', 'applications.internship_id')->join('companies', 'companies.id', '=', 'applications.company_id')->where('applications.user_id', $id)->get();
         return view('/user/applications', $data);
     }
 }
