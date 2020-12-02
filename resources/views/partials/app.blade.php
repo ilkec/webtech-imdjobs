@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 <body>
     
     <nav class="navbar">
     <a href="/"><p>Interact</p></a>
     @if( $flash = session('User') )
-
+        
         <div>
                 <a href="/user/profile/{{ $flash }}"><button type="button" class="btn btn-light">checkout profile</button></a>
                 <a href="/user/applications"><button type="button" class="btn btn-primary">View applications @if(isset($counter))<span> {{ $counter }}</span>@endif</button></a>
@@ -34,5 +35,6 @@
     
     
     <footer>&copy; Interact</footer>
+   
 </body>
 </html>

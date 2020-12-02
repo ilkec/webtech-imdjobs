@@ -8,6 +8,7 @@
     @if( $flash = session('updateMessage') )
         <div class="alert alert-success">{{ $flash }}</div>
     @endif
+    
        
     <div class="intro">
         <h1>{{ $users->first_name }} {{ $users->last_name }}</h1>
@@ -72,12 +73,11 @@
             <a href="{{ $users->github }}"><p>Github</p></a>
         @endif
     @endif
-        <div>
-            @if( $flash = session('User') === $users->id )
-                <a href="/user/update"><button type="button" class="btn btn-primary">update profile</button></a>
-                <a href="/logout"><button type="button" class="btn btn-danger">Logout</button></a>
-                
-            @endif
+        <div id="buttonProfile" v-if="button == {{ $users->id }}">
+                <a  href="/user/update"><button type="button" class="btn btn-primary">update profile</button></a>
+                <a href="/logout"><button  type="button" class="btn btn-danger">Logout</button></a> 
         </div>  
     </div>
+    <script>var user = <?php echo json_encode(session('User')); ?>;</script>
+    <script src="{{ asset('js/app.js') }}"></script>
 @stop
