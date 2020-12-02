@@ -19391,7 +19391,7 @@ console.log(user);
 var buttonProfile = new Vue({
   el: '#buttonProfile',
   data: {
-    button: 52
+    button: user
   }
 });
 

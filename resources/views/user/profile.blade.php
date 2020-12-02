@@ -73,7 +73,7 @@
             <a href="{{ $users->github }}"><p>Github</p></a>
         @endif
     @endif
-        <div id="buttonProfile" v-if="button === {{ $users->id }}">
+        <div id="buttonProfile" v-if="button == {{ $users->id }}">
                 <a  href="/user/update"><button type="button" class="btn btn-primary">update profile</button></a>
                 <a href="/logout"><button  type="button" class="btn btn-danger">Logout</button></a> 
         </div>  
