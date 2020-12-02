@@ -137,34 +137,6 @@ class ProfileController extends Controller
     /* --- HOMEPAGE --- */
     public function showHome()
     {
-        $id = session('User');
-        $data['users'] =  \App\Models\User::where('id', $id)->with('company')->first();
-    
-        if(!empty($data['users']->company[0])){
-            $data['count'] = [];
-            $data['countApplications'] = [];
-            foreach ($data['users']->company as $companyId) {
-                $data['applications'] = DB::table('applications')
-                ->join('internships', 'internships.id', '=', 'applications.internship_id')
-                ->join('companies', 'companies.id', '=', 'applications.companies_id')
-                ->join('users', 'users.id', "=" , "companies.user_id")
-                ->where('companies.user_id', $id)->get();
-            } 
-            
-            foreach($data['applications'] as $application){
-                if($application->status == 0){
-                    array_push($data['count'], $application);
-                }
-            }
-
-            $data['counter'] = count($data['count']);
-            
-            
-        }
-                
-                
-        
-       // dd(count($data['count']));
-        return view('home', $data);
+        return view('home');
     }
 }
