@@ -58,7 +58,7 @@
               @if ($application->status == 2) Declined @endif
               @if ($application->status == 3) Approved @endif
             </p></td>
-            <td><a href="/company/{{$application->company_id}}/applications/edit/{{$application->id}}"><button type="button" class="btn btn-success btn-sm">Edit status</button></a></td>
+            <td><a href="/company/{{$application->companies_id}}/applications/edit/{{$application->id}}"><button type="button" class="btn btn-success btn-sm">Edit status</button></a></td>
           </tr>
           @elseif ($status == $application->status)  
           <tr>
@@ -72,7 +72,7 @@
               @if ($application->status == 3) Approved @endif
             </p></td>
             
-            <td><a href="/company/{{$application->company_id}}/applications/edit/{{$application->id}}">
+            <td><a href="/company/{{$application->companies_id}}/applications/edit/{{$application->id}}">
                 <button type="button" class="btn btn-success btn-sm">Edit status</button>
               </a></td>
           </tr>
@@ -86,7 +86,7 @@
       <p>{{ $detail->title }}</p>
       <p>{{ $detail->description }}</p>
       <p>{{ $detail->tasks }}</p>
-      <a href="/companies/{{$detail->company_id}}/internships/{{$detail->id}}/applications/add"><button type="button" class="btn btn-success btn-sm">Apply</button></a>
+      <a href="/companies/{{$detail->companies_id}}/internships/{{$detail->id}}/applications/add"><button type="button" class="btn btn-success btn-sm">Apply</button></a>
     @endforeach
   @endif
 

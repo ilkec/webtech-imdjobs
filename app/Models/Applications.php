@@ -16,10 +16,24 @@ class Applications extends Model
      *
      * @var array
      */
+
+     //application behoort tot 1 company
+    public function company(){
+        return $this->belongsTo('\App\Models\Companies');
+    }
+
+    public function user(){
+        return $this->belongsTo('\App\Models\User');
+    }
+
+    public function internship(){
+        return $this->belongsTo('\App\Models\Internships');
+    }
+
     protected $fillable = [
         'user_id',
         'internship_id',
-        'company_id',
+        'companies_id',
         'status',
         'message',
         'feedback'

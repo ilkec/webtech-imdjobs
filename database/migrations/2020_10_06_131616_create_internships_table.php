@@ -23,7 +23,7 @@ class CreateInternshipsTable extends Migration
             $table->longText('tasks');
             $table->longText('profile');
             $table->boolean('active');
-            $table->foreignId('company_id')->constrained('companies');
+            $table->foreignId('companies_id')->constrained('companies');
             $table->timestamps();
         });
     }

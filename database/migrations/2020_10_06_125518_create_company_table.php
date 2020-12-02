@@ -27,7 +27,7 @@ class CreateCompanyTable extends Migration
             $table->string('website', 300)->nullable();
             $table->string('haltenummer', 300)->nullable();
             $table->string('halte_beschrijving', 300)->nullable();
-            $table->foreignId('users_id')->constrained('users'); /*which user made this company profile*/
+            $table->foreignId('user_id')->constrained('users'); /*which user made this company profile*/
             $table->timestamps();
         });
     }

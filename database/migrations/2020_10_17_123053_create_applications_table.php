@@ -16,9 +16,9 @@ class CreateApplicationsTable extends Migration
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('user_id');
-            $table->integer('internship_id');
-            $table->integer('company_id');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('internship_id')->constrained('internships');
+            $table->foreignId('companies_id')->constrained('companies');
             $table->integer('status');
             $table->longText('message')->nullable();
             $table->longText('feedback')->nullable();

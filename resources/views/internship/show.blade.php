@@ -11,7 +11,7 @@
         <section class="gray">
         @foreach ($nearbyInternships as $nearbyInternship)
         <div>
-         <a href="/companies/{{$nearbyInternship->company_id}}/internships/{{$nearbyInternship->id}}"><h2>{{$nearbyInternship->title}}</h2></a>
+         <a href="/companies/{{$nearbyInternship->companies_id}}/internships/{{$nearbyInternship->id}}"><h2>{{$nearbyInternship->title}}</h2></a>
         <div>
             <P>Description:</p>
             <p>{{$nearbyInternship->description}}</p>
@@ -37,7 +37,7 @@
 <section class="gray">
     @foreach ($otherInternships as $internship)
    <div>
-         <a href="/companies/{{$internship->company_id}}/internships/{{$internship->id}}"><h2>{{$internship->title}}</h2></a>
+         <a href="/companies/{{$internship->companies_id}}/internships/{{$internship->id}}"><h2>{{$internship->title}}</h2></a>
         <div>
             <P>Description:</p>
             <p>{{$internship->description}}</p>

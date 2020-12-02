@@ -20,7 +20,7 @@ class CreateReviewsTable extends Migration
             $table->integer('score');
             $table->boolean('mentoring');
             $table->foreignId('users_id')->constrained('users'); /* which user added the review*/
-            $table->foreignId('company_id')->constrained('companies'); /* which company is the review about*/
+            $table->foreignId('companies_id')->constrained('companies'); /* which company is the review about*/
             $table->timestamps();
         });
     }

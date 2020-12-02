@@ -53,8 +53,8 @@ class ApplicationsPolicy
      */
     public function update(User $user, Applications $applications)
     {
-        $company = \App\Models\Companies::where('id', $applications['company_id'])->get();
-        return $user->id === $company->users_id;
+        $company = \App\Models\Companies::where('id', $applications['companies_id'])->get();
+        return $user->id === $company->user_id;
     }
 
     /**

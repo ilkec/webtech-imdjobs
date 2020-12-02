@@ -30,7 +30,7 @@ class CompaniesFactory extends Factory
             'street_address' => $this->faker->streetAddress,
             'city' => $this->faker->city,
             'postal_code' => $this->faker->postcode,
-            'users_id' => 1
+            'user_id' => 1
         ];
     }
 }

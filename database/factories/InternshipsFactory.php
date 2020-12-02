@@ -29,7 +29,7 @@ class InternshipsFactory extends Factory
             'tasks' => $this->faker->realText(150),
             'profile' => $this->faker->realtext(75),
             'active' => 1,
-            'company_id' => 1
+            'companies_id' => 1
         ];
     }
 }

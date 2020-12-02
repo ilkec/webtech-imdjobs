@@ -11,10 +11,17 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-
+     //user heeft meerdere portfolio items
     public function portfolio(){
         return $this->hasMany('\App\Models\Portfolio');
     }
+
+     //user kan meerdere companies hebben
+    public function company(){
+        return $this->hasMany('\App\Models\Companies');
+    }
+
+
     /**
      * The attributes that are mass assignable.
      *

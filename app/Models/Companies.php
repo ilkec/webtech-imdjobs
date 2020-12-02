@@ -18,4 +18,19 @@ class Companies extends Model
         'name',
         'city'
     ];
+
+     //company behoort tot 1 user
+    public function user(){
+        return $this->belongsTo('\App\Models\User');
+    }
+
+     //company heeft meerder interships
+    public function intership(){
+        return $this->hasMany('\App\Models\Interships');
+    }
+
+     //company kan meerdere applications binnenkrijgen
+    public function application(){
+        return $this->hasMany('\App\Models\Applications');
+    }
 }

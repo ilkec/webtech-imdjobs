@@ -22,7 +22,7 @@ class ApplicationController extends Controller
         $application = new \App\Models\Applications();
         $application->user_id = $studentId;
         $application->internship_id = $internship;
-        $application->company_id = $company;
+        $application->companies_id = $company;
         $application->status = 0;
         $application->message = $request->input('message');
         $application->feedback = "";
@@ -62,7 +62,7 @@ class ApplicationController extends Controller
     public function showApplications()
     {
         $id = session('User');
-        $data['applications'] = DB::table('applications')->join('internships', 'internships.id', '=', 'applications.internship_id')->join('companies', 'companies.id', '=', 'applications.company_id')->where('user_id', $id)->get();
+        $data['applications'] = DB::table('applications')->join('internships', 'internships.id', '=', 'applications.internship_id')->join('companies', 'companies.id', '=', 'applications.companies_id')->where('applications.user_id', $id)->get();
         return view('/user/applications', $data);
     }
 }

@@ -25,7 +25,7 @@ class CompanyController extends Controller
     {
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
         //get current internships and put in array
-        $data['internships'] = \App\Models\Internships::where('company_id', $id)->get();
+        $data['internships'] = \App\Models\Internships::where('companies_id', $id)->get();
         return view('/companies/profile', $data);
     }
 
@@ -45,7 +45,7 @@ class CompanyController extends Controller
         $company = new \App\Models\Companies();
         $company->name = $request->input('name');
         $company->city = $request->input('city');
-        $company->users_id = Auth::user()->id;
+        $company->user_id = Auth::user()->id;
         $company->save();
         $id = $company->id;
 
