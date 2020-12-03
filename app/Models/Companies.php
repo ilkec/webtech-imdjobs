@@ -25,8 +25,8 @@ class Companies extends Model
     }
 
      //company heeft meerder interships
-    public function intership(){
-        return $this->hasMany('\App\Models\Interships');
+    public function internship(){
+        return $this->hasMany('\App\Models\Internships');
     }
 
      //company kan meerdere applications binnenkrijgen
