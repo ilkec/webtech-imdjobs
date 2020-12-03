@@ -14,7 +14,7 @@ class Internships extends Model
         return $this->belongsTo('\App\Models\Company');
     }
 
-    public function internship(){
-        return $this->hasMany('\App\Models\Internships');
+    public function application(){
+        return $this->hasMany('\App\Models\Applications');
     }
 }
