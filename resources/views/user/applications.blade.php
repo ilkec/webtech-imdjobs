@@ -19,7 +19,7 @@ My applications
     @foreach( $applications as $application)
     <tr>
       <td>{{$application->title}}</td>
-      <td><a href="/companies/{{$application->companies_id}}/internships/{{$application->internship_id}}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">View internship</a></td>
+      <td><a href="/companies/{{$application->companies_id}}/internships/{{$application->internships_id}}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">View internship</a></td>
       @if ($application->status == 0)
       <td>Under review</td>
       @elseif ($application->status == 1)

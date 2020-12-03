@@ -57,9 +57,9 @@ class InternshipController extends Controller
     
         $data['company'] = \App\Models\Companies::where('id', $company)->first();
         $data['details'] = \App\Models\Internships::where('id', $internship)->get();
-        $data['applications'] = \App\Models\Applications::where('internship_id', $internship)
+        $data['applications'] = \App\Models\Applications::where('internships_id', $internship)
             ->join('users', 'users.id', '=', 'applications.user_id')
-            ->select('applications.id', 'user_id', 'internship_id', 'status', 'companies_id', 'first_name', 'last_name')
+            ->select('applications.id', 'user_id', 'internships_id', 'status', 'companies_id', 'first_name', 'last_name')
             ->get('last_name');
 
         return view('companies/internshipDetails', $data, $url);

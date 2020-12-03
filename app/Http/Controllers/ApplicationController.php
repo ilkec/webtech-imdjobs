@@ -21,7 +21,7 @@ class ApplicationController extends Controller
         //save
         $application = new \App\Models\Applications();
         $application->user_id = $studentId;
-        $application->internship_id = $internship;
+        $application->internships_id = $internship;
         $application->companies_id = $company;
         $application->status = 0;
         $application->message = $request->input('message');
@@ -53,16 +53,16 @@ class ApplicationController extends Controller
         ]);
 
         $application_id =  \App\Models\Applications::where('id', $application)
-            ->select('internship_id')
+            ->select('internships_id')
             ->first();
 
-        return redirect('/companies/'. $company .'/internships/' . $application_id['internship_id']);
+        return redirect('/companies/'. $company .'/internships/' . $application_id['internships_id']);
     }
     
     public function showApplications()
     {
         $id = session('User');
-        $data['applications'] = DB::table('applications')->join('internships', 'internships.id', '=', 'applications.internship_id')->join('companies', 'companies.id', '=', 'applications.companies_id')->where('applications.user_id', $id)->get();
+        $data['applications'] = DB::table('applications')->join('internships', 'internships.id', '=', 'applications.internships_id')->join('companies', 'companies.id', '=', 'applications.companies_id')->where('applications.user_id', $id)->get();
         return view('/user/applications', $data);
     }
 }
