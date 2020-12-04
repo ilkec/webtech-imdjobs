@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-        <section>
+        <section class="section__header">
         <div class="container-img">
         @if (empty( $company->picture ))
             <img class="img-thumbnail" src="{{ asset('images/profilePic.jpg') }}" width="500" height="500" alt="profilepicture" id="profilePicture">
@@ -13,27 +13,35 @@
             <img class="img-thumbnail" src="{{ asset('storage/' . $company->picture) }}" width="500" height="500" alt="profilepicture" id="profilePicture">
         @endif
         </div>
-        <h2>{{$company->name}}</h2>
-        @if(\Auth::user()->can('update', $company))
-               <a href="/companies/{{$company->id}}/edit"><button type="submit" class="btn btn-primary">edit company</button></a>
-            @endif
-        <p>{{$company->description}}</p>
+
+        <div class="container-info">
+            <div class="button-heading">
+                <h2>{{$company->name}}</h2>
+                @if(\Auth::user()->can('update', $company))
+                    <a class="btn__company" href="/companies/{{$company->id}}/edit"><button type="submit" class="btn btn-primary">edit company</button></a>
+                @endif
+            </div>
+            <p>{{$company->description}}</p>
+        </div>
         </section>
 
-        <section class="gray">
+        <section>
+            <div class="button-heading">
+                <h3>Current internships</h3>
+                @if(\Auth::user()->can('update', $company))
+                    <form method="post" action="">
+                    {{csrf_field()}}
+                        <button type="submit" class="btn btn-primary btn__company">Add Internship offer</button>
+                    </form>
+                @endif
+            </div>
             @if($flash = session('addInternshipError'))
                 <div class="alert alert-danger"> {{ $flash }} </div>
             @endif
-            @if(\Auth::user()->can('update', $company))
-            <form method="post" action="">
-            {{csrf_field()}}
-                <button type="submit" class="btn btn-primary">Add Internship offer</button>
-            </form>
-            @endif
             @foreach ($internships as $internship)
             <div class="row">
-                <a href="/companies/{{$internship->companies_id}}/internships/{{$internship->id}}"><div>  
-                    <h4>{{$internship->title}}</h4>
+                <a class="internship" href="/companies/{{$internship->companies_id}}/internships/{{$internship->id}}"><div>  
+                    <h4 class="internship__title">{{$internship->title}}</h4>
                     <p>{{$internship->description}}</p>
                 </div></a>
                 @if(\Auth::user()->can('update', $company))
@@ -42,24 +50,26 @@
                 </div></a>
                 @endif
             </div> 
+            <hr>
             @endforeach
         </section>
-            
-        <section>
-            <h3>Contact details</h3>
-            <p>{{$company->street_address}}, {{ $company->postal_code}} {{$company->city}}</p>
-            <p>{{$company->phone_number}}</p>
-            <p>{{$company->email}}</p>
-            <P><a href="{{$company->website}}" target="_blank">visit our website!</a></p>
-        </section>
 
-        <section>
-        <h3>Public Transport</h3>
-        @if($company->halte_beschrijving != "")
-            <p>DeLijn: Halte {{$company->halte_beschrijving}} ({{$company->haltenummer}})</p>
-        @else
-            <p>No public transport nearby</p>
-        @endif
-        </section>
-       
+        <div class="row">
+            <section>
+                <h3>Contact details</h3>
+                <p>{{$company->street_address}}, {{ $company->postal_code}} {{$company->city}}</p>
+                <p>{{$company->phone_number}}</p>
+                <p>{{$company->email}}</p>
+                <P><a href="{{$company->website}}" target="_blank">visit our website!</a></p>
+            </section>
+
+            <section>
+                <h3>Public Transport</h3>
+                @if($company->halte_beschrijving != "")
+                    <p>DeLijn: Halte {{$company->halte_beschrijving}} ({{$company->haltenummer}})</p>
+                @else
+                    <p>No public transport nearby</p>
+                @endif
+            </section>
+        </div>   
 @endsection

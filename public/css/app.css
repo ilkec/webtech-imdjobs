@@ -142,6 +142,35 @@ footer{
 .row {
    display: flex;
    justify-content: space-between;
+   margin-left: 0.5em;
+   margin-right: 0.5em;
+   align-items: center;
+}
+
+.button-heading {
+   display: flex;
+   align-items: center;
+}
+
+.section__header {
+   display: flex;
+   justify-content: space-between;
+   flex-direction: row-reverse;
+   margin-bottom: 0.5em;
+}
+
+.internship {
+   text-decoration: none;
+   color: #000;
+}
+
+.internship:hover {
+   color: #56A7F1;
+   text-decoration: none;
+}
+
+.btn__company {
+   margin: 0.5em;
 }
 
 .links img{
