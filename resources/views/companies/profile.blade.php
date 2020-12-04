@@ -41,7 +41,7 @@
             @foreach ($internships as $internship)
             <div class="row row--centered">
                 <a class="internship" href="/companies/{{$internship->companies_id}}/internships/{{$internship->id}}"><div>  
-                    <h4 class="internship__title">{{$internship->title}}</h4>
+                    <h4>{{$internship->title}}</h4>
                     <p>{{$internship->description}}</p>
                 </div></a>
                 @if(\Auth::user()->can('update', $company))

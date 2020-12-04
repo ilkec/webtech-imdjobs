@@ -8,21 +8,32 @@
 
 @if($nearbyInternships)
         <h1>Internships in {{$nearbyInternships[0]->city}}</h1>
-        <section class="gray">
+        <section>
         @foreach ($nearbyInternships as $nearbyInternship)
         <div>
-         <a href="/companies/{{$nearbyInternship->companies_id}}/internships/{{$nearbyInternship->id}}"><h2>{{$nearbyInternship->title}}</h2></a>
-        <div>
-            <P>Description:</p>
-            <p>{{$nearbyInternship->description}}</p>
+            <a href="/companies/{{$nearbyInternship->companies_id}}/internships/{{$nearbyInternship->id}}"><h2>{{$nearbyInternship->title}}</h2></a>
+            <div class="flexed">
+                <P>Description:</p>
+                <p class="flexed__item">{{$nearbyInternship->description}}</p>
+            </div>
+            <div class="flexed">
+                <P>Tasks:</p>
+                <p class="flexed__item">{{$nearbyInternship->tasks}}</p>
+            </div>
+            <section class="row">
+                <div>
+                    <a href="/companies/{{$nearbyInternship->company_id}}"><p>{{$companies[array_search($nearbyInternship->company_id,array_column($companies,'id'))]->name}}</p></a>
+                    <p>{{$nearbyInternship->postal_code}}, {{$nearbyInternship->city}}</p>
+                </div>
+                <div class="container-img">
+                    @if (empty( $companies[array_search($nearbyInternship->company_id,array_column($companies,'id'))]->picture ))
+                        <img class="img-thumbnail img-thumbnail--small" src="{{ asset('images/profilePic.jpg') }}" width="500" height="500" alt="profilepicture" id="profilePicture">
+                    @else
+                        <img class="img-thumbnail img-thumbnail--small" src="storage/{{$companies[array_search($nearbyInternship->company_id,array_column($companies,'id'))]->picture}}" width="500" height="500" alt="profilepicture" id="profilePicture">
+                    @endif
+                </div>
+            </section>  
         </div>
-        <div>
-            <P>Tasks:</p>
-            <p>{{$nearbyInternship->tasks}}</p>
-        </div>
-        <a href="/companies/{{$nearbyInternship->company_id}}"><p>{{$companies[array_search($nearbyInternship->company_id,array_column($companies,'id'))]->name}}</p></a>
-        <p>{{$nearbyInternship->postal_code}}, {{$nearbyInternship->city}}</p>
-    </div>
     <hr>
         @endforeach
     </section>
@@ -34,20 +45,32 @@
 @else
     <h1>internships in other cities:</h1>
 @endif
-<section class="gray">
+<section>
     @foreach ($otherInternships as $internship)
    <div>
-         <a href="/companies/{{$internship->companies_id}}/internships/{{$internship->id}}"><h2>{{$internship->title}}</h2></a>
-        <div>
+        <a href="/companies/{{$internship->companies_id}}/internships/{{$internship->id}}"><h2>{{$internship->title}}</h2></a>
+        <div class="flexed">
             <P>Description:</p>
-            <p>{{$internship->description}}</p>
+            <p class="flexed__item">{{$internship->description}}</p>
         </div>
-        <div>
+        <div class="flexed">
             <P>Tasks:</p>
-            <p>{{$internship->tasks}}</p>
+            <p class="flexed__item">{{$internship->tasks}}</p>
         </div>
-        <a href="/companies/{{$internship->company_id}}"><p>{{$companies[array_search($internship->company_id,array_column($companies,'id'))]->name}}</p></a>
-        <p>{{$internship->postal_code}}, {{$internship->city}}</p>
+
+        <section class="row">
+            <div>
+                <a href="/companies/{{$internship->company_id}}"><p>{{$companies[array_search($internship->company_id,array_column($companies,'id'))]->name}}</p></a>
+                <p>{{$internship->postal_code}}, {{$internship->city}}</p>
+            </div>
+            <div class="container-img">
+                @if (empty($companies[array_search($internship->company_id,array_column($companies,'id'))]->picture))
+                    <img class="img-thumbnail img-thumbnail--small" src="{{ asset('images/profilePic.jpg') }}" width="500" height="500" alt="profilepicture" id="profilePicture">
+                @else
+                    <img class="img-thumbnail img-thumbnail--small" src="storage/{{$companies[array_search($internship->company_id,array_column($companies,'id'))]->picture}}" width="500" height="500" alt="profilepicture" id="profilePicture">
+                @endif
+            </div>
+        </section>
     </div>
     <hr>
     @endforeach
