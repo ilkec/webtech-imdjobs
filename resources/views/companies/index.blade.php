@@ -8,7 +8,7 @@
     <h1>All companies</h1>
     @if($user->account_type === 0)
         <a href="/company/add">
-            <button class="btn btn-primary">Add company</button>
+            <button class="btn btn-primary margin-bottom">Add company</button>
         </a>
     @endif
      <form method="post" action="">

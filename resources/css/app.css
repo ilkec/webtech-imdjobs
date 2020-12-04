@@ -194,6 +194,10 @@ footer{
    margin-bottom: 20px;
 }
 
+.margin-bottom {
+   margin-bottom: 0.5em
+}
+
 @media all and (min-width: 768px){
 
    .intro{

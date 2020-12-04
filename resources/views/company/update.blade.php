@@ -19,6 +19,9 @@
             </ul>
         @endcomponent
         @endif
+        @if($flash = session('questionableCompany'))
+            <div class="alert alert-warning"> {{ $flash }} </div>
+        @endif
         @if($flash = session('noCompany'))
             <div class="alert alert-danger"> {{ $flash }} </div>
         @endif

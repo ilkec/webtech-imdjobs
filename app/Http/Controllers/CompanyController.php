@@ -59,7 +59,7 @@ class CompanyController extends Controller
         $foursquare = new Foursquare();
         $completeUrl = $foursquare->getUrl($data);
         $response = $foursquare->getResult($completeUrl);
-        $data['foursquare'] = $foursquare->setData($response);
+        $data['foursquare'] = $foursquare->setData($response, $data['company']['name']);
         return view('/company/update', $data);
     }
 
