@@ -39,7 +39,7 @@
                 <div class="alert alert-danger"> {{ $flash }} </div>
             @endif
             @foreach ($internships as $internship)
-            <div class="row">
+            <div class="row row--centered">
                 <a class="internship" href="/companies/{{$internship->companies_id}}/internships/{{$internship->id}}"><div>  
                     <h4 class="internship__title">{{$internship->title}}</h4>
                     <p>{{$internship->description}}</p>

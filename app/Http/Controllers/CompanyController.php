@@ -87,14 +87,12 @@ class CompanyController extends Controller
         $completeUrl = $deLijn->getUrl($data['street_address'], $data['city']);
         $response = json_decode($deLijn->getResult($completeUrl), true);
         $data['deLijn'] = $deLijn->setData($response);
+        $haltenummer = "";
+        $halte_omschrijving = "";
 
-
-        if ($data['deLijn']) {
+        if (isset($data['deLijn']['haltenummer'])) {
             $haltenummer = $data['deLijn']['haltenummer'];
             $halte_omschrijving = $data['deLijn']['omschrijving'];
-        } else {
-            $haltenummer = "";
-            $halte_omschrijving = "";
         }
 
         \App\Models\Companies::where('id', $id)

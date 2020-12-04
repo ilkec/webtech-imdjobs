@@ -108,7 +108,7 @@ footer{
 .list__item {
    margin: 0.5em;
    text-align: center;
-   width: 20%;
+   width: 31%;
 }
 
 .list__item p {
@@ -144,6 +144,9 @@ footer{
    justify-content: space-between;
    margin-left: 0.5em;
    margin-right: 0.5em;
+}
+
+.row--centered {
    align-items: center;
 }
 
