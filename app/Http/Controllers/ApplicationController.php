@@ -4,11 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ApplicationController extends Controller
 {
     public function addApplication()
     {
+        //check if user already applied
+        /*$data['applied'] = false;
+        $user = Auth::user();
+        $previousApplication = \App\Models\Applications::where('user_id', $user['id'])
+             ->where('id', $internship)
+             ->first();
+        if ($previousApplication != null) {
+            return;
+        }*/
         return view('/application/add');
     }
 
@@ -35,7 +45,9 @@ class ApplicationController extends Controller
     public function editApplication($company, $internship)
     {
         $studentId = session('User');
-        $data['application'] =  DB::table('applications')->where('user_id', $studentId)->where('id', $internship)->get();
+        $data['application'] =  \App\Models\Applications::where('user_id', $studentId)
+            ->where('id', $internship)
+            ->get();
         return view('/application/edit');
     }
 
@@ -45,12 +57,11 @@ class ApplicationController extends Controller
         $status = $request->status;
         $feedback = $request->feedback;
 
-        DB::table('applications')
-        ->where('id', $application)
-        ->update([
-            'status' => $status,
-            'feedback' => $feedback
-        ]);
+        \App\Models\Applications::where('id', $application)
+            ->update([
+                'status' => $status,
+                'feedback' => $feedback
+            ]);
 
         $application_id =  \App\Models\Applications::where('id', $application)
             ->select('internships_id')
@@ -62,7 +73,10 @@ class ApplicationController extends Controller
     public function showApplications()
     {
         $id = session('User');
-        $data['applications'] = DB::table('applications')->join('internships', 'internships.id', '=', 'applications.internships_id')->join('companies', 'companies.id', '=', 'applications.companies_id')->where('applications.user_id', $id)->get();
+        $data['applications'] = \App\Models\Applications::join('internships', 'internships.id', '=', 'applications.internships_id')
+            ->join('companies', 'companies.id', '=', 'applications.companies_id')
+            ->where('applications.user_id', $id)
+            ->get();
         return view('/user/applications', $data);
     }
 }
