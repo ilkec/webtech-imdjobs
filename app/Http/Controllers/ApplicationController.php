@@ -8,17 +8,17 @@ use Illuminate\Support\Facades\Auth;
 
 class ApplicationController extends Controller
 {
-    public function addApplication()
+    public function addApplication($company, $internship)
     {
         //check if user already applied
-        /*$data['applied'] = false;
+        $data['applied'] = false;
         $user = Auth::user();
         $previousApplication = \App\Models\Applications::where('user_id', $user['id'])
              ->where('id', $internship)
              ->first();
         if ($previousApplication != null) {
-            return;
-        }*/
+            return redirect('/companies/' . $company . '/internships/' . $internship);
+        }
         return view('/application/add');
     }
 
