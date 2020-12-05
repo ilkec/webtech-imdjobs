@@ -62,6 +62,14 @@ class InternshipController extends Controller
             ->select('applications.id', 'user_id', 'internships_id', 'status', 'companies_id', 'first_name', 'last_name')
             ->get('last_name');
 
+        //check if user already applied
+        $data['applied'] = false;
+        $user = Auth::user();
+        $previousApplication = \App\Models\Applications::where('user_id', $user['id'])->first();
+        if ($previousApplication != null) {
+            $data['applied'] = true;
+        }
+
         return view('companies/internshipDetails', $data, $url);
     }
 

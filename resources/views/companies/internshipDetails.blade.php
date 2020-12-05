@@ -86,7 +86,11 @@
       <p>{{ $detail->title }}</p>
       <p>{{ $detail->description }}</p>
       <p>{{ $detail->tasks }}</p>
-      <a href="/companies/{{$detail->companies_id}}/internships/{{$detail->id}}/applications/add"><button type="button" class="btn btn-success btn-sm">Apply</button></a>
+
+      @if($applied == false)
+        <a href="/companies/{{$detail->companies_id}}/internships/{{$detail->id}}/applications/add"><button type="button" class="btn btn-success btn-sm">Apply</button></a>
+      @endif
+
     @endforeach
   @endif
 

@@ -178,6 +178,7 @@ footer{
 .internship {
    text-decoration: none;
    color: #000;
+   max-width: 50%;
 }
 
 .internship:hover {
