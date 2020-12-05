@@ -17,14 +17,14 @@ class UserController extends Controller
 
     public function handleRegister(Request $request)
     {
-        if($request->input('accountType') == 1){
+        if ($request->input('accountType') == 1) {
             $validation = $request->validate([
                 'firstname' => 'required',
                 'lastname' => 'required',
                 'email' => 'required|email|max:255|regex:/(.*)@student.thomasmore\.be/i|unique:users',
                 'password' => 'required',
             ]);
-        }else{
+        } else {
             $validation = $request->validate([
                 'firstname' => 'required',
                 'lastname' => 'required',
@@ -62,7 +62,7 @@ class UserController extends Controller
             $request->flash();
             $id = Auth::id();
             $request->session()->put('User', $id);
-            $data['user'] = DB::table('users')->where('id', $id)->get();
+            $data['user'] = \App\Models\User::where('id', $id)->get();
             
             if ($data['user'][0]->description == null) {
                 return redirect('/user/update');
