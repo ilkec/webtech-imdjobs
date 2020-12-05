@@ -25,9 +25,9 @@ My applications
       @elseif ($application->status == 1)
       <td>Under review</td>
       @elseif ($application->status == 2)
-      <td>Accepted</td>
-      @elseif ($application->status == 3)
       <td>Declined</td>
+      @elseif ($application->status == 3)
+      <td>Approved</td>
       @endif
     </tr>
     @endforeach
