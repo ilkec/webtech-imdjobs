@@ -65,8 +65,11 @@ class InternshipController extends Controller
         //check if user already applied
         $data['applied'] = false;
         $user = Auth::user();
-        $previousApplication = \App\Models\Applications::where('user_id', $user['id'])->first();
+        $previousApplication = \App\Models\Applications::where('user_id', $user['id'])
+            ->where('id', $internship)
+            ->first();
         if ($previousApplication != null) {
+            session()->flash('applied', 'You already applied for this internship!');
             $data['applied'] = true;
         }
 

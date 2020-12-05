@@ -82,6 +82,9 @@
     </table>
   @else
     <h1>Internship details</h1>
+     @if($applied == true)
+        <div class="alert alert-warning"> {{ session('applied') }} </div>
+      @endif
     @foreach( $details as $detail)
       <p>{{ $detail->title }}</p>
       <p>{{ $detail->description }}</p>
