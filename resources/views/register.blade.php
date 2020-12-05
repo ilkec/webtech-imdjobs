@@ -103,6 +103,9 @@
                 </form>
         </div>
     </div>
+    <div class="center">
+        <p>Already have an account? <a href="login">login</a> here!</p>
+    </div>
     <script>
         function myFunctionI() {
             var x = document.getElementById("container-signup-student");
