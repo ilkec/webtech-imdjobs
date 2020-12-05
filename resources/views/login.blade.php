@@ -25,4 +25,7 @@
             <button type="submit" class="btn btn-primary">Log in</button>
         </form>
     </div>
+    <div class="center">
+        <p>Don't have an account yet? <a href="register">Register</a> here!</p>
+    </div>
 @endsection
