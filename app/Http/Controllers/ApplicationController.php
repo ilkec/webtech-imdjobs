@@ -42,13 +42,11 @@ class ApplicationController extends Controller
     }
 
     //Edit application status
-    public function editApplication($company, $internship)
+    public function editApplication($company, $application)
     {
         $studentId = session('User');
-        $data['application'] =  \App\Models\Applications::where('user_id', $studentId)
-            ->where('id', $internship)
-            ->get();
-        return view('/application/edit');
+        $data['application'] =  \App\Models\Applications::where('id', $application)->first();
+        return view('/application/edit', $data);
     }
 
     public function handleEditAplication($company, $application, Request $request)
