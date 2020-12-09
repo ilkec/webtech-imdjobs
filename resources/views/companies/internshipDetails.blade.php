@@ -9,7 +9,7 @@
 @section('content')
 
 
-  @if(\Auth::user()->can('update', $company))
+  @if(session('User') && \Auth::user()->can('update', $company))
     <h1>Applications for this internship</h1>
     <form action="" method="GET">
       <div class="form-check">
