@@ -115,7 +115,12 @@ class CompanyController extends Controller
     public function editCompany($id)
     {
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
-        return view('/companies/edit', $data);
+        $user = Auth::user();
+        //dd($user);
+        if ($user && $user['account_type'] == 0) {
+            return view('/companies/edit', $data);
+        }
+        return redirect('/');
     }
 
     public function handleEditCompany(Request $request, $id)
