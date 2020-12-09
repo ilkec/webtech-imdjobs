@@ -29,7 +29,11 @@ class CompanyController extends Controller
     /* --- ADD COMPANIES --- */
     public function addCompany()
     {
-        return view('/company/add');
+        $user = Auth::user();
+        if ($user && $user['account_type'] == 0) {
+            return view('/company/add');
+        }
+        return redirect('/');
     }
 
     public function handleAddCompany(Request $request)
@@ -57,7 +61,12 @@ class CompanyController extends Controller
         $completeUrl = $foursquare->getUrl($data);
         $response = $foursquare->getResult($completeUrl);
         $data['foursquare'] = $foursquare->setData($response, $data['company']['name']);
-        return view('/company/update', $data);
+        
+        $user = Auth::user();
+        if ($user && $user['account_type'] == 0) {
+            return view('/company/update', $data);
+        }
+        return redirect('/');
     }
 
     public function handleUpdateCompany(Request $request, $id)
@@ -116,7 +125,6 @@ class CompanyController extends Controller
     {
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
         $user = Auth::user();
-        //dd($user);
         if ($user && $user['account_type'] == 0) {
             return view('/companies/edit', $data);
         }
