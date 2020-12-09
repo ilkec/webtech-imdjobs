@@ -63,7 +63,7 @@ class CompanyController extends Controller
         $data['foursquare'] = $foursquare->setData($response, $data['company']['name']);
         
         $user = Auth::user();
-        if ($user && $user['account_type'] == 0) {
+        if ($user && $user['account_type'] == 0  && $data['company']['user_id'] == $user['id']) {
             return view('/company/update', $data);
         }
         return redirect('/');
@@ -125,7 +125,7 @@ class CompanyController extends Controller
     {
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
         $user = Auth::user();
-        if ($user && $user['account_type'] == 0) {
+        if ($user && $user['account_type'] == 0 && $data['company']['user_id'] == $user['id']) {
             return view('/companies/edit', $data);
         }
         return redirect('/');

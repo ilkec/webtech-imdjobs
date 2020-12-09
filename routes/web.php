@@ -59,7 +59,6 @@ Route::post('/company/update/{id}', [CompanyController::class, 'handleUpdateComp
 //filter
 Route::post('/', [InternshipController::class, 'searchInternships']);
 //plural
-Route::get('/companies/{company}/internships', [InternshipController::class, 'indexInternships']);
 Route::get('/companies/{company}/internships/{internship}', [InternshipController::class, 'showInternship']);
 Route::get('/companies/{company}/internships/{internship}/edit', [InternshipController::class, 'editInternship']);
 Route::post('/companies/{company}/internships/{internship}/edit', [InternshipController::class, 'handleEditInternship']);
