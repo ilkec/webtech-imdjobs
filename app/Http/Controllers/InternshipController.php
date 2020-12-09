@@ -80,7 +80,7 @@ class InternshipController extends Controller
         $data['company'] = \App\Models\Companies::where('id', $company)->first();
         $data['internship'] = \App\Models\Internships::where('id', $internship)->first();
         $user = Auth::user();
-        if ($user && $user['account_type'] == 0) {
+        if ($user && $user['account_type'] == 0  && $data['company']['user_id'] == $user['id']) {
             return view('companies/internshipEdit', $data);
         }
         return redirect('/');
@@ -125,7 +125,7 @@ class InternshipController extends Controller
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
 
         $user = Auth::user();
-        if ($user && $user['account_type'] == 0) {
+        if ($user && $user['account_type'] == 0 && $data['company']['user_id'] == $user['id']) {
             return view('/company/addInternship', $data);
         }
         return redirect('/');
