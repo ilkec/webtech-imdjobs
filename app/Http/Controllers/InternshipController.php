@@ -39,13 +39,6 @@ class InternshipController extends Controller
         return view('/internship/show', $data);
     }
 
-    /* --- ALL INTERNSHIPS OF COMPANY --- */
-    public function indexInternships($company)
-    {
-        $data['internships'] = \App\Models\Internships::where('companies_id', $company)->get();
-        return view('companies/internships', $data);
-    }
-
     /* --- INTERNSHIP DETAILS/APPLY --- */
     public function showInternship($company, $internship, Request $request)
     {
