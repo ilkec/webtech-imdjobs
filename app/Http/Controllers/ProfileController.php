@@ -26,8 +26,10 @@ class ProfileController extends Controller
     {
         $id = session('User');
         $data['users'] =  \App\Models\User::where('id', $id)->first();
-        
-        return view('/user/update', $data);
+        if ($data['users'] != null) {
+            return view('/user/update', $data);
+        }
+        return redirect('/');
     }
 
     public function handleUpdateProfile(Request $request)

@@ -24,7 +24,6 @@ class ApplicationController extends Controller
                 $data['applied'] = true;
                 return redirect('/companies/' . $company . '/internships/' . $internship);
             }
-            
             return view('/application/add');
         }
         $data['applied'] = true;
@@ -85,6 +84,9 @@ class ApplicationController extends Controller
             ->join('companies', 'companies.id', '=', 'applications.companies_id')
             ->where('applications.user_id', $id)
             ->get();
+        if ($id == null) {
+            session()->flash('login', 'Please log in to see the internships you applied for!');
+        }
         return view('/user/applications', $data);
     }
 }

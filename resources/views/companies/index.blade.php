@@ -6,7 +6,7 @@
 
 @section('content')
     <h1>All companies</h1>
-    @if($user->account_type === 0)
+    @if(session('User') && $user->account_type === 0)
         <a href="/company/add">
             <button class="btn btn-primary margin-bottom">Add company</button>
         </a>

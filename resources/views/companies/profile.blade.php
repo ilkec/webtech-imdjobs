@@ -17,7 +17,7 @@
         <div class="container-info">
             <div class="button-heading">
                 <h2>{{$company->name}}</h2>
-                @if(\Auth::user()->can('update', $company))
+                @if(session('User') && \Auth::user()->can('update', $company))
                     <a class="btn__company" href="/companies/{{$company->id}}/edit"><button type="submit" class="btn btn-primary">edit company</button></a>
                 @endif
             </div>
@@ -28,7 +28,7 @@
         <section>
             <div class="button-heading">
                 <h3>Current internships</h3>
-                @if(\Auth::user()->can('update', $company))
+                @if(session('User') && \Auth::user()->can('update', $company))
                     <form method="post" action="">
                     {{csrf_field()}}
                         <button type="submit" class="btn btn-primary btn__company">Add Internship offer</button>
@@ -44,7 +44,7 @@
                     <h4>{{$internship->title}}</h4>
                     <p>{{$internship->description}}</p>
                 </div></a>
-                @if(\Auth::user()->can('update', $company))
+                @if(session('User') && \Auth::user()->can('update', $company))
                 <a href="/companies/{{$internship->companies_id}}/internships/{{$internship->id}}/edit"><div>  
                      <button type="submit" class="btn btn-primary">edit internship</button>
                 </div></a>

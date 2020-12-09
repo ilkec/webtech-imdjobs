@@ -7,6 +7,9 @@ My applications
 @section('content')
 
 <h1>My applications</h1>
+ @if(session('login'))
+        <div class="alert alert-warning"> {{ session('login') }} </div>
+      @endif
 <table class="table">
   <thead>
     <tr>
