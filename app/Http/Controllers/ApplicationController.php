@@ -55,9 +55,9 @@ class ApplicationController extends Controller
     {
         $studentId = session('User');
         $data['application'] =  \App\Models\Applications::where('id', $application)->first();
-
+        //dd($data['application']);
         $user = Auth::user();
-        if ($user && $user['account_type'] == 0) {
+        if ($user && $user['account_type'] == 0 && $data['application']['user_id'] == $user['id']) {
             return view('/application/edit', $data);
         }
         return redirect('/');
