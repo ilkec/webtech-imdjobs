@@ -13,13 +13,23 @@ class ApplicationController extends Controller
         //check if user already applied
         $data['applied'] = false;
         $user = Auth::user();
-        $previousApplication = \App\Models\Applications::where('user_id', $user['id'])
-             ->where('id', $internship)
-             ->first();
-        if ($previousApplication != null) {
-            return redirect('/companies/' . $company . '/internships/' . $internship);
+        $previousApplication = null;
+        if ($user) {
+            $previousApplication = \App\Models\Applications::where('user_id', $user['id'])
+            ->where('id', $internship)
+            ->first();
+
+            if ($previousApplication != null) {
+                session()->flash('applied', 'You already applied for this internship!');
+                $data['applied'] = true;
+                return redirect('/companies/' . $company . '/internships/' . $internship);
+            }
+            
+            return view('/application/add');
         }
-        return view('/application/add');
+        $data['applied'] = true;
+        session()->flash('applied', 'Please log in to apply for this internship!');
+        return redirect('/companies/' . $company . '/internships/' . $internship);
     }
 
     public function handleAddAplication($company, $internship, Request $request)
