@@ -62,6 +62,8 @@ Route::post('/', [InternshipController::class, 'searchInternships']);
 Route::get('/companies/{company}/internships/{internship}', [InternshipController::class, 'showInternship']);
 Route::get('/companies/{company}/internships/{internship}/edit', [InternshipController::class, 'editInternship']);
 Route::post('/companies/{company}/internships/{internship}/edit', [InternshipController::class, 'handleEditInternship']);
+Route::get('/companies/{company}/internships/{internship}/delete', [InternshipController::class, 'deleteInternship']);
+Route::post('/companies/{company}/internships/{internship}/delete', [InternshipController::class, 'handleDeleteInternship']);
 Route::post('/companies/{company}', [InternshipController::class, 'addInternshipOffer']);
 //singular
 Route::get('/company/addInternship/{id}', [InternshipController::class, 'addInternship']);

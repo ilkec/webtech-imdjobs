@@ -165,4 +165,28 @@ class InternshipController extends Controller
         $data['internships'] = \App\Models\Internships::where('companies_id', $id)->get();
         return redirect('/companies/' . $id);
     }
+
+    public function deleteInternship($company, $internship)
+    {
+        $data['company'] = \App\Models\Companies::where('id', $company)->first();
+        $data['internship'] = \App\Models\Internships::where('id', $internship)->first();
+        $user = Auth::user();
+        //check if user is allowed to edit internship
+        if ($user && $user['account_type'] == 0  && $data['company']['user_id'] == $user['id']) {
+            //dd($data['internship']);
+            return view('companies/internshipDelete', $data);
+        }
+        return redirect('/');
+    }
+
+    public function handleDeleteInternship($company, $internship)
+    {
+
+        \App\Models\Internships::where('id', $internship)
+        ->where('companies_id', $company)
+        ->update(['active' => 0]);
+       // dd($company);
+        return redirect('/companies/' . $company);
+        
+    }
 }
