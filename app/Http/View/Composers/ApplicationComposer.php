@@ -53,7 +53,7 @@ class ApplicationComposer
             }
         
             $data['counter'] = count($data['countApplications']);
-            //dd( $data['counter']);
+            dd( $data['application']);
             $view->with('counter', $data['counter']);
             
         }
