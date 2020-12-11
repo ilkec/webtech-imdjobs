@@ -14,12 +14,14 @@ class InternshipController extends Controller
             'type' => 'required',
             'city' => 'required'
         ]);
+        //get internships that fullfill filtered criteria
         $data['internships'] =  \App\Models\Internships::where('title', 'LIKE', "%" . $request->type . "%")
             ->orwhere('description', 'LIKE', "%" . $request->type . "%")
             ->orwhere('tasks', 'LIKE', "%" . $request->type . "%")
             ->orwhere('profile', 'LIKE', "%" . $request->type . "%")
             ->get();
         
+        //divide filtered data in those for correct city and other cities
         $data['nearbyInternships'] = [];
         $data['otherInternships'] = [];
         $data['companies'] = [];
@@ -48,6 +50,7 @@ class InternshipController extends Controller
             $url['status']=$request->status;
         }
     
+        //select all company, internship and application data needed
         $data['company'] = \App\Models\Companies::where('id', $company)->first();
         $data['details'] = \App\Models\Internships::where('id', $internship)->get();
         $data['applications'] = \App\Models\Applications::where('internships_id', $internship)
@@ -80,6 +83,7 @@ class InternshipController extends Controller
         $data['company'] = \App\Models\Companies::where('id', $company)->first();
         $data['internship'] = \App\Models\Internships::where('id', $internship)->first();
         $user = Auth::user();
+        //check if user is allowed to edit internship
         if ($user && $user['account_type'] == 0  && $data['company']['user_id'] == $user['id']) {
             return view('companies/internshipEdit', $data);
         }
@@ -97,6 +101,7 @@ class InternshipController extends Controller
             'postal_code' => 'required'
         ]);
 
+        //edit internship data
         \App\Models\Internships::where('id', $internship)
             ->update([
                 'title' => $request->title,
@@ -125,6 +130,7 @@ class InternshipController extends Controller
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
 
         $user = Auth::user();
+        //check if user is allowed on create internship page
         if ($user && $user['account_type'] == 0 && $data['company']['user_id'] == $user['id']) {
             return view('/company/addInternship', $data);
         }
@@ -142,6 +148,7 @@ class InternshipController extends Controller
             'postal_code' => 'required'
         ]);
 
+        //save internship
         $internship = new \App\Models\Internships();
         $internship->title = $request->title;
         $internship->postal_code = $request->postal_code;
@@ -153,8 +160,8 @@ class InternshipController extends Controller
         $internship->companies_id = $id;
         $internship->save();
 
+        //get current internships and company and put in array
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
-        //get current internships and put in array
         $data['internships'] = \App\Models\Internships::where('companies_id', $id)->get();
         return redirect('/companies/' . $id);
     }
