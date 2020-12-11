@@ -65,7 +65,7 @@ class cronjob extends Command
                 echo 'Dribbble profile updated for ' . $user->first_name . " " . $user->lastname . "\n";
             } else {
                 $scrape['items'] = "no items to update";
-                echo 'No update needen for ' . $user->first_name . " " . $user->lastname . "\n";
+                echo 'No update needed for ' . $user->first_name . " " . $user->lastname . "\n";
             }
         }
     }
