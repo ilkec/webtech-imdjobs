@@ -16,6 +16,7 @@ My applications
       <th scope="col">Job title</th>
       <th scope="col">Internship</th>
       <th scope="col">Status</th>
+      <th scope="col">Feedback</th>
     </tr>
   </thead>
   <tbody>
@@ -32,6 +33,7 @@ My applications
       @elseif ($application->status == 3)
       <td>Approved</td>
       @endif
+      <td>{{ $application->feedback }}</td>
     </tr>
     @endforeach
   </tbody>
