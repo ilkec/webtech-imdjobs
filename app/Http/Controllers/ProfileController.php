@@ -26,6 +26,7 @@ class ProfileController extends Controller
     {
         $id = session('User');
         $data['users'] =  \App\Models\User::where('id', $id)->first();
+        //check if user is logged in
         if ($data['users'] != null) {
             return view('/user/update', $data);
         }
@@ -82,7 +83,7 @@ class ProfileController extends Controller
             });
             $portfolioItems = array_slice($scrape['items'], 0, 4);
             
-            //bestaan er al al items in db voor user?
+            //check if dribbble items already exist for user
             if (isset($data['users']->portfolio[0])) {
                 $itemsPortfolio[] = \App\Models\Portfolio::where('user_id', $id)
                     ->orderBy('id', 'asc')
@@ -112,9 +113,9 @@ class ProfileController extends Controller
             $scrape['items'] = "no items to update";
         }
         
+        //edit user profile
         $request->flash();
-        DB::table('users')
-            ->where('id', $id)
+        \App\Models\User::where('id', $id)
             ->update([
                 'picture' => $imagePath,
                 'cv' => $cvPath,
