@@ -29,13 +29,13 @@ class Foursquare
     public function setData($response, $company)
     {
         if ($response != "") {
-            if(!empty($response['response']['venues']['0'])) {
+            if (!empty($response['response']['venues']['0'])) {
                 $APIresonse = strtolower($response['response']['venues'][0]['name']);
                 $companyRespronse = strtolower($company);
             }
             
-            if (!empty($response['response']['venues']['0']) && str_contains($APIresonse, $companyRespronse) ) {
-                if($APIresonse != $companyRespronse) {
+            if (!empty($response['response']['venues']['0']) && str_contains($APIresonse, $companyRespronse)) {
+                if ($APIresonse != $companyRespronse) {
                     session()->flash('questionableCompany', 'Did you mean ' . $response['response']['venues'][0]['name']);
                 }
                 return $response['response']['venues']['0'];
