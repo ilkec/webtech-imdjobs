@@ -21,17 +21,24 @@ if(window.location.pathname == '/') { //important to not give errors on pages wi
         props: [`companies_id`, `id`, `title`, `description`, `tasks`, `postal_code`, `city`, `name`, `picture`]
     });
     
-    new Vue({
-        el: "#internships",
-        data: {
-            internships: nearbyInternships,       
-        }
-    })
+    let nearbyField = document.querySelector('#internships')
+    let otherField = document.querySelector('#others')
+
+    if(nearbyField != null) {
+        new Vue({
+            el: "#internships",
+            data: {
+                internships: nearbyInternships,       
+            }
+        })
+    }
     
-    new Vue({
-        el:"#others",
-        data: {
-            internships: otherInternships
-        }
-    })
+    if(otherField != null) {
+        new Vue({
+            el:"#others",
+            data: {
+                internships: otherInternships
+            }
+        })
+    }
 }

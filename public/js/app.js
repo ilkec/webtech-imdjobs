@@ -19389,8 +19389,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ (function(module, exports) {
 
 //buttonProfile
-console.log(window.location.pathname);
-
 if (window.location.pathname.indexOf('/user/profile/') >= 0) {
   //important to not give errors on pages with other vueJS features
   var buttonProfile = new Vue({
@@ -19416,18 +19414,26 @@ if (window.location.pathname == '/') {
     template: "<div>\n        <a :href=\"'/companies/' + companies_id + '/internships/' + id\"><h2>{{ title }}</h2></a>\n        <div class=\"flexed\">\n            <P>Description:</p>\n            <p class=\"flexed__item\">{{ description }}</p>\n        </div>\n        <div class=\"flexed\">\n            <P>Tasks:</p>\n            <p class=\"flexed__item\">{{ tasks }}</p>\n        </div>\n        <section class=\"row\">\n            <div>\n                <a :href=\"'/companies/' + companies_id\">{{ name }}</a>\n                <p>{{ postal_code }}, {{ city }}</p>\n            </div>\n        </section>  \n        <hr>\n        </div>",
     props: ["companies_id", "id", "title", "description", "tasks", "postal_code", "city", "name", "picture"]
   });
-  new Vue({
-    el: "#internships",
-    data: {
-      internships: nearbyInternships
-    }
-  });
-  new Vue({
-    el: "#others",
-    data: {
-      internships: otherInternships
-    }
-  });
+  var nearbyField = document.querySelector('#internships');
+  var otherField = document.querySelector('#others');
+
+  if (nearbyField != null) {
+    new Vue({
+      el: "#internships",
+      data: {
+        internships: nearbyInternships
+      }
+    });
+  }
+
+  if (otherField != null) {
+    new Vue({
+      el: "#others",
+      data: {
+        internships: otherInternships
+      }
+    });
+  }
 }
 
 /***/ }),
