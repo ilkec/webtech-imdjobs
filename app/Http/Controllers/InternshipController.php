@@ -53,11 +53,17 @@ class InternshipController extends Controller
     
         //select all company, internship and application data needed
         $data['company'] = \App\Models\Companies::where('id', $company)->first();
-        $data['details'] = \App\Models\Internships::where('id', $internship)->get();
+        $data['details'] = \App\Models\Internships::where('id', $internship)->first();
         $data['applications'] = \App\Models\Applications::where('internships_id', $internship)
             ->join('users', 'users.id', '=', 'applications.user_id')
             ->select('applications.id', 'user_id', 'internships_id', 'status', 'companies_id', 'first_name', 'last_name')
             ->get('last_name');
+        
+        //check if internship is still active
+        //dd($data['details']['active']);
+        if ($data['details']['active'] == 0) {
+            session()->flash('active', 'This internship is not active anymore!');
+        }
 
         //check if user already applied
         $data['applied'] = false;
