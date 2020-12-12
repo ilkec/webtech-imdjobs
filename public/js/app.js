@@ -19345,6 +19345,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./buttonProfile.js */ "./resources/js/buttonProfile.js");
 
+__webpack_require__(/*! ./internshipFilterComponent.js */ "./resources/js/internshipFilterComponent.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -19387,11 +19389,38 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ (function(module, exports) {
 
 //buttonProfile
-console.log(user);
-var buttonProfile = new Vue({
-  el: '#buttonProfile',
+//console.log(user);
+
+/* var buttonProfile = new Vue({
+     el: '#buttonProfile',
+     data: {
+         button: user
+     }
+ })*/
+
+/***/ }),
+
+/***/ "./resources/js/internshipFilterComponent.js":
+/*!***************************************************!*\
+  !*** ./resources/js/internshipFilterComponent.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+Vue.component('internship', {
+  template: "<div>\n    <a :href=\"'/companies/' + companies_id + '/internships/' + id\"><h2>{{ title }}</h2></a>\n    <div class=\"flexed\">\n        <P>Description:</p>\n        <p class=\"flexed__item\">{{ description }}</p>\n    </div>\n    <div class=\"flexed\">\n        <P>Tasks:</p>\n        <p class=\"flexed__item\">{{ tasks }}</p>\n    </div>\n    <section class=\"row\">\n        <div>\n            <a :href=\"'/companies/' + companies_id\">{{ name }}</a>\n            <p>{{ postal_code }}, {{ city }}</p>\n        </div>\n    </section>  \n    <hr>\n    </div>",
+  props: ["companies_id", "id", "title", "description", "tasks", "postal_code", "city", "name", "picture"]
+});
+new Vue({
+  el: "#internships",
   data: {
-    button: user
+    internships: nearbyInternships
+  }
+});
+new Vue({
+  el: "#others",
+  data: {
+    internships: otherInternships
   }
 });
 

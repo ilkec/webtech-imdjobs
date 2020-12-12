@@ -20,8 +20,8 @@ class InternshipController extends Controller
             ->orwhere('description', 'LIKE', "%" . $request->type . "%")
             ->orwhere('tasks', 'LIKE', "%" . $request->type . "%")
             ->orwhere('profile', 'LIKE', "%" . $request->type . "%")
+            ->with('companies')
             ->get();
-        
         //divide filtered data in those for correct city and other cities
         $data['nearbyInternships'] = [];
         $data['otherInternships'] = [];
@@ -39,6 +39,8 @@ class InternshipController extends Controller
                 }
             }
         }
+        $data['nearbyInternshipsJSON'] = json_encode($data['nearbyInternships']);
+        $data['otherInternshipsJSON'] = json_encode($data['otherInternships']);
         return view('/internship/show', $data);
     }
 

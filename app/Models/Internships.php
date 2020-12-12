@@ -9,12 +9,14 @@ class Internships extends Model
 {
     use HasFactory;
 
-     //intership behoort maar tot 1 company
-    public function company(){
-        return $this->belongsTo('\App\Models\Company');
+    //intership behoort maar tot 1 company
+    public function companies()
+    {
+        return $this->belongsTo('\App\Models\Companies');
     }
 
-    public function application(){
+    public function application()
+    {
         return $this->hasMany('\App\Models\Applications');
     }
 }
