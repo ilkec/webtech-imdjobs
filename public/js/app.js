@@ -19389,9 +19389,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ (function(module, exports) {
 
 //buttonProfile
-if (window.location.pathname == "/user/profile/".concat(user)) {
+console.log(window.location.pathname);
+
+if (window.location.pathname.indexOf('/user/profile/') >= 0) {
   //important to not give errors on pages with other vueJS features
-  console.log('test');
   var buttonProfile = new Vue({
     el: '#buttonProfile',
     data: {
