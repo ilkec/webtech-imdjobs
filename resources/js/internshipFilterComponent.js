@@ -21,10 +21,11 @@ if(window.location.pathname == '/') { //important to not give errors on pages wi
         props: [`companies_id`, `id`, `title`, `description`, `tasks`, `postal_code`, `city`, `name`, `picture`]
     });
     
+    //field for checking if they are php enabled
     let nearbyField = document.querySelector('#internships')
     let otherField = document.querySelector('#others')
 
-    if(nearbyField != null) {
+    if(nearbyField != null) { //check if field are enabled with php 
         new Vue({
             el: "#internships",
             data: {
@@ -33,7 +34,7 @@ if(window.location.pathname == '/') { //important to not give errors on pages wi
         })
     }
     
-    if(otherField != null) {
+    if(otherField != null) { //check if field are enabled with php 
         new Vue({
             el:"#others",
             data: {

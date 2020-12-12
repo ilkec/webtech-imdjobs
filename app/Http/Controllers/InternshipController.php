@@ -22,7 +22,7 @@ class InternshipController extends Controller
             ->orwhere('profile', 'LIKE', "%" . $request->type . "%")
             ->with('companies')
             ->get();
-        //ddivie filtered data in those for correct city and other cities
+        //divide filtered data in those for correct city and other cities
         $data['nearbyInternships'] = [];
         $data['otherInternships'] = [];
         if ($request->city) {
