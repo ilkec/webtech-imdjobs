@@ -9,11 +9,12 @@ class Internships extends Model
 {
     use HasFactory;
 
-     //intership behoort maar tot 1 company
+     //intership belongs to 1 specific company only
     public function company(){
         return $this->belongsTo('\App\Models\Company');
     }
 
+    //intership can have multiple applications
     public function application(){
         return $this->hasMany('\App\Models\Applications');
     }

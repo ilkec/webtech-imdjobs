@@ -11,12 +11,12 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-     //user heeft meerdere portfolio items
+     //user can have multiple portfolio items
     public function portfolio(){
         return $this->hasMany('\App\Models\Portfolio');
     }
 
-     //user kan meerdere companies hebben
+     //user can have multiple companies
     public function company(){
         return $this->hasMany('\App\Models\Companies');
     }

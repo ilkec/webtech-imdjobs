@@ -17,15 +17,15 @@ class Applications extends Model
      * @var array
      */
 
-     //application behoort tot 1 company
+     //application belongs to 1 specific company
     public function company(){
         return $this->belongsTo('\App\Models\Companies');
     }
-
+     //application belongs to 1 specific user only
     public function user(){
         return $this->belongsTo('\App\Models\User');
     }
-
+     //application belongs to 1 specific internship only
     public function internship(){
         return $this->belongsTo('\App\Models\Internships');
     }
