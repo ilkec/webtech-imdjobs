@@ -20,12 +20,11 @@ class InternshipController extends Controller
             ->orwhere('description', 'LIKE', "%" . $request->type . "%")
             ->orwhere('tasks', 'LIKE', "%" . $request->type . "%")
             ->orwhere('profile', 'LIKE', "%" . $request->type . "%")
+            ->with('companies')
             ->get();
-        
         //divide filtered data in those for correct city and other cities
         $data['nearbyInternships'] = [];
         $data['otherInternships'] = [];
-        $data['companies'] = [];
         if ($request->city) {
             foreach ($data['internships'] as $internship) {
                 if (strtolower($internship['city']) == strtolower($request->city)) {
@@ -33,12 +32,10 @@ class InternshipController extends Controller
                 } else {
                     $data['otherInternships'][]= $internship;
                 }
-                $company = \App\Models\Companies::where('id', $internship['companies_id'])->first();
-                if (!in_array($company, $data['companies'])) {
-                    $data['companies'][] = $company;
-                }
             }
         }
+        $data['nearbyInternshipsJSON'] = json_encode($data['nearbyInternships']);
+        $data['otherInternshipsJSON'] = json_encode($data['otherInternships']);
         return view('/internship/show', $data);
     }
 
