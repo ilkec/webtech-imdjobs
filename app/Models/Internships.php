@@ -15,6 +15,7 @@ class Internships extends Model
         return $this->belongsTo('\App\Models\Companies');
     }
 
+    //internship can have multiple applications
     public function application()
     {
         return $this->hasMany('\App\Models\Applications');
