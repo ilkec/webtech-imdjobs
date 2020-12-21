@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 <body>
-    <div class="content-wrapper">
+    <div class="content-wrapper @yield('class')">
         <main>
             <nav class="navbar">
             <a href="/"><p>Interact</p></a>

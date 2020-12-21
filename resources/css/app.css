@@ -4,6 +4,12 @@ body{
    /*background-image: url('/images/.bg-img.jpg');*/
 }
 
+.bg__img {
+   background-image: url('/images/bg-img.jpg');
+   background-size: cover;
+   background-position: center;
+}
+
 .content-wrapper {
    display: flex;
    min-height: 100vh;
@@ -86,14 +92,10 @@ body{
 }
 
 /*----------nav----------*/
-
-
 nav, nav .btn{
    text-transform: uppercase;
    font-weight: 700;
 }
-
-
 
 /*----------footer----------*/
 
@@ -204,6 +206,11 @@ footer{
 
 .margin-bottom {
    margin-bottom: 0.5em
+}
+
+/* form  */
+.form__filter {
+   margin-top: 10vh;
 }
 
 @media all and (min-width: 768px){

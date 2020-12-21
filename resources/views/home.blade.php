@@ -4,8 +4,10 @@
     Interact home
 @stop
 
+@section('class', 'bg__img')
+
 @section('content')   
-    <form method="post" action="">
+    <form method="post" action="" class="form__filter">
         {{csrf_field()}}
         <h2>Search for an internship</h2>
 
@@ -34,6 +36,8 @@
             <input name="city" type="text" class="form-control" id="city" placeholder="City">
         </div>
         
-        <button type="submit" class="btn btn-primary">Search!</button>
+        <div class="center">
+            <button type="submit" class="btn btn-primary btn-lg">Search!</button>
+        </div>
     </form> 
 @stop
