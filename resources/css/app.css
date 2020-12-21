@@ -1,6 +1,6 @@
 body{
    color: #333333;
-   
+   overflow-x: hidden;
    /*background-image: url('/images/.bg-img.jpg');*/
 }
 
@@ -8,6 +8,15 @@ body{
    background-image: url('/images/bg-img.jpg');
    background-size: cover;
    background-position: center;
+}
+
+.head__img {
+   background-image: url('/images/head-img.jpg');
+   height: 15vh;
+   width: 100vw;
+   background-size: cover;
+   margin-left: calc((100% - 100vw) / 2);
+   padding-top: 2vh;
 }
 
 .content-wrapper {
@@ -206,6 +215,10 @@ footer{
 
 .margin-bottom {
    margin-bottom: 0.5em
+}
+
+.margin-top {
+   margin-top: 0.5em;
 }
 
 /* form  */

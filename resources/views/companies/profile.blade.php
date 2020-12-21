@@ -5,6 +5,9 @@
 @stop
 
 @section('content')
+    <div class="head__img">
+        
+    </div>
         <section class="section__header">
         <div class="container-img">
         @if (empty( $company->picture ))
