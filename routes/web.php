@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AjaxController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\UserController;
@@ -57,7 +58,8 @@ Route::post('/company/update/{id}', [CompanyController::class, 'handleUpdateComp
 
 /* --- internships --- */
 //filter
-Route::post('/', [InternshipController::class, 'searchInternships']);
+//Route::post('/', [InternshipController::class, 'searchInternships']);  //temp deleted to make it via ajax
+Route::post('/ajaxSearchInternshipCall', [InternshipController::class, 'searchInternships']);
 //plural
 Route::get('/companies/{company}/internships/{internship}', [InternshipController::class, 'showInternship']);
 Route::get('/companies/{company}/internships/{internship}/edit', [InternshipController::class, 'editInternship']);

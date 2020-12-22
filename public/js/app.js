@@ -19408,6 +19408,32 @@ if (window.location.pathname.indexOf('/user/profile/') >= 0) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+document.querySelector('#btn-searchInternship').addEventListener('click', function (e) {
+  var type = document.querySelector('#inputTypeSelect').value;
+  console.log(type);
+  var city = document.querySelector('#city').value;
+  console.log(city);
+  var csfr = document.querySelector('input').value;
+  console.log(csfr);
+  var formData = new FormData();
+  formData.append('type', type);
+  formData.append('city', city);
+  formData.append('csfr', csfr);
+  fetch('/ajaxSearchInternshipCall', {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  }).then(function (response) {
+    return response.json();
+  }).then(function (result) {
+    console.log(result);
+  })["catch"](function (error) {
+    console.error('Error:', error);
+  });
+});
+
 if (window.location.pathname == '/') {
   //important to not give errors on pages with other vueJS features
   Vue.component('internship', {

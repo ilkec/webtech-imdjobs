@@ -1,3 +1,33 @@
+document.querySelector('#btn-searchInternship').addEventListener('click', (e) => {
+    let type = document.querySelector('#inputTypeSelect').value
+    console.log(type)
+    let city = document.querySelector('#city').value
+    console.log(city)
+    let csfr = document.querySelector('input').value
+    console.log(csfr)
+
+    let formData = new FormData()
+    formData.append('type', type)
+    formData.append('city', city)
+    formData.append('csfr', csfr)
+
+    fetch('/ajaxSearchInternshipCall', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+        })
+        .then((response) => response.json())
+        .then((result) => {
+           console.log(result)
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
+
+})
+
 if(window.location.pathname == '/') { //important to not give errors on pages with other vueJS features
     Vue.component('internship', {
         template: `<div>

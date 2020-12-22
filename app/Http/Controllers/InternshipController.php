@@ -35,9 +35,10 @@ class InternshipController extends Controller
                 }
             }
         }
-        $data['nearbyInternshipsJSON'] = json_encode($data['nearbyInternships']);
-        $data['otherInternshipsJSON'] = json_encode($data['otherInternships']);
-        return view('/internship/show', $data);
+        $data1['nearbyInternshipsJSON'] = json_encode($data['nearbyInternships']);
+        $data1['otherInternshipsJSON'] = json_encode($data['otherInternships']);
+        //return view('/internship/show', $data);
+        return json_encode($data1);
     }
 
     /* --- INTERNSHIP DETAILS/APPLY --- */
