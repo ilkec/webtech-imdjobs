@@ -16,7 +16,8 @@ class InternshipController extends Controller
         ]);
         //get internships that fullfill filtered criteria
         $data['internships'] =  \App\Models\Internships::where('active', 1)
-            ->where('title', 'LIKE', "%" . $request->type . "%")
+            ->where('type', $request->type)
+            ->orwhere('title', 'LIKE', "%" . $request->type . "%")
             ->orwhere('description', 'LIKE', "%" . $request->type . "%")
             ->orwhere('tasks', 'LIKE', "%" . $request->type . "%")
             ->orwhere('profile', 'LIKE', "%" . $request->type . "%")
