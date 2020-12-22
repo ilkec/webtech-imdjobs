@@ -13,7 +13,6 @@ class CompanyController extends Controller
     public function index()
     {
         //get all companies
-        // $data['companies'] = \App\Models\Companies::all();
         $data['user'] = Auth::user();
         return view('companies/index', $data);
     }
@@ -184,6 +183,8 @@ class CompanyController extends Controller
             'Company' => 'required'
         ]);
 
+        //get city or Company name
+        $data['request'] = $request->Company;
         //get companies that fullfill filtered criteria
         $data['companies'] =  \App\Models\Companies::where('name', 'LIKE', "%" . $request->Company . "%")
             ->orwhere('description', 'LIKE', "%" . $request->Company . "%")

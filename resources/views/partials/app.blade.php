@@ -19,7 +19,6 @@
                 <div>
                         <a href="/user/profile/{{ $flash }}"><button type="button" class="btn btn-light">checkout profile</button></a>
                         <a href="/user/applications"><button type="button" class="btn btn-primary">View applications @if(isset($counter))<span> {{ $counter }}</span>@endif</button></a>
-                        <a href="/companies"><button class="btn btn-primary">company list</button></a>
                 </div>
                 
             @else

@@ -12,7 +12,7 @@ body{
 
 .head__img {
    background-image: url('/images/head-img.jpg');
-   height: 15vh;
+   height: 20vh;
    width: 100vw;
    background-size: cover;
    margin-left: calc((100% - 100vw) / 2);
@@ -57,7 +57,7 @@ body{
 /*----------signup----------*/
 .container-signup{
    border: 1px solid black;
-   width: 650px;
+   max-width: 650px;
    height: 514px;
    margin-top: 10vh;
    display: grid;
@@ -94,7 +94,7 @@ body{
 
 .container-login{
    border: 1px solid black;
-   width: 650px;
+   max-width: 650px;
    padding: 2em;
    margin-left: auto;
    margin-right: auto;

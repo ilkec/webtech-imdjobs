@@ -11,7 +11,11 @@
      <form method="post" action=""  class="form__filter">
         {{csrf_field()}}
         <h2>All companies</h2>
-
+        @if(session('User') && $user->account_type === 0)
+            <div class="margin-top">
+                <p>Don't have a company yet? <a href="/company/add">Add your company</a> by clicking here</p>
+            </div>    
+        @endif
         @if( $errors->any())
         @component('components/alert')
             @slot('type') danger @endslot
@@ -24,21 +28,19 @@
         @endif
         <div class="form-group">
             <label for="Company">Company</label>
-            <input name="Company" type="text" class="form-control" id="Company" placeholder="Company">
+            <input name="Company" type="text" class="form-control" id="Company" placeholder="Company" value="{{old('Company')}}">
         </div>
 
         <div class="center">
             <button type="submit" class="btn btn-primary btn-lg">Search!</button>
         </div>
-    </form>
-    @if(session('User') && $user->account_type === 0)
         <div class="center margin-top">
-            <p>Don't have a company yet? <a href="/company/add">Add your company</a> by clicking here</p>
-        </div>    
-    @endif
-
-    <!-- temp, moving it later -->
+            <p>look for an <a href="/">internship</a> instead?</p>
+        </div> 
+    </form>
+   
     @if(isset($companies))
+        <h3>Looking for {{ $request }}</h3>
         <section class="list list--companies">
             @foreach( $companies as $company)
             <div class="list__item">

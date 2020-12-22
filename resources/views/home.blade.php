@@ -39,5 +39,8 @@
         <div class="center">
             <button type="submit" class="btn btn-primary btn-lg">Search!</button>
         </div>
+         <div class="center margin-top">
+            <p>look for a <a href="/companies">company</a> instead?</p>
+        </div> 
     </form> 
 @stop
