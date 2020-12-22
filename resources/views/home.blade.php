@@ -7,7 +7,7 @@
 @section('class', 'bg__img')
 
 @section('content')   
-    <form method="post" action="" class="form__filter">
+    <form method="post" action="" class="form__filter" onkeydown="return event.key != 'Enter';">
         {{csrf_field()}}
         <h2 class="form__title">Search for an internship</h2>
 
