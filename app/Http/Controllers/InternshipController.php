@@ -101,6 +101,7 @@ class InternshipController extends Controller
             'description' => 'required',
             'tasks' => 'required',
             'profile' => 'required',
+            'type' => 'required',
             'city' => 'required',
             'postal_code' => 'required'
         ]);
@@ -113,6 +114,7 @@ class InternshipController extends Controller
                 'city' => $request->city,
                 'description' => $request->description,
                 'tasks' => $request->tasks,
+                'type' => $request->type,
                 'profile' => $request->profile
             ]);
 
@@ -161,6 +163,7 @@ class InternshipController extends Controller
         $internship->description = $request->description;
         $internship->tasks = $request->tasks;
         $internship->profile = $request->profile;
+        $internship->type = $request->type;
         $internship->active = 1;
         $internship->companies_id = $id;
         $internship->save();
