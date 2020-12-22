@@ -45,13 +45,13 @@
     </form> 
 
     <section id="internships"> 
-        <h3 class="hidden">Local internships</h3> 
+        <h3 class="hidden nearbyInternships">Local internships</h3> 
         <internship v-for="internship in internships" v-bind:companies_id="internship.companies_id" v-bind:id="internship.id" v-bind:title="internship.title" v-bind:description="internship.description" v-bind:tasks="internship.tasks" v-bind:postal_code="internship.postal_code" v-bind:city="internship.city" v-bind:name="internship.companies.name">
         </internship>
     </section>
 
      <section id="others">  
-     <h3 class="hidden">Internships in other cities</h3> 
+     <h3 class="hidden otherInternships">Internships in other cities</h3> 
         <internship v-for="internship in internships" v-bind:companies_id="internship.companies_id" v-bind:id="internship.id" v-bind:title="internship.title" v-bind:description="internship.description" v-bind:tasks="internship.tasks" v-bind:postal_code="internship.postal_code" v-bind:city="internship.city" v-bind:name="internship.companies.name">
         </internship>
     </section>
