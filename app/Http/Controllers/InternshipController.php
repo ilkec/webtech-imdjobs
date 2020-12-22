@@ -148,6 +148,7 @@ class InternshipController extends Controller
             'description' => 'required',
             'tasks' => 'required',
             'profile' => 'required',
+            'type' => 'required',
             'city' => 'required',
             'postal_code' => 'required'
         ]);
