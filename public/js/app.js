@@ -19415,15 +19415,20 @@ Vue.component('internship', {
   template: "<div>\n    <a :href=\"'/companies/' + companies_id + '/internships/' + id\"><h2>{{ title }}</h2></a>\n    <div class=\"flexed\">\n        <P>Description:</p>\n        <p class=\"flexed__item\">{{ description }}</p>\n    </div>\n    <div class=\"flexed\">\n        <P>Tasks:</p>\n        <p class=\"flexed__item\">{{ tasks }}</p>\n    </div>\n    <section class=\"row\">\n        <div>\n            <a :href=\"'/companies/' + companies_id\">{{ name }}</a>\n            <p>{{ postal_code }}, {{ city }}</p>\n        </div>\n    </section>  \n    <hr>\n    </div>",
   props: ["companies_id", "id", "title", "description", "tasks", "postal_code", "city", "name", "picture"]
 });
+var nearbyInternships;
+var otherInternships;
 var nearby = new Vue({
   el: "#internships",
   data: {
-    test: "test",
     internships: nearbyInternships
   }
 });
-var nearbyInternships;
-var otherInternships;
+var others = new Vue({
+  el: "#others",
+  data: {
+    internships: otherInternships
+  }
+});
 document.querySelector('#btn-searchInternship').addEventListener('click', function (e) {
   var type = document.querySelector('#inputTypeSelect').value;
   var city = document.querySelector('#city').value;
@@ -19453,10 +19458,10 @@ document.querySelector('#btn-searchInternship').addEventListener('click', functi
         document.querySelector('.alert').remove();
       }
 
-      nearbyInternships = result.nearbyInternshipsJSON;
-      otherInternships = result.otherInternshipsJSON;
-      document.querySelector('#internships').innerHTML = "<internship v-for=\"internship in internships\" v-bind:companies_id=\"internship.companies_id\" v-bind:id=\"internship.id\" v-bind:title=\"internship.title\" v-bind:description=\"internship.description\" v-bind:tasks=\"internship.tasks\" v-bind:postal_code=\"internship.postal_code\" v-bind:city=\"internship.city\" v-bind:name=\"internship.companies.name\">\n                </internship>";
+      nearbyInternships = JSON.parse(result.nearbyInternshipsJSON);
+      otherInternships = JSON.parse(result.otherInternshipsJSON);
       nearby.internships = nearbyInternships;
+      others.internships = otherInternships;
     })["catch"](function (error) {
       console.error('Error:', error);
     });

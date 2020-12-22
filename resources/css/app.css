@@ -204,6 +204,10 @@ footer{
    max-width: 50%;
 }
 
+.hidden {
+   display: none;
+}
+
 .internship:hover {
    color: #56A7F1;
    text-decoration: none;

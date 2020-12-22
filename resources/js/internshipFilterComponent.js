@@ -26,11 +26,20 @@ Vue.component('internship', {
 });
 
 
+let nearbyInternships;
+let otherInternships;
+
 var nearby = new Vue({
     el: "#internships",
     data: {
-        test: "test",
         internships: nearbyInternships    
+    }
+})
+
+var others = new Vue({
+    el: "#others",
+    data: {
+        internships: otherInternships    
     }
 })
 
@@ -38,8 +47,6 @@ var nearby = new Vue({
 
 
 
-let nearbyInternships;
-let otherInternships;
 document.querySelector('#btn-searchInternship').addEventListener('click', (e) => {
     let type = document.querySelector('#inputTypeSelect').value
     let city = document.querySelector('#city').value
@@ -71,13 +78,11 @@ document.querySelector('#btn-searchInternship').addEventListener('click', (e) =>
                 if (document.querySelector('.alert') != null) {
                     document.querySelector('.alert').remove()
                 }
-                nearbyInternships = result.nearbyInternshipsJSON
-                otherInternships = result.otherInternshipsJSON
-    
-                document.querySelector('#internships').innerHTML = `<internship v-for="internship in internships" v-bind:companies_id="internship.companies_id" v-bind:id="internship.id" v-bind:title="internship.title" v-bind:description="internship.description" v-bind:tasks="internship.tasks" v-bind:postal_code="internship.postal_code" v-bind:city="internship.city" v-bind:name="internship.companies.name">
-                </internship>`;
-                
-                nearby.internships = nearbyInternships;
+                nearbyInternships = JSON.parse(result.nearbyInternshipsJSON)
+                otherInternships = JSON.parse(result.otherInternshipsJSON)
+
+                nearby.internships = nearbyInternships
+                others.internships = otherInternships
             })
             .catch((error) => {
                 console.error('Error:', error);
