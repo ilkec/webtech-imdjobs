@@ -27,8 +27,8 @@
         @endcomponent
         @endif
         <div class="form-group">
-            <label for="Company">Company</label>
-            <input name="Company" type="text" class="form-control" id="Company" placeholder="Company" value="{{old('Company')}}">
+            <label for="Company">Company or city</label>
+            <input name="Company" type="text" class="form-control" id="Company or city" placeholder="Company" @if(isset($request)) value="{{$request}}" @endif>
         </div>
 
         <div class="center">
@@ -50,9 +50,9 @@
                 </div>
                 <div class="container-img">
                 @if (empty( $company->picture ))
-                    <img class="img-thumbnail" src="{{ asset('images/profilePic.jpg') }}" width="500" height="500" alt="profilepicture" id="profilePicture">
+                    <img class="img-thumbnail margin-bottom" src="{{ asset('images/profilePic.jpg') }}" width="500" height="500" alt="profilepicture" id="profilePicture">
                 @else
-                    <img class="img-thumbnail" src="{{ asset('storage/' . $company->picture) }}" width="500" height="500" alt="profilepicture" id="profilePicture">
+                    <img class="img-thumbnail margin-bottom" src="{{ asset('storage/' . $company->picture) }}" width="500" height="500" alt="profilepicture" id="profilePicture">
                 @endif
                 </div>
                 
