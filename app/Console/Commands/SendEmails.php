@@ -51,7 +51,10 @@ class SendEmails extends Command
                     ->orderBy('id', 'DESC')
                     ->first();
                 //send mail
-                $mail->sendgrid($user->email, $internship);
+
+                if (!empty($internship)) {
+                    $mail->sendgrid($user->email, $internship);
+                }
             }
         }
     }

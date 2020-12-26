@@ -149,8 +149,10 @@ class ProfileController extends Controller
         ->orderBy('id', 'DESC')
         ->first();
 
-        $mail = new Email();
-        $mail->sendgrid('tim.koenig25@gmail.com', $internship);*/
+        if (!empty($internship)) {
+            $mail = new Email();
+            $mail->sendgrid('tim.koenig25@gmail.com', $internship);
+        }*/
 
         return view('home');
     }
