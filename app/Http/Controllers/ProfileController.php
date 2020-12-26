@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Goutte\Client;
+use App\Classes\Email;
 
 class ProfileController extends Controller
 {
