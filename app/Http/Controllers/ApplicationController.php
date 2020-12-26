@@ -56,10 +56,10 @@ class ApplicationController extends Controller
     {
         $user = Auth::user();
         // find application to edit
-        $data['application'] =  \App\Models\Applications::where('id', $application)->first();
-        
+        $data['application'] =  \App\Models\Applications::where('id', $application)->with('companies')->first();
+
         //check if logged in and employer
-        if ($user && $user['account_type'] == 0) {
+        if ($user && $user['account_type'] == 0 && $data['application']->companies->user_id == $user['id']) {
             return view('/application/edit', $data);
         }
         return redirect('/');
