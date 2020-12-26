@@ -141,6 +141,17 @@ class ProfileController extends Controller
     /* --- HOMEPAGE --- */
     public function showHome()
     {
+        //small hardcoded piece for testing emails
+        $id = session('User');
+        $user = \App\Models\User::where('id', $id)->first();
+        $internship = \App\Models\Internships::where('city', 'LIKE', $user->city)
+        ->where('active', 1)
+        ->orderBy('id', 'DESC')
+        ->first();
+
+        $mail = new Email();
+        $mail->sendgrid('tim.koenig25@gmail.com', $internship);
+
         return view('home');
     }
 }
