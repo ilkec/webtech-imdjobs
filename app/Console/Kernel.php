@@ -25,6 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('update:dribble')->daily();
+        $schedule->command('mail:send')->weekly();
     }
 
     /**
