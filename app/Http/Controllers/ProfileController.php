@@ -142,7 +142,7 @@ class ProfileController extends Controller
     public function showHome()
     {
         //small hardcoded piece for testing emails
-        $id = session('User');
+        /*$id = session('User');
         $user = \App\Models\User::where('id', $id)->first();
         $internship = \App\Models\Internships::where('city', 'LIKE', $user->city)
         ->where('active', 1)
@@ -150,7 +150,7 @@ class ProfileController extends Controller
         ->first();
 
         $mail = new Email();
-        $mail->sendgrid('tim.koenig25@gmail.com', $internship);
+        $mail->sendgrid('tim.koenig25@gmail.com', $internship);*/
 
         return view('home');
     }
