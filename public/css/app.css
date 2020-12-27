@@ -65,6 +65,7 @@ body{
    grid-template-rows: auto;
    margin-left: auto;
    margin-right: auto;
+   background-color: white;
 }
 
 #container-signup-student,#container-signup-employer {
@@ -99,6 +100,7 @@ body{
    margin-left: auto;
    margin-right: auto;
    margin-top: 10vh;
+   background-color: white;
 }
 
 /*----------nav----------*/
