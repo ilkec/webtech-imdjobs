@@ -42,16 +42,16 @@ class ProfileController extends Controller
             'lastname' => 'required',
             'description' => 'required',
             'phonenumber' => 'required',
-            'education'=>'nullable',
-            'school'=>'nullable',
+            'education' => 'nullable',
+            'school' => 'nullable',
             'city' => 'required',
             'cv' => 'nullable',
-            'linkedin'=> 'nullable',
-            'dribbble'=> 'nullable',
-            'behance'=> 'nullable',
+            'linkedin' => 'nullable',
+            'dribbble' => 'nullable',
+            'behance' => 'nullable',
             'github' => 'nullable',
-            'website'=> 'nullable',
-            
+            'website' => 'nullable',
+
         ]);
         $imagePath = "";
         if ($request->image) {
@@ -61,7 +61,7 @@ class ProfileController extends Controller
             $imagePath = $data['image']->picture;
         }
 
-        $cvPath ="";
+        $cvPath = "";
         if ($request->cv) {
             $cvPath = $request->cv->store('files', 'public');
         } else {
@@ -79,10 +79,10 @@ class ProfileController extends Controller
                 $images =  $node->filter('figure > img')->attr('src');
                 $text = $node->filter('.shot-title')->text();
                 $link = "https://dribbble.com" . $node->filter('.shot-thumbnail-link')->attr('href');
-                return ["link"=>$link, "image"=> $images, "text"=>$text];
+                return ["link" => $link, "image" => $images, "text" => $text];
             });
             $portfolioItems = array_slice($scrape['items'], 0, 4);
-            
+
             //check if dribbble items already exist for user
             if (isset($data['users']->portfolio[0])) {
                 $itemsPortfolio[] = \App\Models\Portfolio::where('user_id', $id)
@@ -92,11 +92,11 @@ class ProfileController extends Controller
                 $counter = 0;
                 foreach ($itemsPortfolio[0] as $itemPortfolio) {
                     \App\Models\Portfolio::where('id', $itemPortfolio->id)
-                    ->update([
-                        'image' => $portfolioItems[$counter]['image'],
-                        'link' => $portfolioItems[$counter]['link'],
-                        'text' => $portfolioItems[$counter]['text']
-                    ]);
+                        ->update([
+                            'image' => $portfolioItems[$counter]['image'],
+                            'link' => $portfolioItems[$counter]['link'],
+                            'text' => $portfolioItems[$counter]['text']
+                        ]);
                     $counter++;
                 }
             } else {
@@ -112,7 +112,7 @@ class ProfileController extends Controller
         } else {
             $scrape['items'] = "no items to update";
         }
-        
+
         //edit user profile
         $request->flash();
         \App\Models\User::where('id', $id)
@@ -126,12 +126,12 @@ class ProfileController extends Controller
                 'education' => $request->education,
                 'school' => $request->school,
                 'city' => $request->city,
-                'linkedin'=> $request->linkedin,
-                'dribbble'=> $request->dribbble,
-                'behance'=> $request->behance,
-                'github'=> $request->github,
-                'website'=> $request->website,
-                ]);
+                'linkedin' => $request->linkedin,
+                'dribbble' => $request->dribbble,
+                'behance' => $request->behance,
+                'github' => $request->github,
+                'website' => $request->website,
+            ]);
 
         $request->session()->flash('updateMessage', 'Your profile was successfully updated');
         return redirect('/user/profile/' . $id);
