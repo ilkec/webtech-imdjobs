@@ -1,4 +1,4 @@
-<?php 
+<?php
 /* Model for applications sent by student
 */
 
@@ -17,16 +17,19 @@ class Applications extends Model
      * @var array
      */
 
-     //application behoort tot 1 company
-    public function company(){
+    //application belongs to 1 specific company
+    public function companies()
+    {
         return $this->belongsTo('\App\Models\Companies');
     }
-
-    public function user(){
+    //application belongs to 1 specific user only
+    public function user()
+    {
         return $this->belongsTo('\App\Models\User');
     }
-
-    public function internship(){
+    //application belongs to 1 specific internship only
+    public function internship()
+    {
         return $this->belongsTo('\App\Models\Internships');
     }
 
@@ -39,13 +42,12 @@ class Applications extends Model
         'feedback'
     ];
 
-     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
+    /**
+    * The attributes that should be cast to native types.
+    *
+    * @var array
+    */
   /*  protected $casts = [
         'sendt_at' => 'datetime',
     ];*/
 }
-?>

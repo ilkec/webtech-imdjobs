@@ -8,24 +8,28 @@ use Illuminate\Support\Facades\Auth;
 
 class ApplicationController extends Controller
 {
+    /* --- ADD APPLICATIONS --- */
     public function addApplication($company, $internship)
     {
-        //check if user already applied
         $data['applied'] = false;
         $user = Auth::user();
         $previousApplication = null;
         if ($user) {
+            //check if user already applied
             $previousApplication = \App\Models\Applications::where('user_id', $user['id'])
             ->where('id', $internship)
             ->first();
 
+            //if already applied
             if ($previousApplication != null) {
                 session()->flash('applied', 'You already applied for this internship!');
                 $data['applied'] = true;
                 return redirect('/companies/' . $company . '/internships/' . $internship);
             }
+            //if not applied yet
             return view('/application/add');
         }
+        //if no user logged in
         $data['applied'] = true;
         session()->flash('applied', 'Please log in to apply for this internship!');
         return redirect('/companies/' . $company . '/internships/' . $internship);
@@ -34,10 +38,7 @@ class ApplicationController extends Controller
     public function handleAddAplication($company, $internship, Request $request)
     {
         $studentId = session('User');
-        
-        //validate if exists
-
-        //save
+        //save application
         $application = new \App\Models\Applications();
         $application->user_id = $studentId;
         $application->internships_id = $internship;
@@ -50,14 +51,15 @@ class ApplicationController extends Controller
         return redirect('/companies/' . $company . '/internships/' . $internship);
     }
 
-    //Edit application status
+    //* --- EDIT APPLICATIONS (accept, decline, ...) --- */
     public function editApplication($company, $application)
     {
-        $studentId = session('User');
-        $data['application'] =  \App\Models\Applications::where('id', $application)->first();
-        //dd($data['application']);
         $user = Auth::user();
-        if ($user && $user['account_type'] == 0 && $data['application']['user_id'] == $user['id']) {
+        // find application to edit
+        $data['application'] =  \App\Models\Applications::where('id', $application)->with('companies')->first();
+
+        //check if logged in and employer
+        if ($user && $user['account_type'] == 0 && $data['application']->companies->user_id == $user['id']) {
             return view('/application/edit', $data);
         }
         return redirect('/');
@@ -65,10 +67,10 @@ class ApplicationController extends Controller
 
     public function handleEditAplication($company, $application, Request $request)
     {
-        echo $request;
         $status = $request->status;
         $feedback = $request->feedback;
 
+        // edit application
         \App\Models\Applications::where('id', $application)
             ->update([
                 'status' => $status,
@@ -81,14 +83,17 @@ class ApplicationController extends Controller
 
         return redirect('/companies/'. $company .'/internships/' . $application_id['internships_id']);
     }
-    
+
+    /* --- SHOW APPLICATIONS --- */
     public function showApplications()
     {
         $id = session('User');
+        // get applications
         $data['applications'] = \App\Models\Applications::join('internships', 'internships.id', '=', 'applications.internships_id')
             ->join('companies', 'companies.id', '=', 'applications.companies_id')
             ->where('applications.user_id', $id)
             ->get();
+        // check if user is logged in
         if ($id == null) {
             session()->flash('login', 'Please log in to see the internships you applied for!');
         }

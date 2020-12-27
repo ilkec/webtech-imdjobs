@@ -19,17 +19,17 @@ class Companies extends Model
         'city'
     ];
 
-     //company behoort tot 1 user
+     //company belongs to 1 specific user only
     public function user(){
         return $this->belongsTo('\App\Models\User');
     }
 
-     //company heeft meerder interships
+     //company can have multiple internships
     public function internship(){
         return $this->hasMany('\App\Models\Internships');
     }
 
-     //company kan meerdere applications binnenkrijgen
+     //company can have multiple applications
     public function application(){
         return $this->hasMany('\App\Models\Applications');
     }

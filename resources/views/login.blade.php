@@ -1,5 +1,7 @@
 @extends('partials.app')
 
+@section('class', 'bg__img')
+
 @section('title')
     Login
 @stop

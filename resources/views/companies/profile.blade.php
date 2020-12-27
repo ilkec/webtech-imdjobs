@@ -5,6 +5,9 @@
 @stop
 
 @section('content')
+    <div class="head__img">
+        
+    </div>
         <section class="section__header">
         <div class="container-img">
         @if (empty( $company->picture ))
@@ -45,6 +48,7 @@
                     <p>{{$internship->description}}</p>
                 </div></a>
                 @if(session('User') && \Auth::user()->can('update', $company))
+                <a href="/companies/{{$internship->companies_id}}/internships/{{$internship->id}}/delete"><button  type="button" class="btn btn-danger">Remove internship</button></a>
                 <a href="/companies/{{$internship->companies_id}}/internships/{{$internship->id}}/edit"><div>  
                      <button type="submit" class="btn btn-primary">edit internship</button>
                 </div></a>

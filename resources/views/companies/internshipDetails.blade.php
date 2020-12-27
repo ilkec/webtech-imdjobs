@@ -1,16 +1,18 @@
 @extends('partials.app')
 
 @section('title')
-{{$details[0]->title}}
+{{$details->title}}
 @stop
 
   
 
 @section('content')
-
-
+  
   @if(session('User') && \Auth::user()->can('update', $company))
     <h1>Applications for this internship</h1>
+    @if(session('active'))
+      <div class="alert alert-warning"> {{ session('active') }} </div>
+    @endif
     <form action="" method="GET">
       <div class="form-check">
         <input class="form-check-input" type="radio" name="status" id="status-all" value="4" @if($status == 4) checked @endif>
@@ -82,19 +84,22 @@
     </table>
   @else
     <h1>Internship details</h1>
-     @if($applied == true)
+     @if($applied == true && !session('active'))
         <div class="alert alert-warning"> {{ session('applied') }} </div>
       @endif
-    @foreach( $details as $detail)
-      <p>{{ $detail->title }}</p>
-      <p>{{ $detail->description }}</p>
-      <p>{{ $detail->tasks }}</p>
+      @if(session('active'))
+      <div class="alert alert-warning"> {{ session('active') }} </div>
+    @endif
+  
+      <p>{{ $details->title }}</p>
+      <p>{{ $details->description }}</p>
+      <p>{{ $details->tasks }}</p>
 
       @if($applied == false)
-        <a href="/companies/{{$detail->companies_id}}/internships/{{$detail->id}}/applications/add"><button type="button" class="btn btn-success btn-sm">Apply</button></a>
+        <a href="/companies/{{$details->companies_id}}/internships/{{$details->id}}/applications/add"><button type="button" class="btn btn-success btn-sm">Apply</button></a>
       @endif
 
-    @endforeach
+
   @endif
 
 

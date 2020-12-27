@@ -35,32 +35,25 @@ class ApplicationComposer
      */
     public function compose(View $view)
     {
-        
         $id = session('User');
         $data['users'] =  \App\Models\User::where('id', $id)->with('company')->first();
     
-        if(!empty($data['users']->company[0])){
+        if (!empty($data['users']->company[0])) {
             $data['count'] = [];
             $data['countApplications'] = [];
             $data['application'] = \App\Models\Companies::where('user_id', $id)->with('internship.application')->get();
-            foreach($data['application'] as $getApplications){
+            foreach ($data['application'] as $getApplications) {
                 $applications = $getApplications->application;
-                foreach($applications as $application){
-                    if($application->status == 0){  
-                         array_push($data['countApplications'],$application );
+                foreach ($applications as $application) {
+                    if ($application->status == 0) {
+                        array_push($data['countApplications'], $application);
                     }
-                }     
+                }
             }
         
             $data['counter'] = count($data['countApplications']);
-            //dd( $data['counter']);
+            //dd( $data['application']);
             $view->with('counter', $data['counter']);
-            
         }
-                
-                
     }
-                
-                
-    
 }

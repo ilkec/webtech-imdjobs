@@ -12,7 +12,7 @@ class CompanyController extends Controller
     /* --- ALL COMPANIES --- */
     public function index()
     {
-        $data['companies'] = \App\Models\Companies::all();
+        //get all companies
         $data['user'] = Auth::user();
         return view('companies/index', $data);
     }
@@ -20,9 +20,10 @@ class CompanyController extends Controller
     /* --- COMPANY DETAILS --- */
     public function showCompany($id)
     {
+        //get company
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
-        //get current internships and put in array
-        $data['internships'] = \App\Models\Internships::where('companies_id', $id)->get();
+        //get current internships of this company
+        $data['internships'] = \App\Models\Internships::where('companies_id', $id)->where('active', 1)->get();
         return view('/companies/profile', $data);
     }
 
@@ -30,6 +31,7 @@ class CompanyController extends Controller
     public function addCompany()
     {
         $user = Auth::user();
+        //check if user is allowed to add companies
         if ($user && $user['account_type'] == 0) {
             return view('/company/add');
         }
@@ -42,7 +44,8 @@ class CompanyController extends Controller
             'name' => 'required',
             'city' => 'required'
         ]);
-
+        
+        //save company
         $company = new \App\Models\Companies();
         $company->name = $request->input('name');
         $company->city = $request->input('city');
@@ -56,17 +59,17 @@ class CompanyController extends Controller
     /* --- UPDATE COMPANIES --- */
     public function updateCompany($id)
     {
+        $user = Auth::user();
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
+        //check if user has access to update page
+        if (!$user || $user['account_type'] != 0 || $data['company']['user_id'] != $user['id']) {
+            return redirect('/');
+        }
         $foursquare = new Foursquare();
         $completeUrl = $foursquare->getUrl($data);
         $response = $foursquare->getResult($completeUrl);
         $data['foursquare'] = $foursquare->setData($response, $data['company']['name']);
-        
-        $user = Auth::user();
-        if ($user && $user['account_type'] == 0  && $data['company']['user_id'] == $user['id']) {
-            return view('/company/update', $data);
-        }
-        return redirect('/');
+        return view('/company/update', $data);
     }
 
     public function handleUpdateCompany(Request $request, $id)
@@ -87,6 +90,7 @@ class CompanyController extends Controller
             $imagePath = $request->image->store('images', 'public');
         }
 
+        //get public transport nearby company
         $data['street_address'] = $request->street_address;
         $data['city'] = $request->city;
         $deLijn = new DeLijn();
@@ -101,6 +105,7 @@ class CompanyController extends Controller
             $halte_omschrijving = $data['deLijn']['omschrijving'];
         }
 
+        //save company update
         \App\Models\Companies::where('id', $id)
             ->update([
                 'name' => $request->name,
@@ -125,6 +130,7 @@ class CompanyController extends Controller
     {
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
         $user = Auth::user();
+        //check if user has access to edit page
         if ($user && $user['account_type'] == 0 && $data['company']['user_id'] == $user['id']) {
             return view('/companies/edit', $data);
         }
@@ -152,6 +158,7 @@ class CompanyController extends Controller
             $imagePath = $data['company']->picture;
         }
 
+        //edit company
         \App\Models\Companies::where('id', $id)
             ->update([
                 'name' => $request->name,
@@ -176,6 +183,9 @@ class CompanyController extends Controller
             'Company' => 'required'
         ]);
 
+        //get city or Company name
+        $data['request'] = $request->Company;
+        //get companies that fullfill filtered criteria
         $data['companies'] =  \App\Models\Companies::where('name', 'LIKE', "%" . $request->Company . "%")
             ->orwhere('description', 'LIKE', "%" . $request->Company . "%")
             ->orwhere('city', 'LIKE', "%" . $request->Company . "%")
