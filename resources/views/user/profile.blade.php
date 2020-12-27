@@ -47,7 +47,6 @@
             @endif
         </div>
     </div>
- 
     <div class='contact profile-group'>
         <h4>Contact </h4>
         <div class="contact-icon">
@@ -57,15 +56,14 @@
         <div class="contact-icon">
             <i class="fas fa-phone-alt"></i>
             <p>{{ $users->phone_number }}</p>
-        </div>     
+        </div> 
+        @if (!empty( $users->cv ))
+        <a href="{{ asset('storage/' . $users->cv) }}" download="cv_{{ $users->first_name }}_{{ $users->last_name }}">
+            <p class="download">Download my cv</p>
+        </a>    
+        @endif    
     </div>
-    
-    @if (!empty( $users->cv ))
-    <a href="{{ asset('storage/' . $users->cv) }}" download="cv_{{ $users->first_name }}_{{ $users->last_name }}">
-        <p>Download my cv</p>
-    </a>    
-    @endif
-    
+  
     @if (!empty( $users->dribbble ))
     <div class='links profile-group'>
         <h4>Glimpse of my portfolio </h4>
