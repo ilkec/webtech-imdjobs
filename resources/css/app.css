@@ -53,6 +53,10 @@ body{
    text-align: center;
 }
 
+i{
+   color: #007bff;
+   padding-right: 20px;
+}
 /*----------signup----------*/
 .container-signup{
    border: 1px solid black;
@@ -101,6 +105,22 @@ body{
    margin-top: 10vh;
    background-color: white;
 }
+
+/*--------profile--------*/
+.contact-icon{
+   align-items: center;
+   display: grid;
+   grid-template-columns: 50px 500px;
+}
+
+.contact-icon p{
+   margin-bottom: 0;
+}
+
+.profile-group{
+   margin-bottom: 50px;
+}
+
 
 /*----------nav----------*/
 nav, nav .btn{
