@@ -54,13 +54,30 @@ class cronjob extends Command
                     return ["link" => $link, "image" => $images, "text" => $text];
                 });
                 $portfolioItems = array_slice($scrape['items'], 0, 4);
-                foreach ($portfolioItems as $portfolioitem) {
-                    $portfolio = new \App\Models\Portfolio();
-                    $portfolio->image = $portfolioitem['image'];
-                    $portfolio->link = $portfolioitem['link'];
-                    $portfolio->text = $portfolioitem['text'];
-                    $portfolio->user_id = $user->id;
-                    $portfolio->save();
+                if (isset($user->portfolio[0])) {
+                    $itemsPortfolio[] = \App\Models\Portfolio::where('user_id', $user->id)
+                        ->orderBy('id', 'asc')
+                        ->get();
+
+                    $counter = 0;
+                    foreach ($itemsPortfolio[0] as $itemPortfolio) {
+                        \App\Models\Portfolio::where('id', $itemPortfolio->id)
+                            ->update([
+                                'image' => $portfolioItems[$counter]['image'],
+                                'link' => $portfolioItems[$counter]['link'],
+                                'text' => $portfolioItems[$counter]['text']
+                            ]);
+                        $counter++;
+                    }
+                } else {
+                    foreach ($portfolioItems as $portfolioitem) {
+                        $portfolio = new \App\Models\Portfolio();
+                        $portfolio->image = $portfolioitem['image'];
+                        $portfolio->link = $portfolioitem['link'];
+                        $portfolio->text = $portfolioitem['text'];
+                        $portfolio->user_id = $user->id;
+                        $portfolio->save();
+                    }
                 }
                 echo 'Dribbble profile updated for ' . $user->first_name . " " . $user->lastname . "\n";
             } else {
