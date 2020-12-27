@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Goutte\Client;
+use App\Classes\Email;
 
 class ProfileController extends Controller
 {
@@ -140,6 +141,19 @@ class ProfileController extends Controller
     /* --- HOMEPAGE --- */
     public function showHome()
     {
+        //small hardcoded piece for testing emails
+        /*$id = session('User');
+        $user = \App\Models\User::where('id', $id)->first();
+        $internship = \App\Models\Internships::where('city', 'LIKE', $user->city)
+        ->where('active', 1)
+        ->orderBy('id', 'DESC')
+        ->first();
+
+        if (!empty($internship)) {
+            $mail = new Email();
+            $mail->sendgrid('tim.koenig25@gmail.com', $internship);
+        }*/
+
         return view('home');
     }
 }

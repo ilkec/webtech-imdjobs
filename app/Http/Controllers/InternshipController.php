@@ -16,16 +16,16 @@ class InternshipController extends Controller
         ]);
         //get internships that fullfill filtered criteria
         $data['internships'] =  \App\Models\Internships::where('active', 1)
-            ->where('title', 'LIKE', "%" . $request->type . "%")
+            ->where('type', $request->type)
+            ->orwhere('title', 'LIKE', "%" . $request->type . "%")
             ->orwhere('description', 'LIKE', "%" . $request->type . "%")
             ->orwhere('tasks', 'LIKE', "%" . $request->type . "%")
             ->orwhere('profile', 'LIKE', "%" . $request->type . "%")
+            ->with('companies')
             ->get();
-        
         //divide filtered data in those for correct city and other cities
         $data['nearbyInternships'] = [];
         $data['otherInternships'] = [];
-        $data['companies'] = [];
         if ($request->city) {
             foreach ($data['internships'] as $internship) {
                 if (strtolower($internship['city']) == strtolower($request->city)) {
@@ -33,13 +33,12 @@ class InternshipController extends Controller
                 } else {
                     $data['otherInternships'][]= $internship;
                 }
-                $company = \App\Models\Companies::where('id', $internship['companies_id'])->first();
-                if (!in_array($company, $data['companies'])) {
-                    $data['companies'][] = $company;
-                }
             }
         }
-        return view('/internship/show', $data);
+        $data1['nearbyInternshipsJSON'] = json_encode($data['nearbyInternships']);
+        $data1['otherInternshipsJSON'] = json_encode($data['otherInternships']);
+        //return view('/internship/show', $data);
+        return $data1;
     }
 
     /* --- INTERNSHIP DETAILS/APPLY --- */
@@ -104,6 +103,7 @@ class InternshipController extends Controller
             'description' => 'required',
             'tasks' => 'required',
             'profile' => 'required',
+            'type' => 'required',
             'city' => 'required',
             'postal_code' => 'required'
         ]);
@@ -116,6 +116,7 @@ class InternshipController extends Controller
                 'city' => $request->city,
                 'description' => $request->description,
                 'tasks' => $request->tasks,
+                'type' => $request->type,
                 'profile' => $request->profile
             ]);
 
@@ -151,6 +152,7 @@ class InternshipController extends Controller
             'description' => 'required',
             'tasks' => 'required',
             'profile' => 'required',
+            'type' => 'required',
             'city' => 'required',
             'postal_code' => 'required'
         ]);
@@ -163,6 +165,7 @@ class InternshipController extends Controller
         $internship->description = $request->description;
         $internship->tasks = $request->tasks;
         $internship->profile = $request->profile;
+        $internship->type = $request->type;
         $internship->active = 1;
         $internship->companies_id = $id;
         $internship->save();

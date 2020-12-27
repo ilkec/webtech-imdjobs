@@ -13,7 +13,6 @@ class CompanyController extends Controller
     public function index()
     {
         //get all companies
-        $data['companies'] = \App\Models\Companies::all();
         $data['user'] = Auth::user();
         return view('companies/index', $data);
     }
@@ -24,7 +23,7 @@ class CompanyController extends Controller
         //get company
         $data['company'] =  \App\Models\Companies::where('id', $id)->first();
         //get current internships of this company
-        $data['internships'] = \App\Models\Internships::where('companies_id', $id)->where('active',1)->get();
+        $data['internships'] = \App\Models\Internships::where('companies_id', $id)->where('active', 1)->get();
         return view('/companies/profile', $data);
     }
 
@@ -184,6 +183,8 @@ class CompanyController extends Controller
             'Company' => 'required'
         ]);
 
+        //get city or Company name
+        $data['request'] = $request->Company;
         //get companies that fullfill filtered criteria
         $data['companies'] =  \App\Models\Companies::where('name', 'LIKE', "%" . $request->Company . "%")
             ->orwhere('description', 'LIKE', "%" . $request->Company . "%")
