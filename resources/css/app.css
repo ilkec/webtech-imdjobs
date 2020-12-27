@@ -252,9 +252,20 @@ footer{
    margin-top: 0.5em;
 }
 
-/* form  */
+/*----------form----------*/
 .form__filter {
    margin-top: 10vh;
+}
+
+/*----------company----------*/
+.internship__paragraph {
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.button__container a{
+   margin: 0.5em;
 }
 
 @media all and (min-width: 768px){
@@ -295,6 +306,11 @@ footer{
 
    .list__item {
       width: 31%;
+   }
+
+   .button__container {
+      display: flex;
+      flex-direction: column;
    }
   
 }

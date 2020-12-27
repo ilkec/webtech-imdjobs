@@ -1,7 +1,9 @@
 <?php
 namespace App\Classes;
 
-    // Load Composer's autoloader
+use Exception;
+
+// Load Composer's autoloader
     require '../vendor/autoload.php';
 
 class Email
@@ -25,7 +27,7 @@ class Email
             If you are interested in this internship, you can check it out by <a href=" . $link . "/companies/" . $internship->companies_id . "/internships/" . $internship->id . ">clicking here!</a>
             "
         );
-        $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+        $sendgrid = new \sendGrid(getenv('SENDGRID_API_KEY'));
         try {
             $response = $sendgrid->send($email);
         } catch (Exception $e) {
