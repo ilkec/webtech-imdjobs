@@ -19412,7 +19412,7 @@ if (window.location.pathname == '/') {
   //important to not give errors on pages with other js features
   Vue.component('internship', {
     //component
-    template: "<div>\n        <a :href=\"'/companies/' + companies_id + '/internships/' + id\"><h2>{{ title }}</h2></a>\n        <div class=\"flexed\">\n            <P>Description:</p>\n            <p class=\"flexed__item\">{{ description }}</p>\n        </div>\n        <div class=\"flexed\">\n            <P>Tasks:</p>\n            <p class=\"flexed__item\">{{ tasks }}</p>\n        </div>\n        <section class=\"row\">\n            <div>\n                <a :href=\"'/companies/' + companies_id\">{{ name }}</a>\n                <p>{{ postal_code }}, {{ city }}</p>\n            </div>\n        </section>  \n        <hr>\n        </div>",
+    template: "<div class=\"internship__container\">\n        <a :href=\"'/companies/' + companies_id + '/internships/' + id\"><h2>{{ title }}</h2></a>\n        <div class=\"flexed\">\n            <P>Description:</p>\n            <p class=\"flexed__item\">{{ description }}</p>\n        </div>\n        <div class=\"flexed\">\n            <P>Tasks:</p>\n            <p class=\"flexed__item\">{{ tasks }}</p>\n        </div>\n        <section class=\"row\">\n            <div>\n                <a :href=\"'/companies/' + companies_id\">{{ name }}</a>\n                <p>{{ postal_code }}, {{ city }}</p>\n            </div>\n        </section>  \n        </div>",
     props: ["companies_id", "id", "title", "description", "tasks", "postal_code", "city", "name", "picture"]
   });
   var nearbyInternships;
@@ -19502,8 +19502,8 @@ if (window.location.pathname == '/') {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\school\3imd\webtech\webtech-imdjobs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\school\3imd\webtech\webtech-imdjobs\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\Users\Ilke\Documents\IMD\3IMD\webtech\webtech-imdjobs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Ilke\Documents\IMD\3IMD\webtech\webtech-imdjobs\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

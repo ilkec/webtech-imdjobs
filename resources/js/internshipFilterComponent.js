@@ -1,7 +1,7 @@
 if(window.location.pathname == '/') { //important to not give errors on pages with other js features
     
     Vue.component('internship', { //component
-        template: `<div>
+        template: `<div class="internship__container">
         <a :href="'/companies/' + companies_id + '/internships/' + id"><h2>{{ title }}</h2></a>
         <div class="flexed">
             <P>Description:</p>
@@ -17,7 +17,6 @@ if(window.location.pathname == '/') { //important to not give errors on pages wi
                 <p>{{ postal_code }}, {{ city }}</p>
             </div>
         </section>  
-        <hr>
         </div>`,
         props: [`companies_id`, `id`, `title`, `description`, `tasks`, `postal_code`, `city`, `name`, `picture`]
     });

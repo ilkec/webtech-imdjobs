@@ -34,6 +34,14 @@ body{
    
 }
 
+.internship__container{
+   background-color: white;
+    padding: 20px;
+    box-shadow: 1px 1px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
 #profilePicture{
    width: 200px;
    -o-object-fit: cover;
