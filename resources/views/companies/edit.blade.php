@@ -46,14 +46,15 @@
         </div>
 
         <div class="form-group">
-            <label for="description">description *</label>
+            <label for="description">Description *</label>
             <textarea name="description" class="form-control" id="description">{{$company->description}}</textarea>
         </div>
         <div class="form_group">
+        <label for="description">Company logo</label>
             <input type="file" name="image" class="btn mb-3" id="image" accept="image/*">
         </div>
         <div class="form-group">
-            <label for="email">email *</label>
+            <label for="email">Email *</label>
             <input name="email" type="email" class="form-control" id="email" value="{{$company->email}}" placeholder="Company email">
         </div>
         <div class="form-group">
@@ -61,7 +62,7 @@
             <input name="phone_number" type="tel" class="form-control" id="phone_number" value="{{$company->phone_number}}" placeholder="Company phone number">
         </div>
         <div class="form-group">
-            <label for="website">website *</label>
+            <label for="website">Website *</label>
             <input name="website" type="text" class="form-control" id="website" value="{{$company->website}}" placeholder="Website">
         </div>
         

@@ -49,14 +49,15 @@
         </div>
 
         <div class="form-group">
-            <label for="description">description *</label>
+            <label for="description">Description *</label>
             <textarea name="description" class="form-control" id="description">@if(!empty(old('description'))) {{old('description')}} @elseif(!empty($foursquare['categories'][0]['name'])) {{$foursquare['categories'][0]['name']}} @endif</textarea>
         </div>
         <div class="form_group">
+            <label for="description">Company logo</label>
             <input type="file" name="image" class="btn mb-3" id="image" accept="image/*">
         </div>
         <div class="form-group">
-            <label for="email">email *</label>
+            <label for="email">Email *</label>
             <input name="email" type="email" class="form-control" id="email" value="@if(!empty(old('email'))) {{old('email')}} @endif" placeholder="Company email">
         </div>
         <div class="form-group">
@@ -64,7 +65,7 @@
             <input name="phone_number" type="tel" class="form-control" id="phone_number" value="@if(!empty(old('phone_number'))) {{old('phone_number')}} @endif" placeholder="Company phone number">
         </div>
         <div class="form-group">
-            <label for="website">website *</label>
+            <label for="website">Website *</label>
             <input name="website" type="text" class="form-control" id="website" value="{{old('website')}}" placeholder="Website">
         </div>
         
