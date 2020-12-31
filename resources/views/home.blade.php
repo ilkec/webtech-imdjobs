@@ -37,7 +37,7 @@
         </div>
         
         <div class="center">
-            <button type="button" class="btn btn-primary btn-lg" id="btn-searchInternship">Search!</button>
+            <button name="searchInternship" type="button" class="btn btn-primary btn-lg" id="btn-searchInternship">Search!</button>
         </div>
          <div class="center margin-top">
             <p>look for a <a href="/companies">company</a> instead?</p>

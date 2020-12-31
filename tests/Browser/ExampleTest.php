@@ -9,15 +9,19 @@ use Tests\DuskTestCase;
 class ExampleTest extends DuskTestCase
 {
     /**
-     * A basic browser test example.
-     *
-     * @return void
+     * @test
+     * @group register
      */
-    public function testBasicExample()
+    public function testRegister()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertSee('Laravel');
+            $browser->visit('/register')
+                    ->type('firstname', 'Gary')
+                    ->type('lastname', 'testacc')
+                    ->type('email', 'garytestacc@student.thomasmore.be')
+                    ->type('password', '12345')
+                    ->press('register-student')
+                    ->assertPathIs('/login');
         });
     }
 }
