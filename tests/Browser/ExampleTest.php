@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 class ExampleTest extends DuskTestCase
 {
     use withFaker;
-    
+
     /**
      * @test
      * @group register
@@ -30,7 +30,7 @@ class ExampleTest extends DuskTestCase
 
     /**
     * @test
-    * @group register
+    * @group login
     */
     public function testLogin()
     {
