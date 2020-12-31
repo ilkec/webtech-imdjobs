@@ -14,7 +14,9 @@ class CompanyController extends Controller
     {
         //get all companies
         $data['user'] = Auth::user();
-        $data['mycompanies'] = \App\Models\Companies::where('user_id', $data['user']->id)->get();
+        if ($data['user']) {
+            $data['mycompanies'] = \App\Models\Companies::where('user_id', $data['user']->id)->get();
+        }
         return view('companies/index', $data);
     }
 
@@ -193,7 +195,9 @@ class CompanyController extends Controller
             ->get();
 
         $data['user'] = Auth::user();
-        $data['mycompanies'] = \App\Models\Companies::where('user_id', $data['user']->id)->get();
+        if ($data['user']) {
+            $data['mycompanies'] = \App\Models\Companies::where('user_id', $data['user']->id)->get();
+        }
         return view('companies/index', $data);
     }
 }
