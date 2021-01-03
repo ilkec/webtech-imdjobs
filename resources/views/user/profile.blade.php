@@ -46,9 +46,12 @@
             @else
             <img class="img-thumbnail" src="{{ asset('storage/' . $users->picture) }}" width="500" height="500" alt="profilepicture" id="profilePicture">
             @endif
-            <div id="buttonSettings" v-if="button == {{ $users->id }}">
+            
+            @if (session('User') === $users->id) 
+            <div id="buttonSettings">
                 <a  href="/user/settings"><button type="button" class="btn btn-light">Account settings</button></a>
             </div>
+            @endif
         </div>
     </div>
     <div class='contact profile-group'>

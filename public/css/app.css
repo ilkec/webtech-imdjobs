@@ -137,6 +137,9 @@ i{
 
 #buttonSettings{
    margin-top: 15px;
+}
+
+#buttonSettings button{
    font-weight: 700;
 }
 
