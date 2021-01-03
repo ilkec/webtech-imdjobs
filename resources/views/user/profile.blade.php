@@ -40,13 +40,15 @@
             @endif
         </div>
     
-        <div class="container-img">
-            <i class="fas fa-users-cog fa-lg"></i>
+        <div class="container-img"> 
             @if (empty( $users->picture ))
                 <img class="img-thumbnail" src="{{ asset('images/profilePic.jpg') }}" width="500" height="500" alt="profilepicture" id="profilePicture">
             @else
             <img class="img-thumbnail" src="{{ asset('storage/' . $users->picture) }}" width="500" height="500" alt="profilepicture" id="profilePicture">
             @endif
+            <div id="buttonSettings" v-if="button == {{ $users->id }}">
+                <a  href="/user/settings"><button type="button" class="btn btn-light">Account settings</button></a>
+            </div>
         </div>
     </div>
     <div class='contact profile-group'>

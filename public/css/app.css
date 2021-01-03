@@ -135,6 +135,11 @@ i{
    border-bottom: 1px solid #F2F2F2;
 }
 
+#buttonSettings{
+   margin-top: 15px;
+   font-weight: 700;
+}
+
 
 .container-profile .form_group{
    margin-top: 20px;
