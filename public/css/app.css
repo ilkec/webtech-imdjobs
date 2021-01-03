@@ -136,6 +136,9 @@ i{
 }
 
 
+.container-profile .form_group{
+   margin-top: 20px;
+}
 
 .download{
    background-color: #56A7F1;

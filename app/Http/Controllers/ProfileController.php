@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
@@ -137,6 +138,43 @@ class ProfileController extends Controller
         $request->session()->flash('updateMessage', 'Your profile was successfully updated');
         return redirect('/user/profile/' . $id);
     }
+
+    public function updatePassword()
+    {
+        
+        return view('/user/settings');
+    }
+
+    public function handleUpdatePassword(Request $request)
+    {
+        $validation = $request->validate([
+            'passwordOld' => 'required',
+            'passwordNew' => 'required',
+
+        ]);
+
+        $id = session('User');
+        $passwordOld = $request->input('passwordOld');
+        $data['passwordDB'] = \App\Models\User::select('password')->where('id', $id)->first();
+        $passwordDB = $data['passwordDB']->password;
+         $request->flash();
+       
+
+        if (Hash::check($passwordOld, $passwordDB)) {
+            $passwordNew = Hash::make($request->input('passwordNew'));
+
+            \App\Models\User::where('id', $id)
+            ->update(['password' => $passwordNew]);
+
+            $request->session()->flash('updateMessage', 'Your password was successfully updated');
+            return redirect('/user/profile/' . $id);
+        }
+        else{
+            $request->session()->flash('passwordMessage', "Your old password was not correct");
+            return redirect('/user/settings');
+        }
+    }
+
 
     /* --- HOMEPAGE --- */
     public function showHome()

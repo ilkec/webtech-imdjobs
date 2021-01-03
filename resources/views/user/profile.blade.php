@@ -12,6 +12,7 @@
        
     <div class="intro profile-group">
         <h1>{{ $users->first_name }} {{ $users->last_name }}</h1>
+    
         @if ($users->account_type == 1 )
 
             <p id="education-info">Student {{ $users->education }} at {{ $users->school }} </p>
@@ -40,6 +41,7 @@
         </div>
     
         <div class="container-img">
+            <i class="fas fa-users-cog fa-lg"></i>
             @if (empty( $users->picture ))
                 <img class="img-thumbnail" src="{{ asset('images/profilePic.jpg') }}" width="500" height="500" alt="profilepicture" id="profilePicture">
             @else

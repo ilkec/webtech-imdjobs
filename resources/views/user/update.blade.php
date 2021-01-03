@@ -35,7 +35,7 @@
                     <label for="lastname">Last name *</label>
                     <input value="@if(!empty(old('lastname'))) {{old('lastname')}}  @elseif(!empty($users->last_name)) {{$users->last_name}} @endif" class="form-control" type="text" name="lastname" id="lastname" placeholder="Enter your last name">
                 </div>
-                <div class="form-group">
+                <div class="form_group">
                     <label for="description">Description *</label>
                     <input value="@if(!empty(old('description'))) {{old('description')}}  @elseif(!empty($users->description)) {{$users->description}} @endif" type="input" name="description" class="form-control" id="description" placeholder="description">
                 </div>
@@ -43,7 +43,7 @@
                     <label for="phonenumber">Phonenumber *</label>
                     <input value="@if(!empty(old('phonenumber'))) {{old('phonenumber')}}  @elseif(!empty($users->phone_number)) {{$users->phone_number}} @endif" class="form-control" type="text" name="phonenumber" id="phonenumber"  placeholder="Enter your phonenumber">
                 </div>
-                <div class="form-group">
+                <div class="form_group">
                     <label for="city">City *</label>
                     <input value="@if(!empty(old('city'))) {{old('city')}}  @elseif(!empty($users->city)) {{$users->city}} @endif" type="input" name="city" class="form-control" id="city" placeholder="City">
                 </div>

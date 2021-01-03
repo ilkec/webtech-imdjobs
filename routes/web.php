@@ -39,6 +39,9 @@ Route::get('/user/profile/{id}', [ProfileController::class, 'showProfile']);
 //update profile
 Route::get('/user/update', [ProfileController::class, 'updateProfile']);
 Route::post('/user/update', [ProfileController::class, 'handleUpdateProfile']);
+//settings password
+Route::get('/user/settings', [ProfileController::class, 'updatePassword']);
+Route::post('/user/settings', [ProfileController::class, 'handleUpdatePassword']);
 
 /* --- company --- */
 //plural
