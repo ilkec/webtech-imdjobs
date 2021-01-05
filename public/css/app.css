@@ -296,6 +296,13 @@ footer{
    text-overflow: ellipsis;
 }
 
+.companies--description {
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   margin: 0.5em;
+}
+
 .button__container a{
    margin: 0.5em;
 }

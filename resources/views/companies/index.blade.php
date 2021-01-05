@@ -44,7 +44,7 @@
             <div class="list__item">
                 <a href="/companies/{{ $company->id }}"><h2>{{ $company->name }}</h2></a>
                 <div class='description'>
-                    <p>{{$company->description}}</p>
+                    <p class="companies--description">{{$company->description}}</p>
                 </div>
                 <div class="container-img">
                 @if (empty( $company->picture ))
@@ -66,7 +66,7 @@
             <div class="list__item">
                 <a href="/companies/{{ $company->id }}"><h2>{{ $company->name }}</h2></a>
                 <div class='description'>
-                    <p>{{$company->description}}</p>
+                    <p class="companies--description">{{$company->description}}</p>
                 </div>
                 <div class="container-img">
                 @if (empty( $company->picture ))
