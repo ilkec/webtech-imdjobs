@@ -99,6 +99,7 @@ class ApplicationController extends Controller
         $userCompanies = \App\Models\Companies::where('user_id', $id)->get('id');
         $data['applicationsCompany'] = \App\Models\Applications::join('internships', 'internships.id', '=', 'applications.internships_id')
             ->join('companies', 'companies.id', '=', 'applications.companies_id')
+            ->join('users', 'users.id', '=', 'applications.user_id')
             ->where('applications.companies_id', $userCompanies[0]['id'])->get();
         }
         // check if user is logged in

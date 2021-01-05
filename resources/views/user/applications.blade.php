@@ -25,6 +25,7 @@ My applications
     <tr>
       <td>{{$application->name}}</td>
       <td>{{$application->title}}</td>
+      <td>{{$application->first_name}} {{$application->last_name}}</td>
       @if ($application->status == 0)
       <td>New</td>
       @elseif ($application->status == 1)
