@@ -88,11 +88,19 @@ class ApplicationController extends Controller
     public function showApplications()
     {
         $id = session('User');
-        // get applications
-        $data['applications'] = \App\Models\Applications::join('internships', 'internships.id', '=', 'applications.internships_id')
+        $data['users'] =  \App\Models\User::where('id', $id)->first();
+        if($data['users']['account_type'] == 1){
+        // get applications for user
+        $data['applicationsUser'] = \App\Models\Applications::join('internships', 'internships.id', '=', 'applications.internships_id')
             ->join('companies', 'companies.id', '=', 'applications.companies_id')
             ->where('applications.user_id', $id)
             ->get();
+        } else {
+        $userCompanies = \App\Models\Companies::where('user_id', $id)->get('id');
+        $data['applicationsCompany'] = \App\Models\Applications::join('internships', 'internships.id', '=', 'applications.internships_id')
+            ->join('companies', 'companies.id', '=', 'applications.companies_id')
+            ->where('applications.companies_id', $userCompanies[0]['id'])->get();
+        }
         // check if user is logged in
         if ($id == null) {
             session()->flash('login', 'Please log in to see the internships you applied for!');
