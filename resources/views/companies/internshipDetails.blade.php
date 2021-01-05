@@ -43,17 +43,20 @@
           <th scope="col">First name</th>
           <th scope="col">Last name</th>
           <th scope="col">Profile</th>
+          <th scope="col">Message</th>
           <th scope="col">Status</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
+        
         @foreach( $applications as $application)
           @if ($status == 4)
           <tr>
             <td>{{$application->first_name}}</td>
             <td>{{$application->last_name}}</td>
             <td><a href="/user/profile/{{$application->user_id}}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">View Profile</a></td>
+            <td>{{$application->message}}</td>
             <td><p>
               @if ($application->status == 0) New @endif
               @if ($application->status == 1) Starred @endif
@@ -67,6 +70,7 @@
             <td>{{$application->first_name}}</td>
             <td>{{$application->last_name}}</td>
             <td><a href="/user/profile/{{$application->user_id}}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">View Profile</a></td>
+            <td>{{$application->message}}</td>
             <td><p>
               @if ($application->status == 0) New @endif
               @if ($application->status == 1) Starred @endif

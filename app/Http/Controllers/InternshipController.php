@@ -55,7 +55,7 @@ class InternshipController extends Controller
         $data['details'] = \App\Models\Internships::where('id', $internship)->first();
         $data['applications'] = \App\Models\Applications::where('internships_id', $internship)
             ->join('users', 'users.id', '=', 'applications.user_id')
-            ->select('applications.id', 'user_id', 'internships_id', 'status', 'companies_id', 'first_name', 'last_name')
+            ->select('applications.id', 'user_id', 'internships_id', 'status', 'companies_id', 'first_name', 'last_name', 'message')
             ->get('last_name');
         
         //check if internship is still active
@@ -79,6 +79,8 @@ class InternshipController extends Controller
             $data['applied'] = true;
             session()->flash('applied', 'Please log in to apply for this internship!');
         }
+
+       
 
         return view('companies/internshipDetails', $data, $url);
     }
